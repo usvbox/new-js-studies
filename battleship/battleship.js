@@ -103,7 +103,7 @@ model.fire("10");
 
 /*
 This explains how to get values from an array within an array and place a value in an array within an array
-test25 mmm
+test25 mmm test
 var ship2 = ships[1];
 var locations = ship2.locations;
 console.log("Location is " + locations[1]);
