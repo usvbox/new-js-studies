@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Treasure Hunt</title>
+		<meta charset="utf-8">
+		<style>
+			body {
+				margin: 20px;
+			}
+			img {
+				margin: 20px;
+			}
+		</style>
+		<script>
+			
+			window.onload = init;
+			function init() {
+				var map = document.getElementById("map");
+				map.onmousemove = showCoords;
+			}
+
+			function showCoords(eventObj){
+				var map = document.getElementById("coords");
+				x = eventObj.clientX;
+				y = eventObj.clientY;
+				map.innerHTML = "Map coordinates: " + x + ", " + y;
+			}
+			
+		</script>
+	</head>
+	<body>
+
+		<img id="map" src="map.jpg" alt="map">
+		<p id="coords">Move mouse to find coordinates...</p>
+
+	</body>
+</html>
