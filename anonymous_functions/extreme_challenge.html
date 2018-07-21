@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<style>
+            
+        </style>
+
+		<script>
+            var secret = "007";
+
+            function getSecret () {
+                var secret = "008";
+                function getValue () {
+                    return secret;
+                }
+                return getValue ();
+            }
+            getSecret ();
+
+            var secret = "007";
+
+            function getSecret () {
+                var secret = "008";
+                function getValue () {
+                    return secret;
+                }
+                return getValue;
+            }
+
+            var getValueFun = getSecret ();
+            getValueFun ();
+		</script>
+	</head>
+	<body>
+
+
+
+	</body>
+</html>
