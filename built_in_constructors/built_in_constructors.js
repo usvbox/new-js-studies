@@ -1,0 +1,26 @@
+var now = new Date ();
+console.log (now);
+var dateString = now.toString ();
+console.log (dateString);
+var theYear = now.getFullYear ();
+console.log (theYear);
+var theDayOfWeek = now.getDay ();
+console.log (theDayOfWeek);
+var birthday = new Date ("November 9, 1983");
+console.log (birthday);
+var emptyArray = new Array ();
+emptyArray [0] = 99; 
+console.log (emptyArray);
+var oddNumbers = new Array (3);
+oddNumbers [0] = 1;
+oddNumbers [1] = 3;
+oddNumbers [2] = 5;
+console.log (oddNumbers);
+oddNumbers.reverse ();
+console.log (oddNumbers);
+var aString = oddNumbers.join (" - ");
+console.log (aString);
+var areAllOdd = oddNumbers.every (function (x) {
+    return ((x % 2) !== 0);
+});
+console.log (areAllOdd);
