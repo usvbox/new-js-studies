@@ -146,6 +146,8 @@ if (age < 13) {
 
 */
 
+/*
+
 //the ternary operator adn switch statements
 
 let firstName = 'John';
@@ -158,6 +160,8 @@ age >= 18 ? console.log(firstName + ' drinks beer.') : console.log(firstName + '
 let drink = age >= 18 ? 'beer' : 'juice';
 console.log(drink);
 
+*/
+
 /*
 if (age >= 18) {
     console.log(firstName + ' drinks beer.');
@@ -165,6 +169,8 @@ if (age >= 18) {
     console.log(firstName + ' drinks juice.');
 }
 */
+
+/*
 
 //switch statement
 
@@ -184,7 +190,7 @@ switch (job) {
         console.log(firstName + ' does something else.');
 }
 
-switch(true) {
+switch(true) { //note the conditional that you want to use in the switch
     case age < 13:
         console.log(firstName + ' is a boy.');
         break;
@@ -197,3 +203,132 @@ switch(true) {
     default:
         console.log(firstName + ' is a man.');
 }
+
+*/
+
+/*
+// truthy and falsy values and equality operators
+
+// falsy values: undefined, null, 0, '', NaN - result in false in an if/else statement
+// truthy values: all not falsy values
+
+let height;
+height = 23;
+
+if (height || height === 0) {
+    console.log('Variable is defined.');
+} else {
+    console.log('Variable is not defined.');
+}
+
+// equality operators
+
+if (height === '23') {
+    console.log('The == operator does type coercion.'); //so '23' will be converted to 23 when comparing the value in the height variable to the condition. 
+}
+
+*/
+
+
+/*
+// challenge 2
+
+let johnTeamGame1 = 195;
+let johnTeamGame2 = 94;
+let johnTeamGame3 = 123;
+let mikeTeamGame1 = 123;
+let mikeTeamGame2 = 94;
+let mikeTeamGame3 = 123;
+let maryTeamGame1 = 123;
+let maryTeamGame2 = 94;
+let maryTeamGame3 = 123;
+let johnTeamNumberOfGames = 3;
+let mikeTeamNumberOfGames = 3;
+let maryTeamNumberOfGames = 3;
+
+let johnTeamThreeGameAvg = (johnTeamGame1 + johnTeamGame2 + johnTeamGame3) / johnTeamNumberOfGames;
+console.log('The John Team three-game average is ' + johnTeamThreeGameAvg + '.');
+let mikeTeamThreeGameAvg = (mikeTeamGame1 + mikeTeamGame2 + mikeTeamGame3) / mikeTeamNumberOfGames;
+console.log('The Mike Team three-game average is ' + mikeTeamThreeGameAvg + '.');
+let maryTeamThreeGameAvg = (maryTeamGame1 + maryTeamGame2 + maryTeamGame3) / maryTeamNumberOfGames;
+console.log('The Mary Team three-game average is ' + maryTeamThreeGameAvg + '.');
+
+if (mikeTeamThreeGameAvg > johnTeamThreeGameAvg && mikeTeamThreeGameAvg > maryTeamThreeGameAvg) {
+    console.log('Mike\'s team has the highest average score of ' + mikeTeamThreeGameAvg + '.');
+} else if (johnTeamThreeGameAvg > mikeTeamThreeGameAvg && johnTeamThreeGameAvg > maryTeamThreeGameAvg) {
+    console.log('John\'s team has the highest average score of ' + johnTeamThreeGameAvg + '.');
+} else if (maryTeamThreeGameAvg > mikeTeamThreeGameAvg && maryTeamThreeGameAvg > johnTeamThreeGameAvg) {
+    console.log('Mary\'s team has the highest average score of ' + maryTeamThreeGameAvg + '.');
+} else {
+    console.log('Mike\'s team, John\'s team and Mary\'s team have a draw.');
+}
+
+
+switch(true) {
+    case mikeTeamThreeGameAvg > johnTeamThreeGameAvg && mikeTeamThreeGameAvg > maryTeamThreeGameAvg:
+        console.log('Mike\'s team has the highest average score of ' + mikeTeamThreeGameAvg + '.');
+        break;
+    case johnTeamThreeGameAvg > mikeTeamThreeGameAvg && johnTeamThreeGameAvg > maryTeamThreeGameAvg:
+        console.log('John\'s team has the highest average score of ' + johnTeamThreeGameAvg + '.');
+        break;
+    case maryTeamThreeGameAvg > mikeTeamThreeGameAvg && maryTeamThreeGameAvg > johnTeamThreeGameAvg:
+        console.log('Mary\'s team has the highest average score of ' + maryTeamThreeGameAvg + '.');
+        break;
+    default:
+        console.log('Mike\'s team, John\'s team and Mary\'s team have a draw.');
+}
+
+*/
+
+
+// functions, function declaration
+
+function calculateAge(birthYear) {
+    return 2018 - birthYear;
+}
+
+let ageJohn = calculateAge(1990);
+let ageMike = calculateAge(1994);
+let ageJane = calculateAge(1969);
+console.log(ageJohn,ageMike,ageJane);
+
+function yearsUntilRetirement(year, firstName) {
+    let age = calculateAge(year);
+    let retirement = 65 - age;
+    if (retirement > 0) {
+        console.log(firstName + ' retires in ' + retirement + ' years.');
+        
+    } else {
+        console.log(firstName + ' is retired.');
+    }
+    
+}
+
+yearsUntilRetirement(1945, 'John');
+
+// functions, function expression
+
+let whatDoYouDo = function(job, firstName) {
+    switch(job) {
+        case 'teacher':
+            return firstName + ' teaches kids how to code.';
+        case 'driver':
+            return firstName + ' drives a cab in Lisbon.';
+        case 'designer':
+            return firstName + ' designs beautiful websites.';
+        default:
+            return firstName + ' does something else.';
+    }
+}
+
+console.log(whatDoYouDo('teacher', 'John'));
+console.log(whatDoYouDo('driver', 'Mike'));
+console.log(whatDoYouDo('designer', 'Mary'));
+console.log(whatDoYouDo('retired', 'Jane'));
+
+
+
+
+
+
+
