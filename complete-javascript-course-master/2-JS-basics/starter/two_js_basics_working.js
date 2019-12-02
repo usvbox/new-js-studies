@@ -280,6 +280,7 @@ switch(true) {
 
 */
 
+/*
 
 // functions, function declaration
 
@@ -326,9 +327,135 @@ console.log(whatDoYouDo('driver', 'Mike'));
 console.log(whatDoYouDo('designer', 'Mary'));
 console.log(whatDoYouDo('retired', 'Jane'));
 
+*/
+
+/*
+//arrays
+
+//initialize new array
+let names = ['John', 'Mark', 'Jane'];
+let years = new Array(1990, 1969, 1948);
+
+console.log(names[0]);
+console.log(names);
+console.log(names.length);
+
+//mutate array data
+names[1] = 'Ben';
+names[names.length] = 'Mary';
+console.log(names);
+
+let john = ['John', 'Smith', 1990, 'designer', false];
+
+john.push('blue');
+john.unshift('Mr');
+john.pop();
+john.shift();
+console.log(john.indexOf(1990));
+console.log(john.indexOf(23));
+
+let isDesigner = john.indexOf('designer') === -1 ? 'John is NOT a designer' : 'John IS a designer';
+console.log(isDesigner);
+*/
+
+//coding challenge 3
+
+/*
+Background:
+    Given John uses the following tipping rules:
+        | start_amount | end_amount | tip_size_% |
+        | 0.01         | 50         | 0.2        |
+        | 50.01        | 200        | 0.15       |
+        | 200.01       |            | 0.1        |
+
+Scenario Outline: Tip Calculator
+    When John receives a bill of <bill_amount> from restaurant <restaurant>
+        
+        Examples:
+            | restaurant  | bill_amount | tip_size | tip_amount | total_amount |
+            | restaurant1 | 124         | 0.15     | 18.6       | 142.6        |
+            | restaurant2 | 48          | 0.2      | 9.6        | 57.6         |
+            | restaurant3 | 268         | 0.1      | 26.8       | 294.8        |
+    
+    Then John uses the tipsize <tip_size>
+        And John calculates the tip to the tip amount <tip_amount>
+        And John pays the total <total_amount>
 
 
+*/
 
 
+let allTips = [];
+let allTotalAmounts = [];
+let restaurantBills = [124, 48, 268]
 
+/*
+function returnTipAmountToAllTipsArray(restaurantBill) {
+    let tipAmount;
+    if (restaurantBill > 0.1 && restaurantBill <=50) {
+        tipAmount = restaurantBill * 0.2;
+    } else if (restaurantBill > 50 && restaurantBill <=200) {
+        tipAmount = restaurantBill * 0.15;
+    } else if (restaurantBill > 200) {
+        tipAmount = restaurantBill * 0.1;
+    } else {   
+        tipAmount = 0.1;
+    }
+    return allTips.push(tipAmount);
+}
+*/
 
+function returnTipAmountToAllTipsArray(restaurantBill) {
+    let tipPercentage;
+    if (restaurantBill > 0.1 && restaurantBill <=50) {
+        tipPercentage = 0.2;
+    } else if (restaurantBill > 50 && restaurantBill <=200) {
+        tipPercentage = 0.15;
+    } else if (restaurantBill > 200) {
+        tipPercentage = 0.1;
+    }
+    return allTips.push(restaurantBill * tipPercentage);
+}
+
+function returnTotalBillAmountToAllTotalAmountsArray (billAmount, tipAmount) {
+    return allTotalAmounts.push(billAmount + tipAmount);
+}
+
+/*
+function calculateTip (restaurantBill) {
+    let tipAmount;
+    let tipPercentage;
+    if (restaurantBill > 0.1 && restaurantBill <=50) {
+        tipPercentage = 0.2;
+    } else if (restaurantBill > 50 && restaurantBill <=200) {
+        tipPercentage = 0.15;
+    } else {
+        tipPercentage = 0.1;
+    }
+    return tipAmount = restaurantBill * tipPercentage;
+}
+
+let tipAmount1 = calculateTip(restaurantBills[0]);
+let tipAmount2 = calculateTip(restaurantBills[1]);
+let tipAmount3 = calculateTip(restaurantBills[2]);
+console.log(tipAmount1, tipAmount2, tipAmount3);
+*/
+
+for (var i = 0; i < restaurantBills.length; i++) {
+    let returnedTipAmount = returnTipAmountToAllTipsArray(restaurantBills[i]);
+}
+
+for (var j = 0; j < restaurantBills.length; j++) {
+    let returnedTotalAmount = returnTotalBillAmountToAllTotalAmountsArray(restaurantBills[j],allTips[j]);
+}
+
+//let returnedTipAmount1 = returnTipAmountToAllTipsArray(restaurantBills[0]);
+//let returnedTipAmount2 = returnTipAmountToAllTipsArray(restaurantBills[1]);
+//let returnedTipAmount3 = returnTipAmountToAllTipsArray(restaurantBills[2]);
+
+//let returnedTotalAmount1 = returnTotalBillAmountToAllTotalAmountsArray(restaurantBills[0],allTips[0]);
+//let returnedTotalAmount2 = returnTotalBillAmountToAllTotalAmountsArray(restaurantBills[1],allTips[1]);
+//let returnedTotalAmount3 = returnTotalBillAmountToAllTotalAmountsArray(restaurantBills[2],allTips[2]);
+
+console.log(allTips);
+console.log(allTotalAmounts);
