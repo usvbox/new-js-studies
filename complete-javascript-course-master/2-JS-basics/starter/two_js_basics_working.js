@@ -358,6 +358,10 @@ let isDesigner = john.indexOf('designer') === -1 ? 'John is NOT a designer' : 'J
 console.log(isDesigner);
 */
 
+
+
+//---------------------------------------------------------------------------------------------------
+
 //coding challenge 3
 
 /*
@@ -384,10 +388,13 @@ Scenario Outline: Tip Calculator
 
 */
 
+/*
 
 let allTips = [];
 let allTotalAmounts = [];
 let restaurantBills = [124, 48, 268]
+
+*/
 
 /*
 function returnTipAmountToAllTipsArray(restaurantBill) {
@@ -405,6 +412,8 @@ function returnTipAmountToAllTipsArray(restaurantBill) {
 }
 */
 
+
+/*
 function returnTipAmountToAllTipsArray(restaurantBill) {
     let tipPercentage;
     if (restaurantBill > 0.1 && restaurantBill <=50) {
@@ -420,6 +429,8 @@ function returnTipAmountToAllTipsArray(restaurantBill) {
 function returnTotalBillAmountToAllTotalAmountsArray (billAmount, tipAmount) {
     return allTotalAmounts.push(billAmount + tipAmount);
 }
+
+*/
 
 /*
 function calculateTip (restaurantBill) {
@@ -441,6 +452,8 @@ let tipAmount3 = calculateTip(restaurantBills[2]);
 console.log(tipAmount1, tipAmount2, tipAmount3);
 */
 
+/*
+
 for (var i = 0; i < restaurantBills.length; i++) {
     let returnedTipAmount = returnTipAmountToAllTipsArray(restaurantBills[i]);
 }
@@ -448,6 +461,8 @@ for (var i = 0; i < restaurantBills.length; i++) {
 for (var j = 0; j < restaurantBills.length; j++) {
     let returnedTotalAmount = returnTotalBillAmountToAllTotalAmountsArray(restaurantBills[j],allTips[j]);
 }
+
+*/
 
 //let returnedTipAmount1 = returnTipAmountToAllTipsArray(restaurantBills[0]);
 //let returnedTipAmount2 = returnTipAmountToAllTipsArray(restaurantBills[1]);
@@ -457,5 +472,111 @@ for (var j = 0; j < restaurantBills.length; j++) {
 //let returnedTotalAmount2 = returnTotalBillAmountToAllTotalAmountsArray(restaurantBills[1],allTips[1]);
 //let returnedTotalAmount3 = returnTotalBillAmountToAllTotalAmountsArray(restaurantBills[2],allTips[2]);
 
+/*
+
 console.log(allTips);
 console.log(allTotalAmounts);
+
+*/
+
+//---------------------------------------------------------------------------------------------------
+
+/********************************************************************
+* objects and properties
+*/
+
+//object literal
+
+/*
+
+let john = {
+    firstName: 'John',
+    lastName: 'Smith',
+    birthYear: 1990,
+    family: ['Jane', 'Mark', 'Bob', 'Emily'],
+    job: 'teacher',
+    isMarried: false
+};
+console.log(john.firstName);
+console.log(john['lastName']);
+var x = 'birthYear';
+console.log(john[x]);
+
+john.job = 'designer';
+john['isMarried'] = true;
+console.log(john);
+
+//new object syntax
+
+let jane = new Object();
+jane.firstName = 'Jane';
+jane.birthYear = 1969;
+jane['lastName'] = 'Smith';
+console.log(jane);
+
+*/
+
+/********************************************************************
+* objects and methods
+*/
+
+/*
+let john = {
+    firstName: 'John',
+    lastName: 'Smith',
+    birthYear: 1992,
+    family: ['Jane', 'Mark', 'Bob', 'Emily'],
+    job: 'teacher',
+    isMarried: false,
+    calculateAge: function() {
+        this.age = 2018 - this.birthYear;
+    }
+};
+
+john.calculateAge();
+console.log(john);
+*/
+
+/********************************************************************
+* coding challenge 4
+*/
+
+//coding challenge 1
+
+let john = {
+    fullName: "John Smith",
+    mass: 79,
+    height: 1.8,
+    calculateBmi: function () {
+        this.bmi = this.mass / Math.pow(this.height,2);
+        return this.bmi;
+    }
+};
+
+let mark = {
+    fullName: "Mark Posh",
+    mass: 79,
+    height: 1.8,
+    calculateBmi: function () {
+        this.bmi = this.mass / Math.pow(this.height,2);
+        return this.bmi;
+    }
+};
+
+//if we call the methods directly in the function compareBmi then we don't have to call the methods separately as done below
+//john.calculateBmi();
+//console.log(john);
+//mark.calculateBmi();
+//console.log(mark);
+
+function compareBmi (bmi1, name1, bmi2, name2) {
+    if (bmi1 > bmi2) {
+        console.log(name1 + ' has a higher BMI than ' + name2 + '.');
+    } else if (bmi2 > bmi1) {
+        console.log(name2 + ' has a higher BMI than ' + name1 + '.');
+    } else {
+        console.log(name1 + ' and ' + name2 + ' have the same BMI.');
+    }
+}
+
+let whoseBmiHigher = compareBmi (john.calculateBmi(), john.fullName, mark.calculateBmi(), mark.fullName); //as the mothods also return bmi, we can call them directly in the function
