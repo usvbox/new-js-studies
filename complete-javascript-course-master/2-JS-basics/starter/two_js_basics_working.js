@@ -541,7 +541,7 @@ console.log(john);
 * coding challenge 4
 */
 
-//coding challenge 1
+/*
 
 let john = {
     fullName: "John Smith",
@@ -580,3 +580,151 @@ function compareBmi (bmi1, name1, bmi2, name2) {
 }
 
 let whoseBmiHigher = compareBmi (john.calculateBmi(), john.fullName, mark.calculateBmi(), mark.fullName); //as the mothods also return bmi, we can call them directly in the function
+
+*/
+
+/********************************************************************
+* loops and iterations
+*/
+
+//for loop
+
+/*
+for (var i = 1; i <= 10; i++) {
+    console.log(i);
+}
+
+// i = 1, 1 <= 10 true, log i to console, i++
+// i = 2, 2 <= 10 true, log i to console, i++
+//...
+// i = 11, 11 <= 10 false, exit the loop
+
+for (var i = 1; i <= 10; i +=2) {
+    console.log(i);
+}
+
+let john = ['John', 'Smith', 1990, 'designer', false];
+
+for (var i = 0; i < john.length; i++) {
+    console.log(john[i]);
+}
+
+//while loop
+
+var i = 0;
+while(i < john.length) {
+    console.log(john[i]);
+    i++;
+}
+
+*/
+
+/*
+
+//continue and break statements
+
+let john = ['John', 'Smith', 1990, 'designer', false];
+
+for (var i = 0; i < john.length; i++) {
+    if (typeof john[i] !== 'string') continue; //if condition is true, then break the current loop and continue to the next one
+    console.log(john[i]);
+}
+
+for (var i = 0; i < john.length; i++) {
+    if (typeof john[i] !== 'string') break; //if condition is true, then break exit the entire loop without continuing
+    console.log(john[i]);
+}
+
+*/
+
+/*
+
+//looping backwards
+
+let john = ['John', 'Smith', 1990, 'designer', false];
+
+for (var i = john.length - 1; i >= 0; i--) {
+    console.log(john[i]);
+}
+*/
+
+
+/********************************************************************
+* coding challenge 5
+*/
+
+/*
+Background:
+    Given John uses the following tipping rules:
+        | start_amount | end_amount | tip_size_% |
+        | 0.01         | 50         | 0.2        |
+        | 50.01        | 200        | 0.15       |
+        | 200.01       |            | 0.1        |
+
+Scenario Outline: Tip Calculator
+    When John receives a bill of <bill_amount> from restaurant <restaurant>
+        
+        Examples:
+            | restaurant  | bill_amount | tip_size | tip_amount | total_amount |
+            | restaurant1 | 124         | 0.15     | 18.6       | 142.6        |
+            | restaurant2 | 48          | 0.2      | 9.6        | 57.6         |
+            | restaurant3 | 268         | 0.1      | 26.8       | 294.8        |
+            | restaurant4 | 180         | 0.15     | 27         | 207          |
+            | restaurant5 | 42          | 0.2      | 8.4        | 50.4         | 
+            
+    Then John uses the tipsize <tip_size>
+        And John calculates the tip to the tip amount <tip_amount>
+        And John pays the total <total_amount>
+
+
+*/
+
+let johnBillsAndTips = {
+    billValues: [124, 48, 268, 180, 42],
+    tipRules: [0.2, 0.15, 0.1],
+    calculateTip: function(billValue) {
+        let tipPercentage;
+        let tipAmount;
+            if (billValue > 0.1 && billValue <= 50) {
+                tipPercentage = this.tipRules[0];
+            } else if (billValue > 50 && billValue <= 200) {
+                tipPercentage = this.tipRules[1];
+            } else {
+                tipPercentage = this.tipRules[2];
+            }
+            return tipAmount = billValue * tipPercentage;
+    },
+    returnTipAmountToAllTipsArray: function() {
+        this.allTips = [];
+        for (var i = 0; i < this.billValues.length; i++) {
+            this.allTips.push(Math.round(this.calculateTip(this.billValues[i])));
+        }
+    },
+    returnTotalAmountToAllTotalAmountsArray: function() {
+        this.allTotalAmounts = [];
+        for (var i = 0; i < this.billValues.length; i++) {
+            this.allTotalAmounts.push(Math.round(this.calculateTip(this.billValues[i]) + this.billValues[i]));
+        }
+    }
+}
+
+johnBillsAndTips.returnTipAmountToAllTipsArray();
+johnBillsAndTips.returnTotalAmountToAllTotalAmountsArray();
+console.log(johnBillsAndTips.allTips);
+console.log(johnBillsAndTips.allTotalAmounts);
+
+
+/*
+Part 2
+
+Mark's family also went on a holiday, going to 4 different restaurants. The bills were 77, 375, 110 and 45. 
+Marks likes to tip 20% when the bill is less than 100, 10% when the bill is less than 300 and 25% if the bill is over 300. 
+
+1. Implement the same functionality as before using Mark's rules. 
+2. Create a function (not a method) to calculate average of a given array of tips. HINT: loop over the array,
+and in each iteration store the current sum in a variable (starting from 0). After you have the sum of the 
+array, divide it by the number of elements in it. 
+3. Calculate the average tip for each family. 
+4. Log to the console which family paid the highest tips on average. 
+
+*/
