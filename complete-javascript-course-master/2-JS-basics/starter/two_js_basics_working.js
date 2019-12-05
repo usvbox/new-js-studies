@@ -655,26 +655,33 @@ for (var i = john.length - 1; i >= 0; i--) {
 
 /*
 Background:
-    Given John uses the following tipping rules:
-        | start_amount | end_amount | tip_size_% |
-        | 0.01         | 50         | 0.2        |
-        | 50.01        | 200        | 0.15       |
-        | 200.01       |            | 0.1        |
+    Given the following tipping rules:
+       | family  | start_amount | end_amount | tip_size_% |
+       | John    | 0.01         | 50         | 0.2        |
+       | John    | 50.01        | 200        | 0.15       |
+       | John    | 200.01       |            | 0.1        |
+       | Mark    |   0.01       | 100        | 0.2        |
+       | Mark    |  100.01      | 300        | 0.1        |
+       | Mark    |  300.01      |            | 0.25       |
 
 Scenario Outline: Tip Calculator
-    When John receives a bill of <bill_amount> from restaurant <restaurant>
+    When <family></family> receives a bill of <bill_amount> from restaurant <restaurant>
         
         Examples:
-            | restaurant  | bill_amount | tip_size | tip_amount | total_amount |
-            | restaurant1 | 124         | 0.15     | 18.6       | 142.6        |
-            | restaurant2 | 48          | 0.2      | 9.6        | 57.6         |
-            | restaurant3 | 268         | 0.1      | 26.8       | 294.8        |
-            | restaurant4 | 180         | 0.15     | 27         | 207          |
-            | restaurant5 | 42          | 0.2      | 8.4        | 50.4         | 
-            
-    Then John uses the tipsize <tip_size>
-        And John calculates the tip to the tip amount <tip_amount>
-        And John pays the total <total_amount>
+          | family | restaurant  | bill_amount | tip_size | tip_amount | total_amount |
+          | John   | restaurant1 | 124         | 0.15     | 18.6       | 142.6        |
+          | John   | restaurant2 | 48          | 0.2      | 9.6        | 57.6         |
+          | John   | restaurant3 | 268         | 0.1      | 26.8       | 294.8        |
+          | John   | restaurant4 | 180         | 0.15     | 27         | 207          |
+          | John   | restaurant5 | 42          | 0.2      | 8.4        | 50.4         |
+          | Mark   | restaurant1 | 77          | 0.2      | 15.4       | 92.4         |  
+          | Mark   | restaurant2 | 375         | 0.25     | 93.75      | 468.75       |  
+          | Mark   | restaurant3 | 110         | 0.1      | 11         | 121          |            
+          | Mark   | restaurant4 | 45          | 0.2      | 9          | 54           |  
+
+    Then <family> uses the tipsize <tip_size>
+        And <familty> calculates the tip to the tip amount <tip_amount>
+        And <family> pays the total <total_amount>
 
 
 */
