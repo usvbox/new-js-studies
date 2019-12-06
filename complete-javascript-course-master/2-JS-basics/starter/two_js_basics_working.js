@@ -686,8 +686,29 @@ Scenario Outline: Tip Calculator
 
 */
 
+/*
+Part 2
+
+Mark's family also went on a holiday, going to 4 different restaurants. The bills were 77, 375, 110 and 45. 
+Marks likes to tip 20% when the bill is less than 100, 10% when the bill is less than 300 and 25% if the bill is over 300. 
+
+1. Implement the same functionality as before using Mark's rules. 
+2. Create a function (not a method) to calculate average of a given array of tips. HINT: loop over the array,
+and in each iteration store the current sum in a variable (starting from 0). After you have the sum of the 
+array, divide it by the number of elements in it. 
+3. Calculate the average tip for each family. 
+4. Log to the console which family paid the highest tips on average. 
+
+*/
+
+
+/*
+
+//Variant when the tips and total amounts are calculated using object methods
+
 let johnBillsAndTips = {
-    billValues: [124, 48, 268, 180, 42],
+    fullName: 'John Smith',
+    billValues: [124, 150, 268, 500, 500],
     tipRules: [0.2, 0.15, 0.1],
     calculateTip: function(billValue) {
         let tipPercentage;
@@ -715,23 +736,145 @@ let johnBillsAndTips = {
     }
 }
 
+let markBillsAndTips = {
+    fullName: 'Mark Posh',
+    billValues: [77, 375, 110, 45],
+    tipRules: [0.2, 0.1, 0.25],
+    calculateTip: function(billValue) {
+        let tipPercentage;
+        let tipAmount;
+            if (billValue > 0.1 && billValue <= 100) {
+                tipPercentage = this.tipRules[0];
+            } else if (billValue > 100 && billValue <= 300) {
+                tipPercentage = this.tipRules[1];
+            } else {
+                tipPercentage = this.tipRules[2];
+            }
+            return tipAmount = billValue * tipPercentage;
+    },
+    returnTipAmountToAllTipsArray: function() {
+        this.allTips = [];
+        for (var i = 0; i < this.billValues.length; i++) {
+            this.allTips.push(Math.round(this.calculateTip(this.billValues[i])));
+        }
+    },
+    returnTotalAmountToAllTotalAmountsArray: function() {
+        this.allTotalAmounts = [];
+        for (var i = 0; i < this.billValues.length; i++) {
+            this.allTotalAmounts.push(Math.round(this.calculateTip(this.billValues[i]) + this.billValues[i]));
+        }
+    }
+}
+
 johnBillsAndTips.returnTipAmountToAllTipsArray();
 johnBillsAndTips.returnTotalAmountToAllTotalAmountsArray();
 console.log(johnBillsAndTips.allTips);
 console.log(johnBillsAndTips.allTotalAmounts);
-
-
-/*
-Part 2
-
-Mark's family also went on a holiday, going to 4 different restaurants. The bills were 77, 375, 110 and 45. 
-Marks likes to tip 20% when the bill is less than 100, 10% when the bill is less than 300 and 25% if the bill is over 300. 
-
-1. Implement the same functionality as before using Mark's rules. 
-2. Create a function (not a method) to calculate average of a given array of tips. HINT: loop over the array,
-and in each iteration store the current sum in a variable (starting from 0). After you have the sum of the 
-array, divide it by the number of elements in it. 
-3. Calculate the average tip for each family. 
-4. Log to the console which family paid the highest tips on average. 
+markBillsAndTips.returnTipAmountToAllTipsArray();
+markBillsAndTips.returnTotalAmountToAllTotalAmountsArray();
+console.log(markBillsAndTips.allTips);
+console.log(markBillsAndTips.allTotalAmounts);
 
 */
+
+//variant when the tips and total amounts are calculated using functions to avoid code duplication
+
+let johnBillsAndTips = {
+    fullName: 'John Smith',
+    billValues: [124, 150, 268, 500, 500],
+    tipRules: [0.2, 0.15, 0.1],
+    calculateTip: function(billValue) {
+        let tipPercentage;
+        let tipAmount;
+            if (billValue > 0.1 && billValue <= 50) {
+                tipPercentage = this.tipRules[0];
+            } else if (billValue > 50 && billValue <= 200) {
+                tipPercentage = this.tipRules[1];
+            } else {
+                tipPercentage = this.tipRules[2];
+            }
+            return tipAmount = billValue * tipPercentage;
+    }
+}
+
+let markBillsAndTips = {
+    fullName: 'Mark Posh',
+    billValues: [77, 375, 110, 45],
+    tipRules: [0.2, 0.1, 0.25],
+    calculateTip: function(billValue) { //calculates a tip amount based on a bill value
+        let tipPercentage;
+        let tipAmount;
+            if (billValue > 0.1 && billValue <= 100) {
+                tipPercentage = this.tipRules[0];
+            } else if (billValue > 100 && billValue <= 300) {
+                tipPercentage = this.tipRules[1];
+            } else {
+                tipPercentage = this.tipRules[2];
+            }
+            return tipAmount = billValue * tipPercentage;
+    }
+}
+
+//uses the Calculate Tip method of a Bills&Tips object to calculate tips amounts and puts the resulting tip amounts in the allTips array in the object
+function returnTipAmountToAllTipsArray(billsAndTips) {
+    let allTips = [];
+    for (var i = 0; i < billsAndTips.billValues.length; i++) {
+        allTips.push(Math.round(billsAndTips.calculateTip(billsAndTips.billValues[i])));
+    }
+    billsAndTips.allTips = allTips;
+}
+
+//uses the Calculate Tip method of a Bills&Tips object to calculate tips amounts, calculates total paid amounts and puts them in the allTotalAmounts array in the object
+function returnTotalAmountToAllTotalAmountsArray(billsAndTips) {
+    let allTotalAmounts = [];
+    for (var i = 0; i < billsAndTips.billValues.length; i++) {
+        allTotalAmounts.push(Math.round(billsAndTips.calculateTip(billsAndTips.billValues[i]) + billsAndTips.billValues[i]));
+    }
+    billsAndTips.allTotalAmounts = allTotalAmounts;
+}
+
+
+//calculates an average tip amount based on tip values provided in an array
+function calculateAverageTipAmounts (tipAmounts) {
+    let totalTipAmount = 0;
+    let tipAmount;
+    let averageTipAmount;
+    for (var i = 0; i < tipAmounts.length; i++) {
+        tipAmount = tipAmounts[i];
+        totalTipAmount = totalTipAmount + tipAmount;
+    }
+    
+    return averageTipAmount = totalTipAmount / tipAmounts.length;
+}
+
+//compares average tip amounts paid by two families
+function compareAverageTipAmounts (averageTipAmount1, name1, averageTipAmount2, name2) {
+    if (averageTipAmount1 > averageTipAmount2) {
+        console.log('The ' + name1 + ' family paid the higher tip of ' + averageTipAmount1 + ' on average during the holidays than the ' + name2 + ' family.');
+    } else if (averageTipAmount2 > averageTipAmount1) {
+        console.log('The ' + name2 + ' family paid the higher tip of ' + averageTipAmount2 + ' on average during the holidays than the ' + name1 + ' family.');
+    } else {
+        console.log('The ' + name1 + ' family and the ' + name2 + ' family paid the same tip amount on average during the holidays.');
+    }
+}
+
+//here we call the functions to calculate tip amounts and total paid amounts for the John family
+returnTipAmountToAllTipsArray(johnBillsAndTips);
+returnTotalAmountToAllTotalAmountsArray(johnBillsAndTips);
+console.log('John\'s tips: ' + johnBillsAndTips.allTips + '; ' + 'John\'s total amounts: ' + johnBillsAndTips.allTotalAmounts);
+
+//here we call the functions to calculate tip amounts and total paid amounts for the Mark family
+returnTipAmountToAllTipsArray(markBillsAndTips);
+returnTotalAmountToAllTotalAmountsArray(markBillsAndTips);
+console.log('Mark\'s tips: ' + markBillsAndTips.allTips + '; ' + 'Mark\'s total amounts: ' + markBillsAndTips.allTotalAmounts);
+
+//here we call the function to calculate average tip amounts for the John family and the Mark family
+johnBillsAndTips.averageTip = calculateAverageTipAmounts(johnBillsAndTips.allTips);
+markBillsAndTips.averageTip = calculateAverageTipAmounts(markBillsAndTips.allTips);
+console.log('John\'s average tip: ' + johnBillsAndTips.averageTip + '; ' + 'Mark\'s average tip: ' + markBillsAndTips.averageTip);
+
+//here we compare average tip amounts of the two families and figure out which family pays more in tips on average
+compareAverageTipAmounts(johnBillsAndTips.averageTip, johnBillsAndTips.fullName, markBillsAndTips.averageTip, markBillsAndTips.fullName);
+
+console.log(johnBillsAndTips);
+console.log(markBillsAndTips);
