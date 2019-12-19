@@ -9,24 +9,9 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer;
+var overallScores, roundScore, activePlayer;
 
-overallScores = [0,0];
-roundScore = 0;
-activePlayer = 0;
-
-
-//this is to be able to assign a round score value for the active player based on the dice value
-//document.querySelector('#current-' + activePlayer).textContent = dice; //this is a setter for placing text in HTML
-//document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>'; //this is a setter for placing html code within HTML
-
-//this is to be able to hide the dice from the screen at the start of the game
-document.querySelector('.dice').style.display = 'none'; //changes value of a css element
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
-
+init();
 
 //var x = document.querySelector('#score-0').textContent; //this is a getter to get a value from an html element
 //console.log(x);
@@ -56,18 +41,72 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         document.querySelector('#current-' + activePlayer).textContent = roundScore;
     } else {
         //Next player
-        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0; //ternary operator for simple if statements
-        roundScore = 0;
-        document.getElementById('current-0').textContent = '0';
-        document.getElementById('current-1').textContent = '0';
-
-        document.querySelector('.player-0-panel').classList.toggle('active'); //adds or removes parameter to class in html document - if it's there - remove, if not add
-        document.querySelector('.player-1-panel').classList.toggle('active');
-
-        //document.querySelector('.player-0-panel').classList.remove('active');
-        //document.querySelector('.player-1-panel').classList.add('active');
-
-        document.querySelector('.dice').style.display = 'none';
+        nextPlayer();
     }
 
 });
+
+document.querySelector('.btn-hold').addEventListener('click', function() {
+    // Add current score to global score
+    overallScores[activePlayer] += roundScore;
+
+    // Update the UI
+    document.querySelector('#score-' + activePlayer).textContent = overallScores[activePlayer];
+
+    // Check if player won the game
+    if (overallScores[activePlayer] >= 15) {
+        //activePlayer won
+        document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+        document.querySelector('.dice').style.display = 'none';
+        document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+    } else {
+        // Next player
+        nextPlayer();
+    }
+
+});
+
+// here note how we call an existing function via the event listener, in which case we simply provie the function name without the initialization parentheses
+document.querySelector('.btn-new').addEventListener('click', init);
+
+function nextPlayer () {
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0; //ternary operator for simple if statements
+    roundScore = 0;
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+
+    document.querySelector('.player-0-panel').classList.toggle('active'); //adds or removes parameter to class in html document - if it's there - remove, if not add
+    document.querySelector('.player-1-panel').classList.toggle('active');
+
+    //document.querySelector('.player-0-panel').classList.remove('active');
+    //document.querySelector('.player-1-panel').classList.add('active');
+
+    document.querySelector('.dice').style.display = 'none';
+}
+
+//this is the init function that is used upon loading the game and when pressing the 'new game' button
+function init() {
+    overallScores = [0,0];
+    roundScore = 0;
+    activePlayer = 0;
+
+    //this is to be able to assign a round score value for the active player based on the dice value
+    //document.querySelector('#current-' + activePlayer).textContent = dice; //this is a setter for placing text in HTML
+    //document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>'; //this is a setter for placing html code within HTML
+
+    //this is to be able to hide the dice from the screen at the start of the game
+    document.querySelector('.dice').style.display = 'none'; //changes value of a css element
+    document.getElementById('score-0').textContent = '0';
+    document.getElementById('score-1').textContent = '0';
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+    document.getElementById('name-0').textContent = 'Player 1';
+    document.getElementById('name-1').textContent = 'Player 2';
+    document.querySelector('.player-0-panel').classList.remove('winner');
+    document.querySelector('.player-1-panel').classList.remove('winner');
+    document.querySelector('.player-0-panel').classList.remove('active');
+    document.querySelector('.player-1-panel').classList.remove('active');
+    document.querySelector('.player-0-panel').classList.add('active');
+
+}
