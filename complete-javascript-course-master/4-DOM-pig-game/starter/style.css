@@ -119,6 +119,47 @@ button {
     transition: background-color 0.3s, color 0.3s;
 }
 
+.winner-score-input {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 520px;
+    color: #555;
+    font-size: 18px;
+    font-family: Lato;
+    text-align: center;
+    padding: 5px;
+    width: 170px;
+    text-transform: uppercase;
+}
+
+.winner-score-input:focus { outline: none; }
+
+/*
+input, label {
+    display: block;
+}
+
+.winner-score {
+    position: absolute;
+    top: 125px;
+    left: 430px;
+}
+
+.winner-score-label {
+    text-transform: uppercase;
+    font-family: Lato;
+    font-size: 20px;
+}
+
+.winner-score-input {
+    font-family: Lato;
+    font-size: 20px;
+    width: 148px;
+    text-align: center;
+}
+*/
+
 button:hover { font-weight: 600; }
 button:hover i { margin-right: 20px; }
 
@@ -144,7 +185,7 @@ i {
 .dice {
     position: absolute;
     left: 50%;
-    top: 178px;
+    top: 200px;
     transform: translateX(-50%);
     height: 100px;
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
