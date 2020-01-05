@@ -17,7 +17,7 @@ GAME RULES:
 (Hint: you can read that value with the .value property in Javascrip. This is a good opportunity to use
 Google to figure this out)
 3. Add another dice to the game, so that there are two dices now. The player looses his current score if one of them is a 1. 
-(Hint: you will need CSS to position the second dice, so tak a look a the CSS code for the first one).
+(Hint: you will need CSS to position the second dice, so tak a look at the CSS code for the first one).
 
 
 */
@@ -160,7 +160,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     }
 });
 
-
+//TODO ADD EMPTY WINNER SCORE CONDITION FOR THE HOLD BUTTON
 
 document.querySelector('.btn-hold').addEventListener('click', function() {
     if (gamePlaying) {
@@ -185,6 +185,14 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
     }
 
 });
+
+document.querySelector('.btn-hold').addEventListener('click', function() {
+   if (document.querySelector('.winner-score-input').value === '') {
+        gamePlaying = false;
+        checkWinnerScoreUserInput();        
+    }
+});
+
 
 // here note how we call an existing function via the event listener, in which case we simply provie the function name without the initialization parentheses
 document.querySelector('.btn-new').addEventListener('click', init);
