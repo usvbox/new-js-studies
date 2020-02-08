@@ -48,6 +48,6 @@
        }
     });
 
- })(budgetController, UIController); 
+ })(budgetController, UIController);
 
 
