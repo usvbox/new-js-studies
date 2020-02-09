@@ -58,6 +58,6 @@
 
  })(budgetController, uiController);
 
- controller.init();
+ controller.init();  
 
 
