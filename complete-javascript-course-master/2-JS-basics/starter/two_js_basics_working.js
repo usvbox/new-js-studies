@@ -779,6 +779,7 @@ console.log(markBillsAndTips.allTotalAmounts);
 
 //variant when the tips and total amounts are calculated using functions to avoid code duplication
 
+/*
 let johnBillsAndTips = {
     fullName: 'John Smith',
     billValues: [124, 150, 268, 500, 500],
@@ -878,3 +879,42 @@ compareAverageTipAmounts(johnBillsAndTips.averageTip, johnBillsAndTips.fullName,
 
 console.log(johnBillsAndTips);
 console.log(markBillsAndTips);
+*/
+
+
+
+/*
+var addItem = function(type) {
+    //create new id
+    var ID;
+    if (data.allItems[type].length > 0) {
+        ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+    } else {
+        ID = 0;
+    }
+    return ID;
+};
+*/
+
+var addItem = function(type) {
+    //create new id
+    var ID;
+    ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+    return ID;
+};
+
+var data = {
+    allItems: {
+        exp: [25, 333, 689, 984, 1001],
+        inc: [578, 245, 888, 343, 898, 994]
+    },
+    totals: {
+        exp: 0,
+        inc: 0
+    }
+};
+
+var type = 'exp';
+
+var assignedId = addItem(type);
+console.log(assignedId);
