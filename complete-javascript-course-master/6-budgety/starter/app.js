@@ -146,7 +146,8 @@
         expenseLabel: '.budget__expenses--value',
         percentageLabel: '.budget__expenses--percentage',
         parentContainer: '.container',
-        itemPercentageLabel: '.item__percentage'
+        itemPercentageLabel: '.item__percentage',
+        dateLabel: '.budget__title--month'
     };
     var formatNumber = function (number, type) {
         //1 + or - before the number
@@ -163,6 +164,11 @@
         decimalPart = numberSplit[1];
         type === 'exp' ? sign = '-' : sign = '+';
         return (type === 'exp' ? '-' : '+') + ' ' + integerPart + '.' + decimalPart; 
+    };
+    var nodeListForEach = function(list, callbackFunction) {
+        for (var i = 0; i < list.length; i++) {
+            callbackFunction(list[i], i);
+        }
     };
     return {
         // A public method that returns the type, description and value properties of an item
@@ -237,11 +243,6 @@
         },
         displayPercentage: function(percentageFigures) {
             var fields = document.querySelectorAll(domStrings.itemPercentageLabel);
-            var nodeListForEach = function(list, callbackFunction) {
-                for (var i = 0; i < list.length; i++) {
-                    callbackFunction(list[i], i);
-                }
-            };
             nodeListForEach(fields, function (currentElement, index) {
                 if (percentageFigures[index] > 0) {
                     currentElement.textContent = percentageFigures[index] + '%';
@@ -249,6 +250,26 @@
                     currentElement.textContent = '---';
                 }
             });
+        },
+        displayMonth: function() {
+            var months, now, month, year;
+            now = new Date();
+            year = now.getFullYear();
+            months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            month = now.getMonth();
+            document.querySelector(domStrings.dateLabel).textContent = months[month] + ' ' + year;
+
+        },
+        changeType: function () {
+            var fields = document.querySelectorAll(
+                domStrings.inputType + ',' +
+                domStrings.inputDescription  + ',' +
+                domStrings.inputValue
+            );
+            nodeListForEach(fields, function (currentElement) {
+                currentElement.classList.toggle('red-focus');
+            });
+            document.querySelector(domStrings.inputButton).classList.toggle('red');
         },
         // A public method that returns the attributes of elements from the html DOM structure
         getDomStrings: function() {
@@ -271,6 +292,7 @@
             }
          }); 
         document.querySelector(dom.parentContainer).addEventListener('click', ctrlDeleteItem);
+        document.querySelector(dom.inputType).addEventListener('change', uiController.changeType);
     };
     // A method to calculate the budget and update it on the ui
     var receiveUpdatedBudget = function() {
@@ -332,12 +354,14 @@
     return {
         init: function () {
             setupEventListeners();
+            uiController.displayMonth();
             uiController.displayBudget({
                 budget: 0,
                 totalIncome: 0,
                 totalExpenses: 0,
                 percentage: -1
             });
+            
         }
     };
 // Here we provide budgetController and uiController as arguments for the logic controller so that it will be able to use their methods and manipulate data for them
