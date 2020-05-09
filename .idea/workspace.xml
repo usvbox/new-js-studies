@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd2096b6-5a84-4f62-964c-8a2314606de7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/complete-javascript-course-master/6-budgety/starter/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/complete-javascript-course-master/6-budgety/starter/app.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,6 +69,7 @@
       <workItem from="1574510871907" duration="21000" />
       <workItem from="1581205787362" duration="278000" />
       <workItem from="1581206112260" duration="185000" />
+      <workItem from="1584721426452" duration="60000" />
     </task>
     <task id="LOCAL-00001" summary="updated sort">
       <created>1531204205327</created>
