@@ -380,4 +380,4 @@
 3. Display the current month and year
 4. Apply nice formatting to numbers
 5. Improve input fields UX
- */
+ */      
