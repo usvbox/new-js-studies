@@ -163,7 +163,7 @@
         }
         decimalPart = numberSplit[1];
         type === 'exp' ? sign = '-' : sign = '+';
-        return (type === 'exp' ? '-' : '+') + ' ' + integerPart + '.' + decimalPart; 
+        return (type === 'exp' ? '-' : '+') + ' ' + integerPart + '.' + decimalPart;
     };
     var nodeListForEach = function(list, callbackFunction) {
         for (var i = 0; i < list.length; i++) {
@@ -185,9 +185,9 @@
             // A function inside the addListItem method that determines whether an item is an income element or an expense element and creates an html element to place in the respective html DOM container
             var determineItemHtml = function (itemObject, type) {
                 // create html string with placeholder text
-                if (type === 'inc') {                    
+                if (type === 'inc') {
                     itemHtmlTemplate = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
-                } else if (type === 'exp') {                   
+                } else if (type === 'exp') {
                     itemHtmlTemplate = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
                 }
 
@@ -206,7 +206,7 @@
                     container = domStrings.expenseContainer;
                 }
                 return container;
-            }    
+            }
             //insert html into DOM
             document.querySelector(determineContainer(type)).insertAdjacentHTML('beforeend', determineItemHtml(itemObject, type));
 
@@ -219,7 +219,7 @@
             var fields, fieldsArray;
             // querySelectorAll allows us to return elements from the DOM as a list, contatination is used to arrange elements together in a list
             fields = document.querySelectorAll(domStrings.inputDescription + ',' + domStrings.inputValue);
-            // Here we use the slice method of an array and make it think that the list (an array-like object) is an array. For this we use the Array object at the beginning and point to its slice method in the Array prototype object. But in order to be able to apply the slice method to the list, we need to assign the list to the Array's 'this' variable so that the slice method thinks it's actually working on the Array, but instead it will be working on the list. To assign the list to the 'this' variable with use the 'call' anonymous (or callback) function and pass it our list. As a result, we transform the list into an array, because this is what slice does - returns a new array out of the array it's been applied to. 
+            // Here we use the slice method of an array and make it think that the list (an array-like object) is an array. For this we use the Array object at the beginning and point to its slice method in the Array prototype object. But in order to be able to apply the slice method to the list, we need to assign the list to the Array's 'this' variable so that the slice method thinks it's actually working on the Array, but instead it will be working on the list. To assign the list to the 'this' variable with use the 'call' anonymous (or callback) function and pass it our list. As a result, we transform the list into an array, because this is what slice does - returns a new array out of the array it's been applied to.
             fieldsArray = Array.prototype.slice.call(fields);
 
             fieldsArray.forEach(function(currentValue, indexNumber, array) {
@@ -233,7 +233,7 @@
             document.querySelector(domStrings.budgetLabel).textContent = formatNumber(object.budget, type);
             document.querySelector(domStrings.incomeLabel).textContent = formatNumber(object.totalIncome, 'inc');
             document.querySelector(domStrings.expenseLabel).textContent = formatNumber(object.totalExpenses, 'exp');
-            
+
 
             if (object.percentage >0) {
                 document.querySelector(domStrings.percentageLabel).textContent = object.percentage + '%';
@@ -290,7 +290,7 @@
             if (event.keyCode === 13 || event.which === 13) {
                 ctrlAddItem();
             }
-         }); 
+         });
         document.querySelector(dom.parentContainer).addEventListener('click', ctrlDeleteItem);
         document.querySelector(dom.inputType).addEventListener('change', uiController.changeType);
     };
@@ -303,7 +303,7 @@
     };
     // A method to update expense percentage figures
     var updateExpensePercentage = function () {
-        
+
         //1 Calculate percentage figures
         budgetController.calculatePercentage();
         //2 Read from the budget controller
@@ -311,7 +311,7 @@
         //3 Update the UI
         console.log(percentageFigures);
         uiController.displayPercentage(percentageFigures);
-        
+
     };
 
     // A method that controls manipulating items by using public methods provided by the budgetController and uiController
@@ -322,7 +322,7 @@
         if (input.description != "" && !isNaN(input.value) && input.value > 0) {
             // 2. add the item to the budget controller
             newItem = budgetCtrl.addItem(input.type, input.description, input.value);
-            // 3. add the item to the UI 
+            // 3. add the item to the UI
             uiCtrl.addListItem(newItem, input.type);
             // 4. clear the fields
             uiController.clearFields();
@@ -361,13 +361,13 @@
                 totalExpenses: 0,
                 percentage: -1
             });
-            
+
         }
     };
 // Here we provide budgetController and uiController as arguments for the logic controller so that it will be able to use their methods and manipulate data for them
  })(budgetController, uiController);
 
- controller.init();  
+ controller.init();
 
  // document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
  // document.getElementById('score-0').textContent = '0';
@@ -380,4 +380,4 @@
 3. Display the current month and year
 4. Apply nice formatting to numbers
 5. Improve input fields UX
- */      
+ */
