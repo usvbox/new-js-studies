@@ -349,7 +349,7 @@ for (let i = 0; i < jonasArray.length; i++) {
 
 ////// looping backwards and loops in loops //////
 
-const jonasArray = [
+/* const jonasArray = [
     'Jonas',
     'Schmedtmann',
     2037 - 1991,
@@ -362,7 +362,7 @@ for (let i = jonasArray.length - 1; i >= 0; i--) {
 }
 
 const exercises = ['Lifting weights', 'Push-ups', 'Sit-ups'];
-
+ */
 // for (let ex = 0; ex < exercises.length; ex++) {
 //     let maxExerciseCount = 5;
 //     for (let rep = 1; rep <= maxExerciseCount; rep++) {
@@ -377,7 +377,7 @@ const exercises = ['Lifting weights', 'Push-ups', 'Sit-ups'];
 //     }
 // }
 
-for (let ex = 0; ex < exercises.length; ex++) { //keeps track of the exercises
+/* for (let ex = 0; ex < exercises.length; ex++) { //keeps track of the exercises
     let maxSetCount = 3;
     let maxRepCount = 5;
     console.log(`---------- Starting ${exercises[ex]}`);
@@ -387,13 +387,40 @@ for (let ex = 0; ex < exercises.length; ex++) { //keeps track of the exercises
             console.log(`${exercises[ex]} repetition ${rep}.`);
         }
     }
+} */
+
+/// The while loop ///
+
+/* for (let rep = 1; rep <= 10; rep++) {
+    console.log(`Lifting weights repetition ${rep}`);
+} */
+
+
+/* let rep = 1;
+while (rep <= 10) {
+    console.log(`Lifting weights repetition ${rep}`);
+    rep++;
+} */
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+// the Math.random method returns a number between 0 and 1 (like 0.4919597240511908)
+// In a dice we have 6 digits, so we need to multiply it by 6
+// Multiplying the result by 6 will produce a fraction (e.g. 0.1 * 6 = 0.6)
+// But in a dice we need a whole number, so we can use the Math.trunc method to get just the integer part
+// So, in the example above, we'll get 0 from 0.6
+// Thus, we need to add 1 to get 1 (0 + 1)
+// For example, if at the end we get 0,9999999, then the fraction, after multiplying it by 6, will be 5.9999999
+// So, we truncate it to an integer and get 5. After adding 1, we get 6.
+//console.log(dice);
+
+if (dice === 6) console.log(`You got a 6 on your first try!`);
+
+while (dice !== 6) {
+    console.log (`You rolled  a ${dice}.`);
+    dice = Math.trunc(Math.random() * 6) + 1;
+    if (dice === 6) console.log(`You rolled a 6, and loop is about to end...`);
 }
 
-
-
-
-
-
-
-
-
+//After each roll we need to update the dice value, otherwise the we'll be stuck in the loop forever if the first roll doesn't result in 6.
+//Without the if statement before the loop, you can get a situation where you get nothing in the console. And it means that you got a 6 on you first try, and the while loop never executes because the condition is not TRUE.
+//As a possible solution we get this if statement before the while loop to handle such a situation.

@@ -765,12 +765,17 @@ console.log(tipsAndBills);
 
 
 
+const listOfNeighbors = [
+    ['Canada', 'Mexico'],
+    ['Spain'],
+    ['Norway', 'Sweden', 'Russia'],
+];
 
-
-
-
-
-
+for (let i = 0; i < listOfNeighbors.length; i++) {
+    for (let n = 0; n < listOfNeighbors[i].length; n++) {
+        console.log(`Neighbor: ${listOfNeighbors[i][n]}`);
+    }
+}
 
 
 
