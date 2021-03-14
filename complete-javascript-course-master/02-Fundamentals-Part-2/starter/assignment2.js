@@ -765,7 +765,7 @@ console.log(tipsAndBills);
 
 
 
-const listOfNeighbors = [
+/* const listOfNeighbors = [
     ['Canada', 'Mexico'],
     ['Spain'],
     ['Norway', 'Sweden', 'Russia'],
@@ -775,12 +775,41 @@ for (let i = 0; i < listOfNeighbors.length; i++) {
     for (let n = 0; n < listOfNeighbors[i].length; n++) {
         console.log(`Neighbor: ${listOfNeighbors[i][n]}`);
     }
+} */
+
+
+
+const populations = [140, 340, 50, 3];
+
+populations.length === 4 ? console.log(true) : console.log(false);
+
+const calculatePercentageOfTheWorldCountry = function  (population) {
+    const worldPopulation = 7900;
+    return ((population / worldPopulation) * 100).toFixed(2);
 }
 
+/* const calculatePercentageOfTheWorldCountries = function (populations) {
+    const populationPercentages = [];
+    for (let i = 0; i < populations.length; i++) {
+        const percentage = calculatePercentageOfTheWorldCountry(populations[i]);
+        populationPercentages.push(percentage);
+    }
+    return populationPercentages;
+} */
 
+const calculatePercentageOfTheWorldCountries = function (populations) {
+    const populationPercentages = [];
+    let i = 0;
+    while (i < populations.length) {
+        const percentage = calculatePercentageOfTheWorldCountry(populations[i]);
+        populationPercentages.push(percentage);
+        i++;
+    }
+    return populationPercentages;
+}
 
-
-
+const populationPercentagesCalcResult = calculatePercentageOfTheWorldCountries(populations);
+console.log(populationPercentagesCalcResult);
 
 
 
