@@ -778,7 +778,7 @@ for (let i = 0; i < listOfNeighbors.length; i++) {
 } */
 
 
-
+/*
 const populations = [140, 340, 50, 3];
 
 populations.length === 4 ? console.log(true) : console.log(false);
@@ -787,7 +787,7 @@ const calculatePercentageOfTheWorldCountry = function  (population) {
     const worldPopulation = 7900;
     return ((population / worldPopulation) * 100).toFixed(2);
 }
-
+ */
 /* const calculatePercentageOfTheWorldCountries = function (populations) {
     const populationPercentages = [];
     for (let i = 0; i < populations.length; i++) {
@@ -796,7 +796,7 @@ const calculatePercentageOfTheWorldCountry = function  (population) {
     }
     return populationPercentages;
 } */
-
+/*
 const calculatePercentageOfTheWorldCountries = function (populations) {
     const populationPercentages = [];
     let i = 0;
@@ -811,7 +811,99 @@ const calculatePercentageOfTheWorldCountries = function (populations) {
 const populationPercentagesCalcResult = calculatePercentageOfTheWorldCountries(populations);
 console.log(populationPercentagesCalcResult);
 
+ */
 
+/*
 
+########### Coding Challenge #4 ################
 
+Let's improve Steven's tip calculator even more, this time using loops!
+Your tasks:
 
+1. Create an array 'bills' containing all 10 test bill values
+
+2. Create empty arrays for the tips and the totals ('tips' and 'totals')
+
+3. Use the 'calcTip' function we wrote before (no need to repeat) to calculate
+tips and total values (bill + tip) for every bill value in the bills array. Use a for
+loop to perform the 10 calculations!
+Test data: 22, 295, 176, 440, 37, 105, 10, 1100, 86 and 52
+
+Hints: Call ‘calcTip ‘in the loop and use the push method to add values to the
+tips and totals arrays �
+
+Bonus:
+
+4. Bonus: Write a function 'calcAverage' which takes an array called 'arr' as
+an argument. This function calculates the average of all numbers in the given
+array. This is a difficult challenge (we haven't done this before)! Here is how to
+solve it:
+
+4.1. First, you will need to add up all values in the array. To do the addition,
+start by creating a variable 'sum' that starts at 0. Then loop over the
+array using a for loop. In each iteration, add the current value to the
+'sum' variable. This way, by the end of the loop, you have all values
+added together
+
+4.2. To calculate the average, divide the sum you calculated before by the
+length of the array (because that's the number of elements)
+
+4.3. Call the function with the 'totals' array
+*/
+
+const netBills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+/* const calculateTip = function (netBill) {
+    let tip;
+    let tipPercentage1 = 0.15;
+    let tipPercentage2 = 0.2;
+    if (netBill >= 50 && netBill <=300) {
+        tip = (netBill * tipPercentage1).toFixed(2);
+    } else {
+        tip = (netBill * tipPercentage2).toFixed(2);
+    }
+    return Number(tip);
+} */
+
+const calculateTip = netBill => netBill >=50 && netBill <=300 ? netBill*0.15 : netBill*0.2;
+
+// console.log(calculateTip(60));
+// console.log(calculateTip(400));
+
+const calculateTipsAndTotalBills = function (netBills) {
+    const totalTips = [];
+    const totalBills = [];
+    let tip;
+    let totalBill;
+    let calculation = {};
+    for (let i = 0; i < netBills.length; i++) {
+        tip = calculateTip(netBills[i]);
+        totalTips.push(tip);
+        totalBill = netBills[i] + tip;
+        totalBills.push(totalBill);
+    }
+    // return [
+    //     totalTips,
+    //     totalBills
+    // ]
+    calculation.totalTips = totalTips;
+    calculation.totalBills = totalBills;
+    return calculation;
+};
+// inside a loop, if you need a variable, you can use const, as with each iteration a new variable is created.
+
+const tipsAndBills = calculateTipsAndTotalBills(netBills);
+console.log(tipsAndBills);
+
+const calculateAverage = function (amounts) {
+    let sum = 0;
+    let average;
+    for (let i = 0; i < amounts.length; i++) {
+        sum += amounts[i];
+        // do not forget that instead of sum = sum + amount, you can use sum += amount.
+    }
+    average = sum / amounts.length;
+    return average;
+};
+
+console.log(calculateAverage(tipsAndBills.totalBills));
