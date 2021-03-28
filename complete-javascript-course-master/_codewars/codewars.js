@@ -50,7 +50,7 @@ Convert seconds into milliseconds => s*1000
 Sum the converted h, m, s
 Return the resulting time value in milliseconds
  */
-
+/*
 let hours = 0;
 let minutes = 1;
 let seconds = 1;
@@ -115,3 +115,127 @@ console.log(
 console.log(Date());
 console.log(new Date());
 console.log(Date.now());
+ */
+
+/*
+
+******* Beginner's Series#3 Sum of Numbers *******
+
+Given two integers a and b, which can be positive or negative, find the sum of all the integers between including them too and return it. If the two numbers are equal return a or b.
+
+1) Understanding the problem
+- need to find all integers between two numbers
+- need to sum them
+- if the two integers are equal, return any
+
+2) Dividing into sub-problems
+2.1. Check if the two integers are equal. If they are, return the first one. If not, proceed.
+2.2. Find the smaller of the two. Sum it to a sum variable.
+2.3. Add 1 to the sum value and check if it's equal to the bigger one. If not, add the sum + 1 value to the sum variable. Use the while loop to iterate until the sum is equal to the bigger one.
+2.4. When the sum is equal to the bigger one, stop the loop, add the bigger one to the sum variable.
+2.5. Return the sum variable value
+
+3) Writing pseudo code
+function (a,b) {
+  sum
+  lastInteger
+  firstInteger
+  nextInteger
+  if a === b => return a
+  if a < b => firstInteger = a, nextInteger = a, lastInteger = b  else firstInteger = b, nextInteger = b, lastInteger = a
+
+  start loop
+  while nextInteger < lastInteger - 1
+  nextInteger = nextInteger + 1 //1+1, 2+1
+  sum = sum + nextInteger //1+2, 1+2+3
+  end loop
+
+  sum = sum + lastInteger
+  return sum
+}
+1, 4
+1 + 2 + 3 + 4 = 10
+
+
+*/
+
+/* const sumOfIntegers = function (a, b) {
+  let sum;
+  let lastInteger;
+  let nextInteger;
+  if (typeof a !== "number" || typeof b !== "number") {
+    sum = -1;
+  } else if (a === b) {
+    sum = a;
+  } else if (a < b) {
+    lastInteger = b;
+    nextInteger = a;
+    sum = a;
+  } else {
+    lastInteger = a;
+    nextInteger = b;
+    sum = b;
+  }
+  while (nextInteger < lastInteger - 1) {
+    nextInteger++;
+    sum += nextInteger;
+  }
+  sum += lastInteger;
+  return sum;
+}; */
+
+/* const integerSum = sumOfIntegers("brown", -1);
+console.log(integerSum); */
+
+/* const sumOfIntegers = function (a, b) {
+  let sum;
+  let lastInteger;
+  let nextInteger;
+  const sumIntegers = function (smallerInteger, biggerInteger) {
+    let total = smallerInteger;
+    let next = smallerInteger;
+    while (next < biggerInteger - 1) {
+      next++;
+      total += next;
+    }
+    total += biggerInteger;
+    return total;
+  };
+  if (typeof a !== "number" || typeof b !== "number") {
+    sum = -1;
+  } else if (a === b) {
+    sum = a;
+  } else if (a < b) {
+    lastInteger = b;
+    nextInteger = a;
+    sum = sumIntegers(nextInteger, lastInteger);
+  } else {
+    lastInteger = a;
+    nextInteger = b;
+    sum = sumIntegers(nextInteger, lastInteger);
+  }
+  return sum;
+};
+
+const integerSumV2 = sumOfIntegers(-1, 5);
+console.log(integerSumV2);
+console.log(-1 + 0 + 1 + 2 + 3 + 4); */
+
+const sumOfIntegers = function (a, b) {
+  // The formula to sum a series of integers is
+  // n * (max + min) / 2, where n is the length of the series.
+  const max = Math.max(a, b);
+  const min = Math.min(a, b);
+  let sum;
+  if (typeof a !== "number" || typeof b !== "number") {
+    sum = -1;
+  } else if (a === b) {
+    sum = a;
+  } else {
+    sum = ((max - min + 1) * (max + min)) / 2;
+  }
+  return sum;
+};
+
+const integerSum = sumOfIntegers(-1, 5);
+console.log(integerSum);
