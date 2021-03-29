@@ -285,13 +285,13 @@ Math.floor(1.6) => 1
 
 */
 
-const kmHourToCmSec = function(km) {
-  if (typeof km == 'number' && km >= 0) {
-    return Math.floor(km * 100000 / 3600);
+const kmHourToCmSec = function (km) {
+  if (typeof km == "number" && km >= 0) {
+    return Math.floor((km * 100000) / 3600);
   } else {
     return -1;
   }
-}
+};
 
-const cockroachSpeed = kmHourToCmSec(1.08);
+const cockroachSpeed = kmHourToCmSec("notANumber");
 console.log(cockroachSpeed);
