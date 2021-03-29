@@ -221,7 +221,7 @@ const integerSumV2 = sumOfIntegers(-1, 5);
 console.log(integerSumV2);
 console.log(-1 + 0 + 1 + 2 + 3 + 4); */
 
-const sumOfIntegers = function (a, b) {
+/* const sumOfIntegers = function (a, b) {
   // The formula to sum a series of integers is
   // n * (max + min) / 2, where n is the length of the series.
   const max = Math.max(a, b);
@@ -239,3 +239,59 @@ const sumOfIntegers = function (a, b) {
 
 const integerSum = sumOfIntegers(-1, 5);
 console.log(integerSum);
+ */
+
+/*
+******* Beginner's Series#4 Cockroach *******
+
+The cockroach is one of the fastest insects. Write a function which takes its speed in km per hour and returns it in cm per second, rounded down to the integer (= floored).
+
+Note! The input is a Real number (actual type is language dependent) and is >= 0. The result should be an Integer.
+
+Example:
+
+1.08 --> 30
+
+1) Understand the problem
+- the input number can be a real number (integer, fraction...) that is greater than or equal to 0
+- the result, however, should be an integer, so we basically need to round our calculation result down to an integer (floor it)
+- the input number in km/h should be converted to cm/s 
+
+2) Split the problem into sub-problems
+2.1. make sure the input value is a number greater than or equal to zero
+2.2. convert kilometers into cm
+2.3. convert convert the hour value into seconds
+2.4. divide the distance in cm by the number of seconds in an hour
+2.5. round down the result
+2.6. return the result
+
+3) Write pseudo-code
+
+kmHourToCmSec function (km) {
+  typeof km == number && km >= 0 ? continue : return error
+  1 km = 1,000 m = 100,000 cm
+  km => cm = km * 100,000
+  1 hour = 60 min = 3,600 sec
+  cm/sec = km => cm / 3,600
+  rounddown(cm/sec)
+  return rounddown(cm/sec)
+}
+
+4) Research
+Round a number downward to its nearest integer
+Math.floor(1.6) => 1
+
+5) Implement the solution in code
+
+*/
+
+const kmHourToCmSec = function(km) {
+  if (typeof km == 'number' && km >= 0) {
+    return Math.floor(km * 100000 / 3600);
+  } else {
+    return -1;
+  }
+}
+
+const cockroachSpeed = kmHourToCmSec(1.08);
+console.log(cockroachSpeed);

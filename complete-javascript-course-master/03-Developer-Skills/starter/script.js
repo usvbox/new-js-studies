@@ -34,7 +34,7 @@ console.log(pagesToCopy);
 let pagesToCopyForClass = calcPages(classmates, pages);
 console.log(pagesToCopyForClass);
 */
-
+/*
 //PROBLEM 1
 //We work for a company building a smart home thermometer. Our most recent task is this: "Given an array of temperatures of one day, calculate the temperature amplitude. Keep in mind that sometimes there might be a sensor error."
 
@@ -94,3 +94,47 @@ const amplitude = calculateTempAmplitudeFromTwoSets(
   temperatures2
 );
 console.log(amplitude);
+ */
+
+/* const measureKelvin = function () {
+  const measurement = {
+    type: 'temp',
+    unit: 'celsius',
+    // 3) Fix the bug
+    //value: Number(prompt('Degrees celsius:')),
+    value: 10,
+  };
+  // 2) Find the bug
+  console.table(measurement);
+  // console.warn(measurement.value);
+  // console.error(measurement.value);
+  const kelvin = measurement.value + 273;
+  return kelvin;
+};
+// 1) Identify the bug
+console.log(measureKelvin()); */
+
+const temperatures1 = [3, 5, 1];
+const temperatures2 = [9, 4, 5];
+
+const calculateTempAmplitudeFromTwoSetsBug = function (set1, set2) {
+  let mergedSet = set1.concat(set2);
+  console.log(mergedSet);
+  let max = 0;
+  let min = 0;
+  for (let i = 0; i < mergedSet.length; i++) {
+    const currentValue = mergedSet[i];
+    if (typeof currentValue !== 'number') continue; //here we abort the current iteration and proceed to the next one if the type of the temps[i] value is not a number
+    if (currentValue > max) max = currentValue;
+    if (currentValue < min) min = currentValue;
+  }
+  console.log(max, min);
+  return max - min;
+};
+
+const amplitudeBug = calculateTempAmplitudeFromTwoSetsBug(
+  temperatures1,
+  temperatures2
+);
+//1) Identify the bug
+console.log(amplitudeBug);
