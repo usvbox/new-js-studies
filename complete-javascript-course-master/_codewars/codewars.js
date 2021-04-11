@@ -255,7 +255,7 @@ Example:
 1) Understand the problem
 - the input number can be a real number (integer, fraction...) that is greater than or equal to 0
 - the result, however, should be an integer, so we basically need to round our calculation result down to an integer (floor it)
-- the input number in km/h should be converted to cm/s 
+- the input number in km/h should be converted to cm/s
 
 2) Split the problem into sub-problems
 2.1. make sure the input value is a number greater than or equal to zero
@@ -285,6 +285,7 @@ Math.floor(1.6) => 1
 
 */
 
+/*
 const kmHourToCmSec = function (km) {
   if (typeof km == "number" && km >= 0) {
     return Math.floor((km * 100000) / 3600);
@@ -295,3 +296,36 @@ const kmHourToCmSec = function (km) {
 
 const cockroachSpeed = kmHourToCmSec("notANumber");
 console.log(cockroachSpeed);
+ */
+
+/*
+
+******* Is there a vowel in there? ***********
+
+Given an array of numbers, check if any of the numbers are the character codes for lower case vowels (a, e, i, o, u). If they are, change the array value to a string of that vowel.
+Return the resulting array.
+
+*/
+
+const checkForVowels = function (arr) {
+  //store key-value pairs against which to check in a vowels object
+  const vowels = {
+    97: "a",
+    101: "e",
+    105: "i",
+    111: "o",
+    117: "u",
+  };
+  for (let i = 0; i < arr.length; i++) {
+    //check if the value from the array has a corresponding key in the vowels object
+    if (vowels.hasOwnProperty(arr[i])) {
+      //identify the index value (position) of teh arr element being checked
+      const indexOfArrElement = arr.indexOf(arr[i]);
+      //identify the element to be replaced by its index and assign the corresponding value from the vowels object
+      arr[indexOfArrElement] = vowels[arr[i]];
+    }
+  }
+  return arr;
+};
+
+console.log(checkForVowels([97, 101, 3, 117]));
