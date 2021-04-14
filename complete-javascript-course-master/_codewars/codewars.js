@@ -2,6 +2,8 @@
 //Your classmates asked you to copy some paperwork for them. You know that there are 'n' classmates and the paperwork has 'm' pages.
 //Your task is to calculate how many blank pages do you need. If n < 0 or m < 0 return 0.
 
+//const { default: axios } = require("axios");
+
 /* const classmates = 5;
 const pages = 5;
 
@@ -307,6 +309,7 @@ Return the resulting array.
 
 */
 
+/*
 const checkForVowels = function (arr) {
   //store key-value pairs against which to check in a vowels object
   const vowels = {
@@ -329,3 +332,162 @@ const checkForVowels = function (arr) {
 };
 
 console.log(checkForVowels([97, 101, 3, 117]));
+*/
+
+/////// Sort and Star ///////
+
+const figureArray = [
+  99,
+  95,
+  94,
+  92,
+  88,
+  87,
+  86,
+  85,
+  84,
+  79,
+  76,
+  72,
+  71,
+  69,
+  66,
+  65,
+  64,
+  61,
+  60,
+  59,
+  58,
+  57,
+  54,
+  50,
+  49,
+  46,
+  44,
+  42,
+  40,
+  39,
+  37,
+  36,
+  32,
+  31,
+  29,
+  28,
+  26,
+  24,
+  22,
+  21,
+  19,
+  18,
+  15,
+  14,
+  13,
+  12,
+  10,
+  5,
+  3,
+  2,
+];
+
+//2,50,7,7,5,8,7
+//2,7,50,7,5,8,7
+//2,7,7,50,5,8,7
+//2,7,7,5,50,8,7
+//2,7,7,5,8,50,7
+//2,7,7,5,8,7,50
+
+/* const sortFigureArray = function (arrWithNumbers) {
+  let counter = 0;
+  while (counter < arrWithNumbers.length) {
+    for (i = 0; i < arrWithNumbers.length; i++) {
+      let a = arrWithNumbers[i];
+      let b = arrWithNumbers[i + 1];
+      if (a < b) {
+        arrWithNumbers[i] = a;
+        arrWithNumbers[i + 1] = b;
+      }
+      if (b < a) {
+        arrWithNumbers[i] = b;
+        arrWithNumbers[i + 1] = a;
+      } else {
+        continue;
+      }
+    }
+    counter += 1;
+    //console.log(counter);
+  }
+
+  return arrWithNumbers;
+};
+
+const sortedArray = sortFigureArray(figureArray);
+console.log(sortedArray); */
+
+const wordSortTestArray = [
+  "4661",
+  "4614",
+  "4492",
+  "4313",
+  "4304",
+  "3661",
+  "3643",
+  "3448",
+  "3222",
+  "3056",
+  "2977",
+  "2775",
+  "2720",
+  "2222",
+  "2144",
+  "1967",
+  "1806",
+  "1646",
+  "1235",
+  "1076",
+];
+
+//console.log(wordSortTestArray[0].length);
+
+const sortWordArray = function (inputArray) {
+  //function to test, which of the two words should be sorted up
+  const identifyWhichWordGoesFirst = function (string1, string2) {
+    let a = 0;
+    let b = 0;
+    while (a < string1.length && b < string2.length) {
+      let m = string1[a];
+      let n = string2[b];
+      if (m < n) {
+        return string1;
+      } else if (n < m) {
+        return string2;
+      } else {
+        a++;
+        b++;
+      }
+    }
+  };
+  let counter = 0;
+  while (counter < inputArray.length - 1) {
+    for (let i = 0; i < inputArray.length - 1; i++) {
+      let word1 = inputArray[i];
+      let word2 = inputArray[i + 1];
+      let wordToSortUp = identifyWhichWordGoesFirst(word1, word2);
+      //console.log(wordToSortUp);
+      if (wordToSortUp === word1) {
+        inputArray[i] = word1;
+        inputArray[i + 1] = word2;
+        //console.log("word1", inputArray);
+      } else if (wordToSortUp === word2) {
+        inputArray[i] = word2;
+        inputArray[i + 1] = word1;
+        //console.log("word2", inputArray);
+      }
+    }
+    counter = counter + 1;
+    //console.log(counter);
+  }
+  return inputArray;
+};
+
+const testWordSort = sortWordArray(wordSortTestArray);
+console.log(testWordSort);
