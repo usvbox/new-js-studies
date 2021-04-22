@@ -423,32 +423,11 @@ const figureArray = [
 const sortedArray = sortFigureArray(figureArray);
 console.log(sortedArray); */
 
-const wordSortTestArray = [
-  "4661",
-  "4614",
-  "4492",
-  "4313",
-  "4304",
-  "3661",
-  "3643",
-  "3448",
-  "3222",
-  "3056",
-  "2977",
-  "2775",
-  "2720",
-  "2222",
-  "2144",
-  "1967",
-  "1806",
-  "1646",
-  "1235",
-  "1076",
-];
+const wordSortTestArray = ["test", "mango", "Test"];
 
 //console.log(wordSortTestArray[0].length);
 
-const sortWordArray = function (inputArray) {
+/* const sortWordArray = function (inputArray) {
   //function to test, which of the two words should be sorted up
   const identifyWhichWordGoesFirst = function (string1, string2) {
     let a = 0;
@@ -490,4 +469,133 @@ const sortWordArray = function (inputArray) {
 };
 
 const testWordSort = sortWordArray(wordSortTestArray);
+console.log(testWordSort); */
+
+/* const sortWordArray = function (inputArray) {
+  //function to test, which of the two words should be sorted up
+  const identifyWhichWordGoesFirst = function (string1, string2) {
+    let a = 0;
+    let b = 0;
+    while (a < string1.length && b < string2.length) {
+      let m = string1.charCodeAt(a);
+      let n = string2.charCodeAt(b);
+      if (m < n) {
+        return string1;
+      } else if (n < m) {
+        return string2;
+      } else {
+        a++;
+        b++;
+      }
+    }
+  };
+
+  //function that takes in a string and returns the string with asterisks between its letters
+  const insertAsterisks = function (str) {
+    let newString = "";
+    for (let i = 0; i < str.length - 1; i++) {
+      newString = newString + str[i] + "***";
+    }
+    newString = newString + str[str.length - 1];
+    return newString;
+  };
+
+  // a while loop that sorts the input array using the identifyWhichWordGoesFirst function
+  let counter = 0;
+  while (counter < inputArray.length - 1) {
+    for (let i = 0; i < inputArray.length - 1; i++) {
+      let word1 = inputArray[i];
+      let word2 = inputArray[i + 1];
+      let wordToSortUp = identifyWhichWordGoesFirst(word1, word2);
+      //console.log(wordToSortUp);
+      if (wordToSortUp === word1) {
+        inputArray[i] = word1;
+        inputArray[i + 1] = word2;
+        //console.log("word1", inputArray);
+      } else if (wordToSortUp === word2) {
+        inputArray[i] = word2;
+        inputArray[i + 1] = word1;
+        //console.log("word2", inputArray);
+      }
+    }
+    counter = counter + 1;
+    //console.log(counter);
+  }
+  let stringToReturn = insertAsterisks(inputArray[0]);
+  return stringToReturn;
+};
+
+const testWordSort = sortWordArray(wordSortTestArray);
+console.log(testWordSort); */
+
+/* const insertAsterisks = function (str) {
+  let newString = "";
+  for (let i = 0; i < str.length - 1; i++) {
+    newString = newString + str[i] + "***";
+  }
+  newString = newString + str[str.length - 1];
+  return newString;
+};
+
+let stringWithAsterisks = insertAsterisks("train");
+console.log(stringWithAsterisks); */
+
+const sortWordArray = function (inputArray) {
+  inputArray.sort();
+  const insertAsterisks = function (str) {
+    let newString = "";
+    for (let i = 0; i < str.length - 1; i++) {
+      newString += str[i] + "***";
+    }
+    newString += str[str.length - 1];
+    return newString;
+  };
+  let stringToReturn = insertAsterisks(inputArray[0]);
+  return stringToReturn;
+};
+
+const testWordSort = sortWordArray(wordSortTestArray);
 console.log(testWordSort);
+
+const numberListToSort = [40, 100, 1, 5, 5, 25, 10];
+numberListToSort.sort((a, b) => b - a);
+console.log(numberListToSort);
+
+const numberListToSort1 = ["40", "100", "1", "5", "5", "25", "10"];
+numberListToSort1.sort((a, b) => a - b);
+console.log(numberListToSort1);
+
+const wordSortArray = ["test", "car", "apple", "rest"];
+wordSortArray.sort();
+console.log(wordSortArray);
+wordSortArray.reverse();
+console.log(wordSortArray);
+
+Array.prototype.swap = function (x, y) {
+  let a = this[x];
+  this[x] = this[y];
+  this[y] = a;
+  return this;
+};
+
+let myArray = [1, 2, 4, 6];
+/* let a = myArray[0];
+myArray[0] = myArray[1];
+myArray[1] = a; */
+
+myArray.swap(0, 1);
+console.log(myArray);
+
+let myString = "treasure";
+let splitArray = myString.split("");
+console.log(splitArray);
+
+let myArray1 = [1, 2, 4, 6];
+let myNewArray = myArray1.splice(0, 1, 25);
+console.log(myArray1);
+let myNewArray1 = myArray1.splice(-1, 1, 56);
+console.log(myArray1);
+
+let arrayWithJoin = ["My", "studies", "are", "great"];
+let myMotto = arrayWithJoin.join(" ");
+console.log(myMotto);
