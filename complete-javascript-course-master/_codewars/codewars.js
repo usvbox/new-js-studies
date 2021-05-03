@@ -336,7 +336,7 @@ console.log(checkForVowels([97, 101, 3, 117]));
 
 /////// Sort and Star ///////
 
-const figureArray = [
+/* const figureArray = [
   99,
   95,
   94,
@@ -387,7 +387,7 @@ const figureArray = [
   5,
   3,
   2,
-];
+]; */
 
 //2,50,7,7,5,8,7
 //2,7,50,7,5,8,7
@@ -423,7 +423,7 @@ const figureArray = [
 const sortedArray = sortFigureArray(figureArray);
 console.log(sortedArray); */
 
-const wordSortTestArray = ["test", "mango", "Test"];
+//const wordSortTestArray = ["test", "mango", "Test"];
 
 //console.log(wordSortTestArray[0].length);
 
@@ -539,7 +539,7 @@ console.log(testWordSort); */
 
 let stringWithAsterisks = insertAsterisks("train");
 console.log(stringWithAsterisks); */
-
+/*
 const sortWordArray = function (inputArray) {
   inputArray.sort();
   const insertAsterisks = function (str) {
@@ -583,7 +583,7 @@ let myArray = [1, 2, 4, 6];
 myArray[0] = myArray[1];
 myArray[1] = a; */
 
-myArray.swap(0, 1);
+/* myArray.swap(0, 1);
 console.log(myArray);
 
 let myString = "treasure";
@@ -598,4 +598,28 @@ console.log(myArray1);
 
 let arrayWithJoin = ["My", "studies", "are", "great"];
 let myMotto = arrayWithJoin.join(" ");
-console.log(myMotto);
+console.log(myMotto); */
+
+////// Will there be enough space ///////
+
+let maxCapacity = 60;
+let currentlyOn = 21;
+let currentlyWaiting = 40;
+
+const calcHowManyCanBoard = function (cap, on, wait) {
+  let availableSeats = cap - on;
+  if (cap === on) {
+    return wait;
+  } else if (availableSeats >= wait) {
+    return 0;
+  } else if (availableSeats < wait) {
+    return wait - availableSeats;
+  }
+};
+
+let availableSeats = calcHowManyCanBoard(
+  maxCapacity,
+  currentlyOn,
+  currentlyWaiting
+);
+console.log(availableSeats);
