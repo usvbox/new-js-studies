@@ -1,17 +1,13 @@
 'use strict';
 
-/* console.log(document.querySelector('.message').textContent);
-document.querySelector('.message').textContent = 'Correct Number!';
-console.log(document.querySelector('.message').textContent);
-document.querySelector('.number').textContent = 13;
-document.querySelector('.score').textContent = 8;
+const generateRandomNumber = function (upperLimit) {
+  return Math.trunc(Math.random() * upperLimit) + 1;
+};
 
-console.log(document.querySelector('.guess').value);
-document.querySelector('.guess').value = 23;
-console.log(document.querySelector('.guess').value); */
+let upperLimit = 20;
 
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
-document.querySelector('.number').textContent = secretNumber;
+let secretNumber = generateRandomNumber(upperLimit);
+
 /*
     1. use Math.random() to generate a number from 0 to 1
     2. multiply the result by the upper limit
@@ -23,6 +19,74 @@ let highScore = 0;
 document.querySelector('.highscore').textContent = highScore;
 
 let currentScore = 20;
+
+document.querySelector('.check').addEventListener('click', function () {
+  const guess = Number(document.querySelector('.guess').value);
+  console.log(guess);
+  if (!guess || guess === 0) {
+    document.querySelector('.message').textContent =
+      '🛑 Try a number between 1 and 20!';
+  } else if (guess === secretNumber) {
+    document.querySelector('body').style.backgroundColor = '#60b347';
+    document.querySelector('.number').style.width = '30rem';
+    document.querySelector('.number').textContent = secretNumber;
+    if (
+      currentScore > 1 &&
+      document.querySelector('.message').textContent !== '🎊 Correct Number!'
+    ) {
+      currentScore--;
+      document.querySelector('.score').textContent = currentScore;
+      document.querySelector('.message').textContent = '🎊 Correct Number!';
+    } else if (
+      currentScore > 1 &&
+      document.querySelector('.message').textContent === '🎊 Correct Number!'
+    ) {
+      document.querySelector('.message').textContent = '🎊 Correct Number!';
+    } else {
+      document.querySelector('.score').textContent = 0;
+      document.querySelector('.message').textContent = '🎊 Correct Number!';
+    }
+  } else if (guess !== secretNumber) {
+    currentScore--;
+    if (currentScore > 0) {
+      document.querySelector('.score').textContent = currentScore;
+      if (guess > secretNumber) {
+        document.querySelector('.message').textContent = '⬇️ Try Lower!';
+      } else if (guess < secretNumber) {
+        document.querySelector('.message').textContent = '⬇️ Try Higher!';
+      }
+    } else {
+      document.querySelector('.message').textContent =
+        'The Secret 🕵🏻‍♀️ Stays Here! Try again 😃';
+      document.querySelector('.score').textContent = 0;
+    }
+  }
+});
+
+console.log(currentScore);
+
+document.querySelector('.again').addEventListener('click', function () {
+  currentScore = 20;
+  document.querySelector('.score').textContent = currentScore;
+  secretNumber = generateRandomNumber(upperLimit);
+  document.querySelector('.number').textContent = '?';
+  document.querySelector('.message').textContent = 'Start guessing...';
+  document.querySelector('.guess').value = '';
+  document.querySelector('body').style.backgroundColor = '#222';
+  document.querySelector('.number').style.width = '15rem';
+});
+
+//Archived Code//
+
+/* console.log(document.querySelector('.message').textContent);
+document.querySelector('.message').textContent = 'Correct Number!';
+console.log(document.querySelector('.message').textContent);
+document.querySelector('.number').textContent = 13;
+document.querySelector('.score').textContent = 8;
+
+console.log(document.querySelector('.guess').value);
+document.querySelector('.guess').value = 23;
+console.log(document.querySelector('.guess').value); */
 
 /* document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
@@ -98,41 +162,3 @@ let currentScore = 20;
   }
 });
  */
-
-document.querySelector('.check').addEventListener('click', function () {
-  const guess = Number(document.querySelector('.guess').value);
-  if (!guess || guess === 0) {
-    document.querySelector('.message').textContent = '🛑 Try between 1 and 20!';
-  } else if (guess === secretNumber) {
-    if (
-      currentScore > 1 &&
-      document.querySelector('.message').textContent !== '🎊 Correct Number!'
-    ) {
-      currentScore--;
-      document.querySelector('.score').textContent = currentScore;
-      document.querySelector('.message').textContent = '🎊 Correct Number!';
-    } else if (
-      currentScore > 1 &&
-      document.querySelector('.message').textContent === '🎊 Correct Number!'
-    ) {
-      document.querySelector('.message').textContent = '🎊 Correct Number!';
-    } else {
-      document.querySelector('.score').textContent = 0;
-      document.querySelector('.message').textContent = '🎊 Correct Number!';
-    }
-  } else if (guess !== secretNumber) {
-    currentScore--;
-    if (currentScore > 0) {
-      document.querySelector('.score').textContent = currentScore;
-      if (guess > secretNumber) {
-        document.querySelector('.message').textContent = '⬇️ Try Lower!';
-      } else if (guess < secretNumber) {
-        document.querySelector('.message').textContent = '⬇️ Try Higher!';
-      }
-    } else {
-      document.querySelector('.message').textContent =
-        'The Secret 🕵🏻‍♀️ Stays Here! Try again 😃';
-      document.querySelector('.score').textContent = 0;
-    }
-  }
-});
