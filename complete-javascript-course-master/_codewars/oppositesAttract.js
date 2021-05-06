@@ -1,7 +1,7 @@
 'use strict';
 
-let lily = 581;
-let dandelion = 510;
+let lily = 582;
+let dandelion = 512;
 
 const inLoveOrNot = function (flower1, flower2) {
 	const evenOrOdd = function (number) {
@@ -17,9 +17,10 @@ const inLoveOrNot = function (flower1, flower2) {
 		Number.isInteger(flower2) &&
 		flower2 > 0
 	) {
-		if (evenOrOdd(flower1) && evenOrOdd(flower2)) {
-			return false;
-		} else if (!evenOrOdd(flower1) && !evenOrOdd(flower2)) {
+		if (
+			(evenOrOdd(flower1) && evenOrOdd(flower2)) ||
+			(!evenOrOdd(flower1) && !evenOrOdd(flower2))
+		) {
 			return false;
 		} else {
 			return true;
