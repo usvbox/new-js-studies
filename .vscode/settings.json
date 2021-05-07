@@ -1,6 +1,5 @@
 {
-    "cSpell.words": [
-        "jonasschmedtmann",
-        "schmedtmann"
-    ]
+	"cSpell.words": ["jonasschmedtmann", "schmedtmann"],
+    "editor.tabSize": 4,
+    "prettier.singleQuote": true
 }

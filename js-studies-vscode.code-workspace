@@ -1,13 +1,18 @@
 {
-  "folders": [
-    {
-      "path": "."
-    }
-  ],
-  "settings": {
-    "cSpell.words": ["arrow", "parens"]
-  },
-  "extensions": {
-    "recommendations": ["wayou.vscode-todo-highlight"]
-  }
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"cSpell.words": ["arrow", "parens"],
+		"editor.detectIndentation": false,
+		"editor.fontWeight": "normal",
+		"tws.trimOnSave": false,
+        "editor.tabSize": 4,
+        "prettier.singleQuote": true
+	},
+	"extensions": {
+		"recommendations": ["wayou.vscode-todo-highlight"]
+	}
 }
