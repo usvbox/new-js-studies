@@ -8,9 +8,8 @@
 		"cSpell.words": ["arrow", "parens"],
 		"editor.detectIndentation": false,
 		"editor.fontWeight": "normal",
-		"tws.trimOnSave": false,
-        "editor.tabSize": 4,
-        "prettier.singleQuote": true
+		"editor.tabSize": 4,
+		"prettier.singleQuote": true
 	},
 	"extensions": {
 		"recommendations": ["wayou.vscode-todo-highlight"]
