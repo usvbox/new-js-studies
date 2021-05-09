@@ -24,10 +24,29 @@ const rowOfIntegers = [
 	21,
 	22,
 	23,
+	24,
+	25,
+	26,
+	27,
+	28,
+	29,
+	30,
+	31,
+	32,
+	33,
+	34,
+	35,
 ];
 
 const integersWithTheProductOfNine = function (arrayOfIntegers) {
 	let results = {};
+	results['inputArray'] = arrayOfIntegers;
+
+	let arrayToManipulate = [];
+	for (let i = 0; i < arrayOfIntegers.length; i++) {
+		arrayToManipulate.push(arrayOfIntegers[i]);
+	}
+
 	function idEvenNumber(arr) {
 		let evens = [];
 		for (let i = 0; i < arr.length; i++) {
@@ -39,6 +58,7 @@ const integersWithTheProductOfNine = function (arrayOfIntegers) {
 		}
 		return evens;
 	}
+
 	function idNumbersEndInFive(arr) {
 		let numbersEndInFive = [];
 		for (let i = 0; i < arr.length; i++) {
@@ -50,6 +70,7 @@ const integersWithTheProductOfNine = function (arrayOfIntegers) {
 		}
 		return numbersEndInFive;
 	}
+
 	function mergeArraysUniqueOnly(arr1, arr2) {
 		for (let i = 0; i < arr2.length; i++) {
 			if (!arr1.includes(arr2[i])) {
@@ -59,6 +80,7 @@ const integersWithTheProductOfNine = function (arrayOfIntegers) {
 		arr1.sort((a, b) => a - b);
 		return arr1;
 	}
+
 	function removeElementFromArray(arr1, arr2) {
 		for (let i = 0; i < arr2.length; i++) {
 			if (arr1.includes(arr2[i])) {
@@ -70,12 +92,14 @@ const integersWithTheProductOfNine = function (arrayOfIntegers) {
 		}
 		return arr1;
 	}
+
 	function getLastDigit(number) {
 		const numberAsString = number.toString();
 		const lastDigitFromString = numberAsString.slice(-1);
 		const lastDigit = Number(lastDigitFromString);
 		return lastDigit;
 	}
+
 	function produceArrayOfLastDigits(arr) {
 		let lastDigits = [];
 		for (let i = 0; i < arr.length; i++) {
@@ -83,40 +107,69 @@ const integersWithTheProductOfNine = function (arrayOfIntegers) {
 		}
 		return lastDigits;
 	}
-	function checkIfNumberEndsInNine(arr) {
-		let resultingNumberParams = {};
+
+	function getProductOfNumbers(arr) {
 		let resultingNumber = 1;
 		for (let i = 0; i < arr.length; i++) {
 			resultingNumber *= arr[i];
 		}
-		resultingNumberParams['number'] = resultingNumber;
-		resultingNumberParams['lastDigit'] = getLastDigit(resultingNumber);
-		return resultingNumberParams;
+		return resultingNumber;
 	}
-	const evenNumbers = idEvenNumber(arrayOfIntegers);
-	results['evenNumbers'] = evenNumbers;
 
-	const numbersEndingInFive = idNumbersEndInFive(arrayOfIntegers);
-	results['numbersEndingInFive'] = numbersEndingInFive;
+	function removeLastElementFromArray(arr) {
+		arr.splice(arr.length - 1, 1);
+		return arr;
+	}
 
-	const mergedNumbers = mergeArraysUniqueOnly(
-		evenNumbers,
+	function getProductOfNumbersToNine(arr) {
+		let resultingParams = {};
+		let arrOfNumbers = arr;
+		let productOfNumbers = getProductOfNumbers(arrOfNumbers);
+		let lastDigitOfProductOfNumbers = getLastDigit(productOfNumbers);
+		let removedNumbers = [];
+		if (lastDigitOfProductOfNumbers !== 9) {
+			while (lastDigitOfProductOfNumbers !== 9) {
+				removedNumbers.push(arrOfNumbers[arrOfNumbers.length - 1]);
+				arrOfNumbers = removeLastElementFromArray(arrOfNumbers);
+				productOfNumbers = getProductOfNumbers(arrOfNumbers);
+				lastDigitOfProductOfNumbers = getLastDigit(productOfNumbers);
+			}
+			resultingParams['resultingArray'] = arrOfNumbers;
+			resultingParams['resultingNumber'] = productOfNumbers;
+			resultingParams['lastDigit'] = lastDigitOfProductOfNumbers;
+			removedNumbers.sort((a, b) => a - b);
+			resultingParams['removedNumbers'] = removedNumbers;
+		} else {
+			resultingParams['resultingArray'] = arrOfNumbers;
+			resultingParams['resultingNumber'] = productOfNumbers;
+			resultingParams['lastDigit'] = lastDigitOfProductOfNumbers;
+			resultingParams['removedNumbers'] = removedNumbers;
+		}
+		return resultingParams;
+	}
+
+	const evenNumbers = idEvenNumber(arrayToManipulate);
+
+	let evenNumbersToManipulate = [];
+	for (let i = 0; i < evenNumbers.length; i++) {
+		evenNumbersToManipulate.push(evenNumbers[i]);
+	}
+
+	const numbersEndingInFive = idNumbersEndInFive(arrayToManipulate);
+
+	const mergedNumbersToRemove = mergeArraysUniqueOnly(
+		evenNumbersToManipulate,
 		numbersEndingInFive
 	);
 
-	const howManyToRemove = mergedNumbers.length;
-	results['howManyToRemove'] = howManyToRemove;
-
 	const remainingNumbers = removeElementFromArray(
-		arrayOfIntegers,
-		mergedNumbers
+		arrayToManipulate,
+		mergedNumbersToRemove
 	);
-	results['remainingNumbers'] = remainingNumbers;
 
 	const lastDigitsOfRemainingNumbers = produceArrayOfLastDigits(
 		remainingNumbers
 	);
-	results['lastDigitsOfRemainingNumbers'] = lastDigitsOfRemainingNumbers;
 
 	const uniqueLastDigits = lastDigitsOfRemainingNumbers.filter(function (
 		el,
@@ -124,9 +177,29 @@ const integersWithTheProductOfNine = function (arrayOfIntegers) {
 	) {
 		return lastDigitsOfRemainingNumbers.indexOf(el) === index;
 	});
-	results['uniqueLastDigits'] = uniqueLastDigits;
 
-	const answer = checkIfNumberEndsInNine(remainingNumbers);
+	let remainingNumbersToManipulate = [];
+	for (let i = 0; i < remainingNumbers.length; i++) {
+		remainingNumbersToManipulate.push(remainingNumbers[i]);
+	}
+
+	const answer = getProductOfNumbersToNine(remainingNumbersToManipulate);
+
+	for (let i = 0; i < answer.removedNumbers.length; i++) {
+		mergedNumbersToRemove.push(answer.removedNumbers[i]);
+	}
+
+	mergedNumbersToRemove.sort((a, b) => a - b);
+
+	const howManyToRemove = mergedNumbersToRemove.length;
+
+	results['evenNumbers'] = evenNumbers;
+	results['numbersEndingInFive'] = numbersEndingInFive;
+	results['mergedNumbersToRemove'] = mergedNumbersToRemove;
+	results['howManyToRemove'] = howManyToRemove;
+	results['remainingNumbers'] = remainingNumbers;
+	results['lastDigitsOfRemainingNumbers'] = lastDigitsOfRemainingNumbers;
+	results['uniqueLastDigits'] = uniqueLastDigits;
 	results['answer'] = answer;
 
 	return results;
@@ -134,14 +207,3 @@ const integersWithTheProductOfNine = function (arrayOfIntegers) {
 
 let test = integersWithTheProductOfNine(rowOfIntegers);
 console.log(test);
-
-// let duplicatedArray = [1, 2, 1, 3, 5, 3];
-// const testIndexOf = duplicatedArray.indexOf(1);
-// console.log(testIndexOf);
-
-// let uniqueArray = duplicatedArray.filter(function (el, index) {
-// 	console.log(duplicatedArray.indexOf(el) === index);
-// 	return duplicatedArray.indexOf(el) === index;
-// });
-
-// console.log(uniqueArray);
