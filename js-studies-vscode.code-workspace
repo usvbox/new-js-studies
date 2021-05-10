@@ -1,17 +1,20 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"cSpell.words": ["arrow", "parens"],
-		"editor.detectIndentation": false,
-		"editor.fontWeight": "normal",
-		"editor.tabSize": 4,
-		"prettier.singleQuote": true
-	},
-	"extensions": {
-		"recommendations": ["wayou.vscode-todo-highlight"]
-	}
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "cSpell.words": [
+        "arrow",
+        "parens"
+    ],
+    "editor.fontWeight": "normal",
+    "editor.tabSize": 2,
+    "prettier.singleQuote": true,
+    "prettier.useTabs": true
+  },
+  "extensions": {
+    "recommendations": ["wayou.vscode-todo-highlight"]
+  }
 }
