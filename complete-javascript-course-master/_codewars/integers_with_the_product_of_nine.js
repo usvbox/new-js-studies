@@ -1,5 +1,106 @@
 'use strict';
 
+function idEvenNumber(arr) {
+	let evens = [];
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] % 2 === 0) {
+			evens.push(arr[i]);
+		} else {
+			continue;
+		}
+	}
+	return evens;
+}
+
+function idNumbersEndInFive(arr) {
+	let numbersEndInFive = [];
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] % 5 === 0) {
+			numbersEndInFive.push(arr[i]);
+		} else {
+			continue;
+		}
+	}
+	return numbersEndInFive;
+}
+
+function mergeArraysUniqueOnly(arr1, arr2) {
+	for (let i = 0; i < arr2.length; i++) {
+		if (!arr1.includes(arr2[i])) {
+			arr1.push(arr2[i]);
+		}
+	}
+	arr1.sort((a, b) => a - b);
+	return arr1;
+}
+
+function removeElementFromArray(arr1, arr2) {
+	for (let i = 0; i < arr2.length; i++) {
+		if (arr1.includes(arr2[i])) {
+			let a = arr1.indexOf(arr2[i]);
+			arr1.splice(a, 1);
+		} else {
+			continue;
+		}
+	}
+	return arr1;
+}
+
+function getLastDigit(number) {
+	const numberAsString = number.toString();
+	const lastDigitFromString = numberAsString.slice(-1);
+	const lastDigit = Number(lastDigitFromString);
+	return lastDigit;
+}
+
+function produceArrayOfLastDigits(arr) {
+	let lastDigits = [];
+	for (let i = 0; i < arr.length; i++) {
+		lastDigits.push(getLastDigit(arr[i]));
+	}
+	return lastDigits;
+}
+
+function getProductOfNumbers(arr) {
+	let resultingNumber = 1;
+	for (let i = 0; i < arr.length; i++) {
+		resultingNumber *= arr[i];
+	}
+	return resultingNumber;
+}
+
+function removeLastElementFromArray(arr) {
+	arr.splice(arr.length - 1, 1);
+	return arr;
+}
+
+function getProductOfNumbersToNine(arr) {
+	let resultingParams = {};
+	let arrOfNumbers = arr;
+	let productOfNumbers = getProductOfNumbers(arrOfNumbers);
+	let lastDigitOfProductOfNumbers = getLastDigit(productOfNumbers);
+	let removedNumbers = [];
+	if (lastDigitOfProductOfNumbers !== 9) {
+		while (lastDigitOfProductOfNumbers !== 9) {
+			removedNumbers.push(arrOfNumbers[arrOfNumbers.length - 1]);
+			arrOfNumbers = removeLastElementFromArray(arrOfNumbers);
+			productOfNumbers = getProductOfNumbers(arrOfNumbers);
+			lastDigitOfProductOfNumbers = getLastDigit(productOfNumbers);
+		}
+		resultingParams['resultingArray'] = arrOfNumbers;
+		resultingParams['resultingNumber'] = productOfNumbers;
+		resultingParams['lastDigit'] = lastDigitOfProductOfNumbers;
+		removedNumbers.sort((a, b) => a - b);
+		resultingParams['removedNumbers'] = removedNumbers;
+	}
+	resultingParams['resultingArray'] = arrOfNumbers;
+	resultingParams['resultingNumber'] = productOfNumbers;
+	resultingParams['lastDigit'] = lastDigitOfProductOfNumbers;
+	resultingParams['removedNumbers'] = removedNumbers;
+
+	return resultingParams;
+}
+
 const rowOfIntegers = [
 	1,
 	2,
@@ -45,107 +146,6 @@ const integersWithTheProductOfNine = function (arrayOfIntegers) {
 	let arrayToManipulate = [];
 	for (let i = 0; i < arrayOfIntegers.length; i++) {
 		arrayToManipulate.push(arrayOfIntegers[i]);
-	}
-
-	function idEvenNumber(arr) {
-		let evens = [];
-		for (let i = 0; i < arr.length; i++) {
-			if (arr[i] % 2 === 0) {
-				evens.push(arr[i]);
-			} else {
-				continue;
-			}
-		}
-		return evens;
-	}
-
-	function idNumbersEndInFive(arr) {
-		let numbersEndInFive = [];
-		for (let i = 0; i < arr.length; i++) {
-			if (arr[i] % 5 === 0) {
-				numbersEndInFive.push(arr[i]);
-			} else {
-				continue;
-			}
-		}
-		return numbersEndInFive;
-	}
-
-	function mergeArraysUniqueOnly(arr1, arr2) {
-		for (let i = 0; i < arr2.length; i++) {
-			if (!arr1.includes(arr2[i])) {
-				arr1.push(arr2[i]);
-			}
-		}
-		arr1.sort((a, b) => a - b);
-		return arr1;
-	}
-
-	function removeElementFromArray(arr1, arr2) {
-		for (let i = 0; i < arr2.length; i++) {
-			if (arr1.includes(arr2[i])) {
-				let a = arr1.indexOf(arr2[i]);
-				arr1.splice(a, 1);
-			} else {
-				continue;
-			}
-		}
-		return arr1;
-	}
-
-	function getLastDigit(number) {
-		const numberAsString = number.toString();
-		const lastDigitFromString = numberAsString.slice(-1);
-		const lastDigit = Number(lastDigitFromString);
-		return lastDigit;
-	}
-
-	function produceArrayOfLastDigits(arr) {
-		let lastDigits = [];
-		for (let i = 0; i < arr.length; i++) {
-			lastDigits.push(getLastDigit(arr[i]));
-		}
-		return lastDigits;
-	}
-
-	function getProductOfNumbers(arr) {
-		let resultingNumber = 1;
-		for (let i = 0; i < arr.length; i++) {
-			resultingNumber *= arr[i];
-		}
-		return resultingNumber;
-	}
-
-	function removeLastElementFromArray(arr) {
-		arr.splice(arr.length - 1, 1);
-		return arr;
-	}
-
-	function getProductOfNumbersToNine(arr) {
-		let resultingParams = {};
-		let arrOfNumbers = arr;
-		let productOfNumbers = getProductOfNumbers(arrOfNumbers);
-		let lastDigitOfProductOfNumbers = getLastDigit(productOfNumbers);
-		let removedNumbers = [];
-		if (lastDigitOfProductOfNumbers !== 9) {
-			while (lastDigitOfProductOfNumbers !== 9) {
-				removedNumbers.push(arrOfNumbers[arrOfNumbers.length - 1]);
-				arrOfNumbers = removeLastElementFromArray(arrOfNumbers);
-				productOfNumbers = getProductOfNumbers(arrOfNumbers);
-				lastDigitOfProductOfNumbers = getLastDigit(productOfNumbers);
-			}
-			resultingParams['resultingArray'] = arrOfNumbers;
-			resultingParams['resultingNumber'] = productOfNumbers;
-			resultingParams['lastDigit'] = lastDigitOfProductOfNumbers;
-			removedNumbers.sort((a, b) => a - b);
-			resultingParams['removedNumbers'] = removedNumbers;
-		} else {
-			resultingParams['resultingArray'] = arrOfNumbers;
-			resultingParams['resultingNumber'] = productOfNumbers;
-			resultingParams['lastDigit'] = lastDigitOfProductOfNumbers;
-			resultingParams['removedNumbers'] = removedNumbers;
-		}
-		return resultingParams;
 	}
 
 	const evenNumbers = idEvenNumber(arrayToManipulate);
