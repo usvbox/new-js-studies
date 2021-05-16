@@ -8,6 +8,15 @@ let activePlayer;
 let currentScore;
 let gamePlaying;
 
+// let gameScores = [0, 0];
+// let activePlayer = 0;
+// let currentScore = 0;
+// const winningScore = 20;
+// let gamePlaying = true;
+
+// let playerOneScore = 0;
+// let playerTwoScore = 0;
+
 /// Create variables for the elements to be used in the code below
 
 const diceEl = document.querySelector('.dice');
@@ -50,6 +59,18 @@ const rollTheDice = function () {
   return dice;
 };
 
+/// two implementation option for switching players - simple and with forEach() method
+
+// const switchPlayers = function () {
+//   currentScore = 0;
+//   document.getElementById(`current--${activePlayer}`).textContent = 0;
+//   document.getElementById(`score--${activePlayer}`).textContent =
+//     gameScores[activePlayer];
+//   activePlayer = activePlayer === 0 ? 1 : 0;
+//   playerOneEl.classList.toggle('player--active');
+//   playerTwoEl.classList.toggle('player--active');
+// };
+
 const switchPlayer = function (players) {
   currentScore = 0;
   document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -76,7 +97,6 @@ const init = function () {
   activePlayer = 0;
   currentScore = 0;
   gamePlaying = true;
-  gameScores = setGameScoresToZero(gameScores);
   document.querySelector('.player--0').classList.remove('player--winner');
   document.querySelector('.player--1').classList.remove('player--winner');
   if (document.getElementById('name--0').textContent === 'Winner!') {
@@ -87,7 +107,22 @@ const init = function () {
   resetActivePlayer(players);
   hideElement(diceEl);
   setCurrentScoresToZero(playerOneCurrentScoreEl, playerTwoCurrentScoreEl);
+  gameScores = setGameScoresToZero(gameScores);
 };
+
+// const clickRollDice = function () {
+//   const diceRoll = rollTheDice();
+//   unhideElement(diceEl);
+//   diceEl.setAttribute('src', `dice-${diceRoll}.png`);
+//   if (diceRoll > 1) {
+//     currentScore += diceRoll;
+//     document.getElementById(`current--${activePlayer}`).textContent =
+//       currentScore;
+//   }
+//   if (diceRoll === 1) {
+//     switchPlayer(players);
+//   }
+// };
 
 const clickRollDice = function () {
   if (gamePlaying) {
@@ -105,6 +140,15 @@ const clickRollDice = function () {
   }
 };
 
+// const clickHold = function () {
+//   gameScores[activePlayer] += currentScore;
+//   if (gameScores[activePlayer] < winningScore) {
+//     switchPlayer(players);
+//   } else {
+//     endTheGame();
+//   }
+// };
+
 const clickHold = function () {
   if (gamePlaying) {
     gameScores[activePlayer] += currentScore;
@@ -115,6 +159,23 @@ const clickHold = function () {
     }
   }
 };
+
+// const endTheGame = function () {
+//   document.getElementById(`score--${activePlayer}`).textContent =
+//     gameScores[activePlayer];
+//   document
+//     .querySelector(`.player--${activePlayer}`)
+//     .classList.add('player--winner');
+//   document
+//     .querySelector(`.player--${activePlayer}`)
+//     .classList.remove('player--active');
+//   document.getElementById(`name--${activePlayer}`).textContent = 'Winner!';
+//   hideElement(diceEl);
+//   rollDiceBtnEl.removeEventListener('click', clickRollDice);
+//   holdBtnEl.removeEventListener('click', clickHold);
+//   rollDiceBtnEl.disabled = true;
+//   holdBtnEl.disabled = true;
+// };
 
 const endTheGame = function () {
   document.getElementById(`score--${activePlayer}`).textContent =
@@ -130,9 +191,31 @@ const endTheGame = function () {
   gamePlaying = false;
 };
 
+// const resetGame = function () {
+//   gamePlaying = true;
+//   currentScore = 0;
+//   // rollDiceBtnEl.addEventListener('click', clickRollDice);
+//   // holdBtnEl.addEventListener('click', clickHold);
+//   // rollDiceBtnEl.disabled = false;
+//   // holdBtnEl.disabled = false;
+//   document
+//     .querySelector(`.player--${activePlayer}`)
+//     .classList.remove('player--winner');
+//   document.getElementById(`name--${activePlayer}`).textContent = `Player ${
+//     activePlayer + 1
+//   }`;
+//   resetActivePlayer(players);
+//   document.getElementById(`current--${activePlayer}`).textContent = 0;
+//   gameScores = setScoresToZeroUniversal(gameScores);
+//   activePlayer = 0;
+// };
+
 /// PLAYING THE GAME
 
 /// Set the game starting state
+
+// hideElement(diceEl);
+// setScoresToZeroDOM(playerOneGameScoreEl, playerTwoGameScoreEl);
 
 init();
 
@@ -147,3 +230,32 @@ holdBtnEl.addEventListener('click', clickHold);
 /// Reset the game state
 
 newGameBtnEl.addEventListener('click', init);
+
+// Initial version of the code switching the players
+
+/*   rollDiceBtnEl.addEventListener('click', function () {
+    const diceRoll = rollTheDice();
+    unhideElement(diceEl);
+    diceEl.setAttribute('src', `dice-${diceRoll}.png`);
+
+    if (diceRoll > 1) {
+      if (playerOneEl.classList.contains('player--active')) {
+        playerOneScore += diceRoll;
+        playerOneCurrentScoreEl.textContent = playerOneScore;
+      } else if (playerTwoEl.classList.contains('player--active')) {
+        playerTwoScore += diceRoll;
+        playerTwoCurrentScoreEl.textContent = playerTwoScore;
+      }
+    } else {
+      if (playerOneEl.classList.contains('player--active')) {
+        playerOneScore = 0;
+        playerOneCurrentScoreEl.textContent = playerOneScore;
+        playerOneEl.classList.toggle('player--active');
+        playerTwoEl.classList.toggle('player--active');
+      } else if (playerTwoEl.classList.contains('player--active')) {
+        playerTwoScore = 0;
+        playerTwoCurrentScoreEl.textContent = playerTwoScore;
+        playerOneEl.classList.toggle('player--active');
+        playerTwoEl.classList.toggle('player--active');
+      }
+    } */
