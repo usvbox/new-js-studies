@@ -15,8 +15,12 @@ const findDuplicates = function (arr) {
 	// 		}
 	// 	}
 	// }
-	const filtered = arr.filter((item, index) => arr.indexOf(item) !== index);
-	return [...new Set(filtered)];
+	const duplicated = arr.filter((item, index) => arr.indexOf(item) !== index);
+	const uniqueDuplicates = duplicated.filter(
+		(item, index) => duplicated.indexOf(item) === index
+	);
+	//return [...new Set(filtered)];
+	return uniqueDuplicates;
 };
 
 const outputArray = findDuplicates(inputArray);
