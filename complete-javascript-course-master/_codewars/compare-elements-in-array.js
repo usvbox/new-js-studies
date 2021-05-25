@@ -16,6 +16,7 @@ const findDuplicates = function (arr) {
 	// 	}
 	// }
 	const duplicated = arr.filter((item, index) => arr.indexOf(item) !== index);
+	console.log(duplicated);
 	const uniqueDuplicates = duplicated.filter(
 		(item, index) => duplicated.indexOf(item) === index
 	);
