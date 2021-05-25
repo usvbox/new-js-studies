@@ -17,9 +17,7 @@ const compareArrays = function (arr1, arr2) {
 		return result;
 	}
 	const inputOneToNumber = changeToNumber(arr1);
-	console.log(inputOneToNumber);
 	const inputTwoToNumber = changeToNumber(arr2);
-	console.log(inputTwoToNumber);
 
 	let outputArray = inputOneToNumber.filter((el) =>
 		inputTwoToNumber.includes(el)
@@ -35,10 +33,3 @@ const compareArrays = function (arr1, arr2) {
 
 const output = compareArrays(arrayOne, arrayTwo);
 console.log(output);
-
-//const hasElement = (el, arr) => arr.includes(el);
-
-//const elementIncluded = hasElement(10, arrayOne);
-//console.log(elementIncluded);
-
-console.log(NaN === NaN);
