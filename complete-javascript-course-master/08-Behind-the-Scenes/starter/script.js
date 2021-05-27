@@ -62,13 +62,13 @@ const addArrow = (a, b) => a + b; */
 
 //Example demonstrating the key pitfall of hoisting - a behavior we can get when not careful with using var-type variables
 
-if (!numProducts) deleteShoppingCart();
+// if (!numProducts) deleteShoppingCart();
 
-var numProducts = 10;
+// var numProducts = 10;
 
-function deleteShoppingCart() {
-  console.log('All products deleted');
-}
+// function deleteShoppingCart() {
+//   console.log('All products deleted');
+// }
 
 // var testVariable = 0;
 // function checkFalsy(variable) {
@@ -82,8 +82,47 @@ function deleteShoppingCart() {
 
 // console.log(checkFalsy(testVariable));
 
-var x = 1;
-let y = 2;
-const z = 3;
+// var x = 1;
+// let y = 2;
+// const z = 3;
 
-console.log(x === window.x);
+// console.log(x === window.x);
+
+// this keyword
+
+console.log(this);
+
+const calcAge = function (birthYear) {
+  console.log(2037 - birthYear);
+  console.log(this);
+};
+
+calcAge(1991);
+
+const calcAgeArrow = birthYear => {
+  console.log(2037 - birthYear);
+  console.log(this);
+};
+
+calcAgeArrow(1991);
+
+const jonas = {
+  year: 1991,
+  calcAge: function () {
+    console.log(this);
+    console.log(2037 - this.year);
+  },
+};
+
+jonas.calcAge();
+
+const matilda = {
+  year: 2017,
+};
+
+matilda.calcAge = jonas.calcAge;
+
+matilda.calcAge();
+
+const f = jonas.calcAge;
+f();
