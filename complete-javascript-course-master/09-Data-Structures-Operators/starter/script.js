@@ -34,47 +34,52 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} by ${time}.`
     );
   },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here's your delicious pasta with ${ing1}, ${ing2}, and ${ing3}.`
+    );
+  },
 };
 
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Via del Sole, 21',
-  mainIndex: 2,
-  starterIndex: 2,
-});
+// restaurant.orderDelivery({
+//   time: '22:30',
+//   address: 'Via del Sole, 21',
+//   mainIndex: 2,
+//   starterIndex: 2,
+// });
 
-restaurant.orderDelivery({
-  address: 'Via del Sole, 21',
-  starterIndex: 2,
-});
+// restaurant.orderDelivery({
+//   address: 'Via del Sole, 21',
+//   starterIndex: 2,
+// });
 
-const { name, openingHours, categories } = restaurant;
-console.log(name, openingHours, categories);
+// const { name, openingHours, categories } = restaurant;
+// console.log(name, openingHours, categories);
 
-const {
-  name: restaurantName,
-  openingHours: hours,
-  categories: tags,
-} = restaurant;
-console.log(restaurantName, hours, tags);
+// const {
+//   name: restaurantName,
+//   openingHours: hours,
+//   categories: tags,
+// } = restaurant;
+// console.log(restaurantName, hours, tags);
 
-const { menu = [], starterMenu: starters = [] } = restaurant;
-console.log(menu, starters);
+// const { menu = [], starterMenu: starters = [] } = restaurant;
+// console.log(menu, starters);
 
-let a = 111;
-let b = 999;
-const obj = { a: 23, b: 7, c: 14 };
+// let a = 111;
+// let b = 999;
+// const obj = { a: 23, b: 7, c: 14 };
 
-({ a, b } = obj);
-console.log(a, b);
+// ({ a, b } = obj);
+// console.log(a, b);
 
-const {
-  openingHours: {
-    fri: { open: openHours, close: closeHours },
-  },
-} = restaurant;
+// const {
+//   openingHours: {
+//     fri: { open: openHours, close: closeHours },
+//   },
+// } = restaurant;
 
-console.log(openHours, closeHours);
+// console.log(openHours, closeHours);
 
 // const arr = [2, 3, 4];
 // const a = arr[0];
@@ -110,3 +115,44 @@ console.log(openHours, closeHours);
 
 // const [p = 1, q = 1, r = 1] = [8, 9];
 // console.log(p, q, r);
+
+const arr = [7, 8, 9];
+
+const newArr = [1, 2, ...arr];
+console.log(...newArr);
+
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+console.log(newMenu);
+
+const mainMenuCopy = [...restaurant.mainMenu];
+
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(menu);
+
+const str = 'Jonas';
+console.log(str);
+const letters = [...str, ' ', 'S.'];
+console.log(letters);
+
+console.log('J', 'o', 'n', 'a', 's');
+
+console.log(...str);
+
+// const ingredients = [
+//   prompt("Let's make pasta! Ingredient1?"),
+//   prompt('Ingredient2?'),
+//   prompt('Ingredient3?'),
+// ];
+// console.log(ingredients);
+
+//restaurant.orderPasta(...ingredients);
+
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+restaurant.test = 'test';
+console.log(newRestaurant);
+console.log(restaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Ristorante Romantic';
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
