@@ -39,6 +39,10 @@ const restaurant = {
       `Here's your delicious pasta with ${ing1}, ${ing2}, and ${ing3}.`
     );
   },
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
 // restaurant.orderDelivery({
@@ -116,27 +120,27 @@ const restaurant = {
 // const [p = 1, q = 1, r = 1] = [8, 9];
 // console.log(p, q, r);
 
-const arr = [7, 8, 9];
+// const arr = [7, 8, 9];
 
-const newArr = [1, 2, ...arr];
-console.log(...newArr);
+// const newArr = [1, 2, ...arr];
+// console.log(...newArr);
 
-const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-console.log(newMenu);
+// const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+// console.log(newMenu);
 
-const mainMenuCopy = [...restaurant.mainMenu];
+// const mainMenuCopy = [...restaurant.mainMenu];
 
-const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
-console.log(menu);
+// const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// console.log(menu);
 
-const str = 'Jonas';
-console.log(str);
-const letters = [...str, ' ', 'S.'];
-console.log(letters);
+// const str = 'Jonas';
+// console.log(str);
+// const letters = [...str, ' ', 'S.'];
+// console.log(letters);
 
-console.log('J', 'o', 'n', 'a', 's');
+// console.log('J', 'o', 'n', 'a', 's');
 
-console.log(...str);
+// console.log(...str);
 
 // const ingredients = [
 //   prompt("Let's make pasta! Ingredient1?"),
@@ -147,12 +151,45 @@ console.log(...str);
 
 //restaurant.orderPasta(...ingredients);
 
-const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
-restaurant.test = 'test';
-console.log(newRestaurant);
-console.log(restaurant);
+// const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+// restaurant.test = 'test';
+// console.log(newRestaurant);
+// console.log(restaurant);
 
-const restaurantCopy = { ...restaurant };
-restaurantCopy.name = 'Ristorante Romantic';
-console.log(restaurantCopy.name);
-console.log(restaurant.name);
+// const restaurantCopy = { ...restaurant };
+// restaurantCopy.name = 'Ristorante Romantic';
+// console.log(restaurantCopy.name);
+// console.log(restaurant.name);
+
+const arr = [3, 4];
+const newArr = [1, 2, ...arr];
+
+const [a, b, ...others] = newArr;
+console.log(a, b, others);
+
+const [pizza, , risotto, ...otherDishes] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherDishes);
+
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(sat, weekdays);
+
+const add = function (...numbers) {
+  console.log(numbers);
+  let sum = 0;
+  for (let index = 0; index < numbers.length; index++) {
+    sum += numbers[index];
+  }
+  console.log(sum);
+};
+
+add(2, 3);
+add(5, 2, 4, 5);
+add(8, 2, 5, 3, 2, 1, 4);
+
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza('mushrooms', 'onions', 'olives', 'spinach');
