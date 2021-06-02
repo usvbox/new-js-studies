@@ -161,35 +161,63 @@ const restaurant = {
 // console.log(restaurantCopy.name);
 // console.log(restaurant.name);
 
-const arr = [3, 4];
-const newArr = [1, 2, ...arr];
+// const arr = [3, 4];
+// const newArr = [1, 2, ...arr];
 
-const [a, b, ...others] = newArr;
-console.log(a, b, others);
+// const [a, b, ...others] = newArr;
+// console.log(a, b, others);
 
-const [pizza, , risotto, ...otherDishes] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
-console.log(pizza, risotto, otherDishes);
+// const [pizza, , risotto, ...otherDishes] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(pizza, risotto, otherDishes);
 
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(sat, weekdays);
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(sat, weekdays);
 
-const add = function (...numbers) {
-  console.log(numbers);
-  let sum = 0;
-  for (let index = 0; index < numbers.length; index++) {
-    sum += numbers[index];
-  }
-  console.log(sum);
-};
+// const add = function (...numbers) {
+//   console.log(numbers);
+//   let sum = 0;
+//   for (let index = 0; index < numbers.length; index++) {
+//     sum += numbers[index];
+//   }
+//   console.log(sum);
+// };
 
-add(2, 3);
-add(5, 2, 4, 5);
-add(8, 2, 5, 3, 2, 1, 4);
+// add(2, 3);
+// add(5, 2, 4, 5);
+// add(8, 2, 5, 3, 2, 1, 4);
 
-const x = [23, 5, 7];
-add(...x);
+// const x = [23, 5, 7];
+// add(...x);
 
-restaurant.orderPizza('mushrooms', 'onions', 'olives', 'spinach');
+// restaurant.orderPizza('mushrooms', 'onions', 'olives', 'spinach');
+
+// console.log(3 || 'Jonas');
+// console.log('' || 'Jonas');
+// console.log(true || 0);
+// console.log(undefined || null);
+
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+// restaurant.numGuests = 0;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+
+// console.log(guests1);
+
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
+
+// console.log(0 && 'Jonas');
+// console.log(23 && null);
+
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'onions');
+// }
+
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'onions');
+
+//restaurant.numGuests = 0;
+const guests = restaurant.numGuests ?? 10;
+console.log(guests);
