@@ -41,7 +41,82 @@ const game = {
 	},
 };
 
-const [players1, players2] = game.players;
+//1
+const { scored: goals } = game;
+for (const [goal, player] of goals.entries()) {
+	console.log(`Goal ${goal + 1}: ${player}`);
+}
+
+//2
+const odds = Object.values(game.odds);
+function calcAverage(arr) {
+	let total = 0;
+	for (const el of arr) {
+		total += el;
+	}
+	console.log((total / arr.length).toFixed(2));
+}
+calcAverage(odds);
+
+//3
+const oddsArr = Object.entries(game.odds);
+function printOdds(arr) {
+	for (const [oddKey, oddValue] of arr) {
+		game[oddKey]
+			? console.log(`Odd of victory ${game[oddKey]}: ${oddValue}`)
+			: console.log(`Odd of draw: ${oddValue}`);
+	}
+}
+
+// function printOdds(arr) {
+// 	for (const [oddKey, oddValue] of arr) {
+// 		const oddStr = oddKey === 'x' ? 'draw' : `victory ${game[oddKey]}`;
+// 		console.log(`Odd of ${oddStr}: ${oddValue}`);
+// 	}
+// }
+
+printOdds(oddsArr);
+
+//4
+const scoredPlayers = game.scored;
+console.log(scoredPlayers);
+
+function getScorers(scored) {
+	const scorers = {};
+	function getNumberOfGoals(player) {
+		let goals = 0;
+		for (const scoredPlayer of scored) {
+			player === scoredPlayer && goals++;
+		}
+		return goals;
+	}
+	for (const player of scored) {
+		scorers[player] = getNumberOfGoals(player);
+	}
+	return scorers;
+}
+
+const scorers = getScorers(scoredPlayers);
+console.log(scorers);
+
+const scorers2 = {};
+for (const player of game.scored) {
+	scorers2[player] ? scorers2[player]++ : (scorers2[player] = 1);
+}
+console.log(scorers2);
+
+// function getNumberOfRepeatingValues(val, arr) {
+// 	let repeatingValues = 0;
+// 	for (const item of arr) {
+// 		val === item && repeatingValues++;
+// 	}
+// 	return repeatingValues;
+// }
+
+// const test = getNumberOfRepeatingValues('Lewandowski', scoredPlayers);
+// console.log(test);
+
+/* const [players1, players2] = game.players;
 console.log(players1);
 console.log(players2);
 
@@ -73,4 +148,4 @@ printGoals('Davies', 'Muller', 'Kimmich');
 printGoals(...game.scored);
 
 team1 > team2 && console.log('Team 2 is more likely to win');
-team1 < team2 && console.log('Team 1 is more likely to win');
+team1 < team2 && console.log('Team 1 is more likely to win'); */

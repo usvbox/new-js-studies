@@ -11,7 +11,7 @@ const openingHours = {
     open: 11,
     close: 23,
   },
-  [`Day ${2 + 4}`]: {
+  [weekdays[5]]: {
     open: 0, // Open 24 hours
     close: 24,
   },
@@ -43,7 +43,51 @@ const restaurant = {
   },
 };
 
-console.log(restaurant);
+// const properties = Object.keys(openingHours);
+// console.log(properties);
+
+// let openStr = `We are open ${properties.length} days a week: `;
+
+// for (const day of properties) {
+//   openStr += `${day}, `;
+// }
+
+// console.log(openStr);
+
+// const values = Object.values(openingHours);
+// console.log(values);
+
+const entries = Object.entries(openingHours);
+
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we open at ${open} and close at ${close}.`);
+}
+
+//if (restaurant.openingHours && restaurant.openingHours.mon) console.log(restaurant.openingHours.mon.open);
+
+// console.log(restaurant.openingHours?.mon?.open);
+
+// const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+// for (const day of days) {
+//   const open = restaurant.openingHours[day]?.open ?? 'closed';
+//   open === 'closed'
+//     ? console.log(`We're closed on ${day}.`)
+//     : console.log(`On ${day} we open at ${open}.`);
+// }
+
+// console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
+
+// const users = [{ name: 'Jonas', email: 'jonas@jonas.io' }];
+// console.log(
+//   users[1]?.name ?? 'Users array is empty or does not contain the user'
+// );
+
+// if (users.length > 0) console.log(users[0].name);
+// else console.log('users array is empty');
+
+// console.log(restaurant);
 
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
