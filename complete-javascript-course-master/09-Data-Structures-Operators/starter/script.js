@@ -43,6 +43,110 @@ const restaurant = {
   },
 };
 
+const rest = new Map();
+
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct!'],
+  [false, 'Try again!'],
+]);
+
+console.log(question);
+
+const hours = new Map(Object.entries(openingHours));
+console.log(hours);
+
+console.log(question.get('question'));
+
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
+
+const answer = 3; // Number(prompt('Your answer'));
+
+console.log(question.get(answer === question.get('correct')));
+
+console.log([...question]);
+
+console.log([...question.entries()]);
+console.log([...question.keys()]);
+console.log([...question.values()]);
+
+console.log(typeof question.entries());
+console.log(typeof question.keys());
+console.log(typeof question.values());
+console.log(typeof [...question]);
+
+// rest.set('name', 'Classico Italiano');
+// rest.set(1, 'Firenze, Italy');
+// rest.set(2, 'Lisbon, Portugal');
+// console.log(rest);
+
+// rest
+//   .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+//   .set('open', 11)
+//   .set('close', 23)
+//   .set(true, 'We are open :D')
+//   .set(false, 'We are closed :(');
+// console.log(rest);
+
+// console.log(rest.get('name'));
+// console.log(rest.get(true));
+
+// const time = 8;
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+// console.log(rest.has('categories'));
+
+// rest.delete(2);
+// //rest.clear();
+
+// const arr = [1, 2];
+// rest.set(arr, 'Test');
+// rest.set(document.querySelector('h1'), 'Heading');
+// console.log(rest.get(arr));
+// console.log(rest);
+
+// console.log();
+
+// console.log(rest.size);
+
+// const ordersSet = new Set([
+//   'Pasta',
+//   'Pizza',
+//   'Pizza',
+//   'Risotto',
+//   'Pasta',
+//   'Pizza',
+// ]);
+
+// console.log(ordersSet.size);
+
+// console.log(ordersSet.has('Pizza'));
+
+// ordersSet.add('Garlic Bread');
+// ordersSet.delete('Risotto');
+// //ordersSet.clear();
+
+// for (const order of ordersSet) {
+//   console.log(order);
+// }
+
+// console.log(ordersSet);
+
+// console.log(new Set('Jonas'));
+
+// const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+
+// const staffUnique = [...new Set(staff)];
+// console.log(staffUnique);
+
+// console.log(new Set(staff).size);
+
 // const properties = Object.keys(openingHours);
 // console.log(properties);
 
@@ -57,11 +161,11 @@ const restaurant = {
 // const values = Object.values(openingHours);
 // console.log(values);
 
-const entries = Object.entries(openingHours);
+// const entries = Object.entries(openingHours);
 
-for (const [key, { open, close }] of entries) {
-  console.log(`On ${key} we open at ${open} and close at ${close}.`);
-}
+// for (const [key, { open, close }] of entries) {
+//   console.log(`On ${key} we open at ${open} and close at ${close}.`);
+// }
 
 //if (restaurant.openingHours && restaurant.openingHours.mon) console.log(restaurant.openingHours.mon.open);
 
