@@ -43,43 +43,43 @@ const restaurant = {
   },
 };
 
-const rest = new Map();
+// const rest = new Map();
 
-const question = new Map([
-  ['question', 'What is the best programming language in the world?'],
-  [1, 'C'],
-  [2, 'Java'],
-  [3, 'JavaScript'],
-  ['correct', 3],
-  [true, 'Correct!'],
-  [false, 'Try again!'],
-]);
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct!'],
+//   [false, 'Try again!'],
+// ]);
 
-console.log(question);
+// console.log(question);
 
-const hours = new Map(Object.entries(openingHours));
-console.log(hours);
+// const hours = new Map(Object.entries(openingHours));
+// console.log(hours);
 
-console.log(question.get('question'));
+// console.log(question.get('question'));
 
-for (const [key, value] of question) {
-  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
-}
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+// }
 
-const answer = 3; // Number(prompt('Your answer'));
+// const answer = 3; // Number(prompt('Your answer'));
 
-console.log(question.get(answer === question.get('correct')));
+// console.log(question.get(answer === question.get('correct')));
 
-console.log([...question]);
+// console.log([...question]);
 
-console.log([...question.entries()]);
-console.log([...question.keys()]);
-console.log([...question.values()]);
+// console.log([...question.entries()]);
+// console.log([...question.keys()]);
+// console.log([...question.values()]);
 
-console.log(typeof question.entries());
-console.log(typeof question.keys());
-console.log(typeof question.values());
-console.log(typeof [...question]);
+// console.log(typeof question.entries());
+// console.log(typeof question.keys());
+// console.log(typeof question.values());
+// console.log(typeof [...question]);
 
 // rest.set('name', 'Classico Italiano');
 // rest.set(1, 'Firenze, Italy');

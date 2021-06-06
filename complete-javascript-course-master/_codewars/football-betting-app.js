@@ -41,7 +41,60 @@ const game = {
 	},
 };
 
-//1
+const gameEvents = new Map([
+	[17, '⚽️ GOAL'],
+	[36, '🔁 Substitution'],
+	[47, '⚽️ GOAL'],
+	[61, '🔁 Substitution'],
+	[64, '🔶 Yellow card'],
+	[69, '🔴 Red card'],
+	[70, '🔁 Substitution'],
+	[72, '🔁 Substitution'],
+	[76, '⚽️ GOAL'],
+	[80, '⚽️ GOAL'],
+	[92, '🔶 Yellow card'],
+]);
+
+// 1
+const getUniqueEvents = function (game) {
+	const eventsArr = [];
+	for (const [key, value] of game) {
+		eventsArr.push(value);
+	}
+	const events = [...new Set(eventsArr)];
+	console.log(events);
+};
+getUniqueEvents(gameEvents);
+
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+// 2
+
+gameEvents.delete(64);
+console.log(gameEvents);
+
+// 3
+
+const averageOccurence = 90 / gameEvents.size;
+console.log(
+	`An event happened, on average, every ${averageOccurence} minutes.`
+);
+
+// 4
+
+for (const [key, value] of gameEvents) {
+	key <= 45
+		? console.log(`[FIRST HALF] ${key}: ${value}`)
+		: console.log(`[SECOND HALF] ${key}: ${value}`);
+}
+
+for (const [key, value] of gameEvents) {
+	const half = key <= 45 ? 'FIRST' : 'SECOND';
+	console.log(`[${half} HALF] ${key}: ${value}`);
+}
+
+/* //1
 const { scored: goals } = game;
 for (const [goal, player] of goals.entries()) {
 	console.log(`Goal ${goal + 1}: ${player}`);
@@ -103,7 +156,7 @@ const scorers2 = {};
 for (const player of game.scored) {
 	scorers2[player] ? scorers2[player]++ : (scorers2[player] = 1);
 }
-console.log(scorers2);
+console.log(scorers2); */
 
 // function getNumberOfRepeatingValues(val, arr) {
 // 	let repeatingValues = 0;
