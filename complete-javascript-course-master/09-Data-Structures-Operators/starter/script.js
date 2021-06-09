@@ -43,6 +43,153 @@ const restaurant = {
   },
 };
 
+// const airline = 'TAP Air Portugal';
+// const plane = 'A320';
+
+// console.log(plane[0]);
+// console.log('B737'[0]);
+
+// console.log(airline.length);
+
+// console.log(airline.indexOf('r'));
+// console.log(airline.lastIndexOf('r'));
+
+// console.log(airline.slice(4));
+
+// console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+// console.log(airline.slice(-2));
+// console.log(airline.slice(1, -1));
+
+// const checkMiddleSeat = function (seat) {
+//   //B and E are middle seats
+//   console.log(
+//     seat.slice(-1) === 'B' || seat.slice(-1) === 'E' ? 'Middle' : 'Not Middle'
+//   );
+// };
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('15A');
+// checkMiddleSeat('19E');
+
+// console.log(new String('jonas'));
+
+// console.log(typeof new String('jonas'));
+// console.log(typeof new String('jonas').slice(1));
+
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
+
+// const passenger = 'jOnAS';
+// const passengerLowerCase = passenger.toLowerCase();
+// const passengerCorrect =
+//   passengerLowerCase[0].toUpperCase() + passengerLowerCase.slice(1);
+// console.log(passengerCorrect);
+
+// const correctName = function (name) {
+//   return name.toLowerCase()[0].toUpperCase() + name.toLowerCase().slice(1);
+// };
+
+// const testName = 'PEtEr';
+// const corrName = correctName(testName);
+// console.log(corrName);
+
+// const email = 'hello@jonas.io';
+// const loginEmail = '  Hello@Jonas.io \n';
+
+// // const lowerEmail = loginEmail.toLowerCase();
+// // const trimmedEmail = lowerEmail.trim();
+// // console.log(trimmedEmail);
+
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail);
+
+// const priceGB = '288,97£';
+// const priceUS = priceGB.replace('£', '$').replace(',', '.');
+// console.log(priceUS);
+
+// const announcement =
+//   'All passengers come to boarding door 23. Boarding door 23';
+// console.log(announcement.replaceAll('door', 'gate'));
+// console.log(announcement.replace(/door/g, 'gate'));
+
+// const plane1 = 'Airbus A320neo';
+// console.log(plane1.includes('A320'));
+// console.log(plane1.startsWith('Air'));
+// console.log(plane1.startsWith('Air'));
+
+// if (plane1.startsWith('Airbus') && plane1.endsWith('neo')) {
+//   console.log('Part of the new Airbus Family');
+// }
+
+// const checkBaggage = function (items) {
+//   const baggage = items.toLowerCase().trim();
+//   if (baggage.includes('knife') || baggage.includes('gun')) {
+//     console.log('You are not allowed on board.');
+//   } else {
+//     console.log('Welcome aboard.');
+//   }
+// };
+
+// checkBaggage('I have a laptop, some Food and a pocket knife');
+// checkBaggage('I have some socks and a camera');
+// checkBaggage('I have some snacks and a gun for protection');
+
+console.log('a+very+nice+string'.split('+'));
+
+const [firstName, lastName] = 'Roman Usov'.split(' ');
+console.log(firstName);
+
+const myName = ['Mr', firstName, lastName.toUpperCase()].join(' ');
+console.log(myName);
+
+const capitalizeName = function (name) {
+  const capitalizedName = [];
+  for (const el of name.split(' ')) {
+    //capitalizedName.push(el.slice(0, 1).toUpperCase() + el.slice(1));
+    capitalizedName.push(el.replace(el[0], el[0].toUpperCase()));
+  }
+  return capitalizedName.join(' ');
+};
+
+const passenger = 'jessica ann smith davis';
+console.log(capitalizeName(passenger));
+
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '+').padEnd(35, '+'));
+
+// const maskCreditCard = function (creditCardNum) {
+//   console.log(creditCardNum.replace(/ /g, '').slice(-4).padStart(16, 'X'));
+// };
+
+const maskCreditCard = function (creditCardNum) {
+  const strCardNum = creditCardNum + '';
+  console.log(strCardNum.slice(-4).padStart(strCardNum.length, 'X'));
+};
+
+// const maskCreditCard = function (creditCardNum) {
+//   const splitCard = creditCardNum.split(' ');
+//   const masked = [];
+//   for (let i = 0; i < splitCard.length - 1; i++) {
+//     masked.push(splitCard[i].replace(splitCard[i], 'XXXX'));
+//   }
+//   masked.push(creditCardNum.slice(-4));
+//   return masked.join(' ');
+// };
+
+const creditCard = 1423829002080202;
+maskCreditCard(creditCard);
+
+const message2 = 'Bad weather... All Departures Delayed... ';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'🛫'.repeat(n)}`);
+};
+
+planesInLine(5);
+
 // const rest = new Map();
 
 // const question = new Map([
