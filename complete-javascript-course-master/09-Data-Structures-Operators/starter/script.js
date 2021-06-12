@@ -43,6 +43,58 @@ const restaurant = {
   },
 };
 
+const textInputEl = document.createElement('textarea');
+const submitInputBtnEl = document.createElement('button');
+textInputEl.className = 'input';
+submitInputBtnEl.className = 'submit';
+document.body.append(textInputEl);
+document.body.append(submitInputBtnEl);
+
+const convertToCamelCase = function (str) {
+  const [first, second] = str.toLowerCase().trim().split('_');
+  return first + second.replace(second[0], second[0].toUpperCase());
+};
+
+const findLongestElement = function (arrOfStr) {
+  const longest = arrOfStr.reduce((longestWord, element) => {
+    return element.length > longestWord.length ? element : longestWord;
+  }, '');
+  return longest.length;
+};
+
+// console.log(
+//   findLongestElement(['sdfasf', 'predefined', 'grass', 'automobile'])
+// );
+
+//console.log(convertToCamelCase('  delayed_departure   '));
+
+submitInputBtnEl.addEventListener('click', function () {
+  const input = document.querySelector('.input').value;
+  const inputInArray = input.split('\n');
+  const camelCased = [];
+  for (const string of inputInArray) {
+    camelCased.push(convertToCamelCase(string));
+  }
+  const longest = findLongestElement(camelCased);
+  const lengthWithSpaces = longest + 2;
+  for (const [i, word] of camelCased.entries()) {
+    //const lengthWithTicks = lengthWithSpaces + i + 1;
+    console.log(
+      //word.padEnd(lengthWithSpaces, ' ').padEnd(lengthWithTicks, '✅')
+      `${word.padEnd(lengthWithSpaces, ' ')}${'✅'.repeat(i + 1)}`
+    );
+  }
+});
+
+/* const textInputEl = document.body.append(
+  document.createElementWithClass('textarea', 'input')
+);
+const submitInputBtnEl = document.body.append(
+  document.createElementWithClass('button', 'submit')
+); */
+console.log(textInputEl);
+console.log(submitInputBtnEl);
+
 // const airline = 'TAP Air Portugal';
 // const plane = 'A320';
 
@@ -136,37 +188,37 @@ const restaurant = {
 // checkBaggage('I have some socks and a camera');
 // checkBaggage('I have some snacks and a gun for protection');
 
-console.log('a+very+nice+string'.split('+'));
+// console.log('a+very+nice+string'.split('+'));
 
-const [firstName, lastName] = 'Roman Usov'.split(' ');
-console.log(firstName);
+// const [firstName, lastName] = 'Roman Usov'.split(' ');
+// console.log(firstName);
 
-const myName = ['Mr', firstName, lastName.toUpperCase()].join(' ');
-console.log(myName);
+// const myName = ['Mr', firstName, lastName.toUpperCase()].join(' ');
+// console.log(myName);
 
-const capitalizeName = function (name) {
-  const capitalizedName = [];
-  for (const el of name.split(' ')) {
-    //capitalizedName.push(el.slice(0, 1).toUpperCase() + el.slice(1));
-    capitalizedName.push(el.replace(el[0], el[0].toUpperCase()));
-  }
-  return capitalizedName.join(' ');
-};
+// const capitalizeName = function (name) {
+//   const capitalizedName = [];
+//   for (const el of name.split(' ')) {
+//     //capitalizedName.push(el.slice(0, 1).toUpperCase() + el.slice(1));
+//     capitalizedName.push(el.replace(el[0], el[0].toUpperCase()));
+//   }
+//   return capitalizedName.join(' ');
+// };
 
-const passenger = 'jessica ann smith davis';
-console.log(capitalizeName(passenger));
+// const passenger = 'jessica ann smith davis';
+// console.log(capitalizeName(passenger));
 
-const message = 'Go to gate 23!';
-console.log(message.padStart(25, '+').padEnd(35, '+'));
+// const message = 'Go to gate 23!';
+// console.log(message.padStart(25, '+').padEnd(35, '+'));
 
 // const maskCreditCard = function (creditCardNum) {
 //   console.log(creditCardNum.replace(/ /g, '').slice(-4).padStart(16, 'X'));
 // };
 
-const maskCreditCard = function (creditCardNum) {
-  const strCardNum = creditCardNum + '';
-  console.log(strCardNum.slice(-4).padStart(strCardNum.length, 'X'));
-};
+// const maskCreditCard = function (creditCardNum) {
+//   const strCardNum = creditCardNum + '';
+//   console.log(strCardNum.slice(-4).padStart(strCardNum.length, 'X'));
+// };
 
 // const maskCreditCard = function (creditCardNum) {
 //   const splitCard = creditCardNum.split(' ');
@@ -178,17 +230,17 @@ const maskCreditCard = function (creditCardNum) {
 //   return masked.join(' ');
 // };
 
-const creditCard = 1423829002080202;
-maskCreditCard(creditCard);
+// const creditCard = 1423829002080202;
+// maskCreditCard(creditCard);
 
-const message2 = 'Bad weather... All Departures Delayed... ';
-console.log(message2.repeat(5));
+// const message2 = 'Bad weather... All Departures Delayed... ';
+// console.log(message2.repeat(5));
 
-const planesInLine = function (n) {
-  console.log(`There are ${n} planes in line ${'🛫'.repeat(n)}`);
-};
+// const planesInLine = function (n) {
+//   console.log(`There are ${n} planes in line ${'🛫'.repeat(n)}`);
+// };
 
-planesInLine(5);
+// planesInLine(5);
 
 // const rest = new Map();
 
