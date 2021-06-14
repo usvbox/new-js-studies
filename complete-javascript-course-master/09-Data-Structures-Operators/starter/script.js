@@ -578,3 +578,58 @@ console.log(submitInputBtnEl);
 //restaurant.numGuests = 0;
 // const guests = restaurant.numGuests ?? 10;
 // console.log(guests);
+
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao937661109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao937661109;lis2323639855;12:30';
+
+// 🔴 Delayed Departure from FAO to TXL (11h25)
+//              Arrival from BRU to FAO (11h45)
+//   🔴 Delayed Arrival from HEL to FAO (12h05)
+//            Departure from FAO to LIS (12h30)
+
+const formatFlightType = function (flightType) {
+  const delayedSign = flightType.includes('Delayed') ? '🔴 ' : '';
+  return `${delayedSign}${flightType.replaceAll('_', ' ').trimStart()}`;
+};
+
+const formatLocationName = function (locationName) {
+  return locationName.slice(0, 3).toUpperCase();
+};
+
+const formatFlightTime = function (flightTime) {
+  return `(${flightTime.replace(':', 'h')})`;
+};
+
+// console.log(formatFlightType('_Delayed_Departure'));
+// console.log(formatLocationName('fao93766109'));
+// console.log(formatFlightTime('11:25'));
+
+const displayFlightInfo = function (flights) {
+  const messages = flights.split('+');
+  const paddingLength = 44;
+  for (const message of messages) {
+    const [type, departure, destination, time] = message.split(';');
+    const outputMessage = `${formatFlightType(type)} from ${formatLocationName(
+      departure
+    )} to ${formatLocationName(destination)} ${formatFlightTime(
+      time
+    )}`.padStart(paddingLength, ' ');
+    console.log(outputMessage);
+  }
+};
+
+displayFlightInfo(flights);
+
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+  const output = `${type.startsWith('_Delayed') ? '🔴' : ''}${type.replaceAll(
+    '_',
+    ' '
+  )} from ${getCode(from)} to ${getCode(to)} (${time.replace(
+    ':',
+    'h'
+  )})`.padStart(44);
+  console.log(output);
+}
