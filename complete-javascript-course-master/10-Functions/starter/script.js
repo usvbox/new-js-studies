@@ -74,3 +74,52 @@ const giveHighFive = function () {
 document.body.addEventListener('click', giveHighFive);
 
 ['Jonas', 'Martha', 'Adam'].forEach(giveHighFive);
+
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+const greet = greeting => name => console.log(`${greeting} ${name}`);
+
+const sayHey = greet('Hey');
+
+sayHey('Jonas');
+
+greet('Hello')('Jonas');
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}.`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, 'Jonas Schmedtmann');
+lufthansa.book(635, 'John Smith');
+console.log(lufthansa);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+//book(23, 'Sarah Williams');
+
+book.call(eurowings, 23, 'Sarah Williams');
+console.log(eurowings);
+
+const flightData = [583, 'George Scott'];
+book.apply(lufthansa, flightData);
+console.log(lufthansa);
+
+book.call(eurowings, ...flightData);
+console.log(eurowings);
