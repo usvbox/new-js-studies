@@ -49,7 +49,7 @@
 // newPassport(jonas);
 // checkIn(flight, jonas);
 
-const convertToOneWord = function (str) {
+/* const convertToOneWord = function (str) {
   return str.replace(/ /g, '').toLowerCase();
 };
 
@@ -123,3 +123,79 @@ console.log(lufthansa);
 
 book.call(eurowings, ...flightData);
 console.log(eurowings);
+
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+bookEW(222, 'Steven Williams');
+console.log(eurowings);
+
+const bookEW222 = book.bind(eurowings, 222);
+bookEW222('Roger Brilliant');
+console.log(eurowings);
+
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+
+console.log(lufthansa);
+
+lufthansa.buyPlane();
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23);
+console.log(addVAT(300));
+
+const setTaxRateAndCalcTax = function (rate) {
+  return function (value) {
+    console.log(value * (1 + rate));
+  };
+};
+
+const vatRate = 0.23;
+
+const addVATax = setTaxRateAndCalcTax(vatRate);
+
+addVATax(200); */
+
+const poll = {
+  question: 'What is your favourite programming language?',
+  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+  // This generates [0, 0, 0, 0]. More in the next section!
+  answers: new Array(4).fill(0),
+  registerNewAnswer() {
+    const answer = Number(
+      prompt(
+        `${this.question}\n${this.options.join('\n')}\n(Write option number)`
+      )
+    );
+    typeof answer === 'number' &&
+      answer < this.answers.length &&
+      this.answers[answer]++;
+    this.displayResults();
+    this.displayResults('string');
+  },
+  displayResults(type = 'array') {
+    if (type === 'array') {
+      console.log(this.answers);
+    } else if (type === 'string') {
+      console.log(`Poll results are ${this.answers.join(', ')}.`);
+    }
+  },
+};
+
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
+
+// poll.registerNewAnswer();

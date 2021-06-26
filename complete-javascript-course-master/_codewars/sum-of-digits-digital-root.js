@@ -30,3 +30,9 @@ const sumDigitsAndReturnDigitalRoot = function (integer) {
 };
 
 console.log(sumDigitsAndReturnDigitalRoot(inputInteger));
+
+const testArr = ['9', '9'];
+
+console.log(eval(testArr.join('+')));
+
+console.log(eval('9 + 1'));
