@@ -166,7 +166,7 @@ const addVATax = setTaxRateAndCalcTax(vatRate);
 
 addVATax(200); */
 
-const poll = {
+/* const poll = {
   question: 'What is your favourite programming language?',
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
   // This generates [0, 0, 0, 0]. More in the next section!
@@ -196,6 +196,71 @@ document
   .querySelector('.poll')
   .addEventListener('click', poll.registerNewAnswer.bind(poll));
 
-poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string'); */
 
 // poll.registerNewAnswer();
+
+/* (function () {
+  console.log('This will never run again');
+})();
+
+(() => console.log('This will ALSO never run again'))();
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+console.log(notPrivate);
+console.log(isPrivate); */
+
+const secureBooking = function () {
+  let passengerCount = 0;
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+// console.log(passengerCount);
+
+console.dir(booker);
+
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+h();
+f();
+
+console.dir(f);
+
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+  setTimeout(function () {
+    console.log(`We're now boarding all ${n} passengers`);
+    console.log(`There are three groups with ${perGroup} passengers`);
+  }, wait * 1000);
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+boardPassengers(180, 3);
