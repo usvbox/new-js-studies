@@ -65,12 +65,89 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+/////////////////////////////////////////////////
+
+// let arr = ['a', 'b', 'c', 'd', 'e'];
+
+// console.log(arr.slice(2));
+// console.log(arr.slice(2, 4));
+// console.log(arr.slice(-2));
+// console.log(arr.slice(2, -2));
+// console.log(arr.slice());
+
+// let test = arr.slice();
+// test.shift();
+// console.log(arr);
+// console.log(test);
+
+// var employeeDetailsOriginal = {
+//   name: 'Manjula',
+//   age: 25,
+//   Profession: 'Software Engineer',
+// };
+// var employeeDetailsDuplicate = employeeDetailsOriginal;
+// employeeDetailsDuplicate.name = 'NameChanged';
+// console.log(employeeDetailsOriginal);
+// console.log(employeeDetailsDuplicate);
+
+// console.log(arr.splice(-1));
+// console.log(arr);
+// console.log(arr.splice(2));
+// console.log(arr);
+// console.log(arr.slice(2, 4));
+// console.log(arr.slice(-2));
+// console.log(arr.slice(2, -2));
+// console.log(arr.slice());
+
+// const arr2 = ['j', 'i', 'h', 'g', 'f'];
+// console.log(arr2.reverse());
+// console.log(arr2);
+
+// const letters = arr.concat(arr2);
+// console.log(letters);
+
+// console.log(letters.join('-'));
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// for (const movement of movements) {
+// if (movement > 0) {
+// console.log(`You deposited ${movement}`);
+// } else {
+// console.log(`You withdrew ${Math.abs(movement)}`);
+// }
+// }
+
+// for (const [index, el] of movements.entries()) {
+//   if (el > 0) {
+//     console.log(`Movement ${index + 1}: уou deposited ${el}`);
+//   } else {
+//     console.log(`Movement ${index + 1}: you withdrew ${Math.abs(el)}`);
+//   }
+// }
+
+// movements.forEach(function (movement, index, array) {
+//   if (movement > 0) {
+//     console.log(`Movement ${index + 1}: you deposited ${movement}`);
+//   } else {
+//     console.log(`Movement ${index + 1}: you withdrew ${Math.abs(movement)}`);
+//   }
+// });
+
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
 
-/////////////////////////////////////////////////
+const currencyUnits = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+
+currencyUnits.forEach(function (value, _, set) {
+  console.log(`${value}`);
+});
