@@ -1,24 +1,24 @@
 'use strict';
 
-// const persistence = function (num) {
-// 	let number = num;
-// 	let counter = 0;
-// 	function multiplyPersistently(n) {
-// 		if (n.toString().length === 1) {
-// 			return counter;
-// 		}
-// 		const digits = n.toString().split('');
-// 		number = digits.map(Number).reduce((product, digit) => {
-// 			return product * digit;
-// 		}, 1);
-// 		counter++;
-// 		multiplyPersistently(number);
-// 	}
-// 	multiplyPersistently(number);
-// 	return counter;
-// };
-
 const persistence = function (num) {
+	let number = num;
+	let counter = 0;
+	function multiplyPersistently(n) {
+		if (n.toString().length === 1) {
+			return counter;
+		}
+		const digits = n.toString().split('');
+		number = digits.map(Number).reduce((product, digit) => {
+			return product * digit;
+		}, 1);
+		counter++;
+		multiplyPersistently(number);
+	}
+	multiplyPersistently(number);
+	return counter;
+};
+
+/* const persistence = function (num) {
 	let counter = 0;
 	if (num.toString().length === 1) {
 		return counter;
@@ -32,7 +32,7 @@ const persistence = function (num) {
 		counter++;
 	}
 	return counter;
-};
+}; */
 
 const output = persistence(14);
 console.log(output);
