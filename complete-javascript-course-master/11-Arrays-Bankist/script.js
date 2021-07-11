@@ -79,6 +79,44 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+const calculateDisplayBalance = function (movs) {
+  labelBalance.textContent = `${movs.reduce((bal, mov) => bal + mov, 0)}€`;
+};
+
+calculateDisplayBalance(account1.movements);
+
+const user = 'Steven Thomas Williams';
+
+/*const createUserNames = function (fullName) {
+  return fullName
+    .toLowerCase()
+    .split(' ')
+    .map(name => name.slice(0, 1))
+    .join('');
+};*/
+
+const createUserNames = function (accs) {
+  accs.forEach(acc => {
+    acc['username'] = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name.slice(0, 1))
+      .join('');
+  });
+};
+
+createUserNames(accounts);
+console.log(accounts);
+
+/*const addUserName = function (accounts) {
+  accounts.forEach(account => {
+    account['username'] = createUserNames(account.owner);
+    console.log(account);
+  });
+};
+
+addUserName(accounts);*/
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -128,7 +166,7 @@ displayMovements(account1.movements);
 
 // console.log(letters.join('-'));
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // for (const movement of movements) {
 // if (movement > 0) {
@@ -154,6 +192,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //   }
 // });
 
+/*
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
@@ -169,3 +208,48 @@ const currencyUnits = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
 currencyUnits.forEach(function (value, _, set) {
   console.log(`${value}`);
 });
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const eurToUsd = 1.1;
+
+const movementsInUsd = movements.map(mov => mov * eurToUsd);
+const movementsInUsd1 = movements.map(function (mov) {
+  return mov * eurToUsd;
+});
+
+console.log(movementsInUsd);
+
+const movInUsd = [];
+
+for (const mov of movements) {
+  movInUsd.push(mov * eurToUsd);
+}
+console.log(movInUsd);
+
+const movementDescriptions = movements.map(
+  (mov, i, arr) =>
+    `Movement ${i + 1}: you ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+
+console.log(movementDescriptions);
+*/
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const deposits = movements.filter(mov => mov > 0);
+console.log(deposits);
+
+const withdrawals = movements.filter(mov => mov < 0);
+console.log(withdrawals);
+
+const balance = movements.reduce((bal, mov) => bal + mov, 0);
+console.log(balance);
+
+const maxMovement = movements.reduce(
+  (max, mov) => (max > mov ? max : mov),
+  movements[0]
+);
+
+console.log(maxMovement);
