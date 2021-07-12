@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const inputStr = '4556364607935616';
+const inputStr = "4556364607935616";
 
 // function maskify(str) {
 // 	const charsToLeaveUnmasked = 4;
@@ -27,8 +27,8 @@ const inputStr = '4556364607935616';
 // }
 
 function maskify(str) {
-	if (str.length <= 4) return str;
-	return str.slice(0, -4).replace(/./gi, '#') + str.slice(-4);
+  if (str.length <= 4) return str;
+  return str.slice(0, -4).replace(/./gi, "#") + str.slice(-4);
 }
 
 const maskedStr = maskify(inputStr);

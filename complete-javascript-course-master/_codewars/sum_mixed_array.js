@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const numbers = ['5', '0', 9, 3, 2, 1, '9', 6, 7];
+const numbers = ["5", "0", 9, 3, 2, 1, "9", 6, 7];
 
 // const sumNumbers = function (array) {
 // 	let convertedArray = [];
@@ -34,8 +34,8 @@ const numbers = ['5', '0', 9, 3, 2, 1, '9', 6, 7];
 const newNumbers = [5, 0, 9, 3, 2, 1, 9, 6, 7];
 
 const total = numbers.reduce(
-	(accumulator, item) => accumulator + Number(item),
-	0
+  (accumulator, item) => accumulator + Number(item),
+  0
 );
 
 console.log(total);

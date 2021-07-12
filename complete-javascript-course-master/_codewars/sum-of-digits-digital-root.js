@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
 const inputInteger = 493193;
-console.log(inputInteger.toString().split(''));
+console.log(inputInteger.toString().split(""));
 
 // const sumDigitsAndReturnDigitalRoot = function (integer) {
 // 	function sumDigitsOfNumber(num) {
@@ -20,19 +20,19 @@ console.log(inputInteger.toString().split(''));
 // };
 
 const sumDigitsAndReturnDigitalRoot = function (integer) {
-	if (integer.toString().length === 1) return integer;
-	return sumDigitsAndReturnDigitalRoot(
-		integer
-			.toString()
-			.split('')
-			.reduce((total, number) => total + Number(number), 0)
-	);
+  if (integer.toString().length === 1) return integer;
+  return sumDigitsAndReturnDigitalRoot(
+    integer
+      .toString()
+      .split("")
+      .reduce((total, number) => total + Number(number), 0)
+  );
 };
 
 console.log(sumDigitsAndReturnDigitalRoot(inputInteger));
 
-const testArr = ['9', '9'];
+const testArr = ["9", "9"];
 
-console.log(eval(testArr.join('+')));
+console.log(eval(testArr.join("+")));
 
-console.log(eval('9 + 1'));
+console.log(eval("9 + 1"));

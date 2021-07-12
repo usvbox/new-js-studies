@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
 const inputStr =
-	"No offense but,\nYour writing is among the worst I've ever read";
+  "No offense but,\nYour writing is among the worst I've ever read";
 
 /* const disemvowelString = function (str) {
 	const strConvertedToArr = str.split(' ');
@@ -25,23 +25,23 @@ const inputStr =
 }; */
 
 const disemvowelString = function (str) {
-	return str.replace(/[aeiou]/gi, '');
+  return str.replace(/[aeiou]/gi, "");
 };
 
 const disemvowelled = disemvowelString(inputStr);
 console.log(disemvowelled);
 
 function removeVowels(str) {
-	const vowels = 'aeiouAEIOU';
-	let outputStr = '';
-	for (let i = 0; i < str.length; i++) {
-		if (vowels.includes(str[i])) {
-			continue;
-		} else {
-			outputStr += str[i];
-		}
-	}
-	return outputStr;
+  const vowels = "aeiouAEIOU";
+  let outputStr = "";
+  for (let i = 0; i < str.length; i++) {
+    if (vowels.includes(str[i])) {
+      continue;
+    } else {
+      outputStr += str[i];
+    }
+  }
+  return outputStr;
 }
 
 const testStr = "greedy Bastard I'm";

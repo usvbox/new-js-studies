@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const inputStr = 'xxoo';
+const inputStr = "xxoo";
 
-console.log(inputStr.split('x'));
+console.log(inputStr.split("x"));
 
 // const xo = function (str) {
 // 	const inputArr = [...str.toLowerCase()];
@@ -19,17 +19,17 @@ console.log(inputStr.split('x'));
 // };
 
 const xo = function (str) {
-	const x = [...str.toLowerCase()].filter((el) => el === 'x');
-	const o = [...str.toLowerCase()].filter((el) => el === 'o');
-	return x.length === o.length ? true : false;
+  const x = [...str.toLowerCase()].filter((el) => el === "x");
+  const o = [...str.toLowerCase()].filter((el) => el === "o");
+  return x.length === o.length ? true : false;
 };
 
 const output = xo(inputStr);
 console.log(output);
 
-const test = ['a', 'b', 'c', 'a'];
+const test = ["a", "b", "c", "a"];
 function filterValue(val, arr) {
-	return arr.filter((el) => val === el);
+  return arr.filter((el) => val === el);
 }
 
-console.log(filterValue('a', test));
+console.log(filterValue("a", test));

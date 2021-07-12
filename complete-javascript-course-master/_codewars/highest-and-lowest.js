@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const inputString = '1 2 -3 4 5';
+const inputString = "1 2 -3 4 5";
 
 /* const returnHighestAndLowest = function (str) {
 	function convertToNumber(str) {
@@ -40,18 +40,18 @@ const inputString = '1 2 -3 4 5';
 }; */
 
 const returnHighestAndLowest = function (str) {
-	if (str.length === 1) {
-		return str + str;
-	}
-	return (
-		Math.max(...str.split(' ')).toString() +
-		' ' +
-		Math.min(...str.split(' ')).toString()
-	);
+  if (str.length === 1) {
+    return str + str;
+  }
+  return (
+    Math.max(...str.split(" ")).toString() +
+    " " +
+    Math.min(...str.split(" ")).toString()
+  );
 };
 
 const outputString = returnHighestAndLowest(inputString);
 console.log(outputString);
 
-const testArr = ['4', '-5', '6'];
+const testArr = ["4", "-5", "6"];
 console.log(Math.max(...testArr));

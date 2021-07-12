@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 /*
 //Lesson 11
 const country = "Russia";
@@ -467,7 +467,6 @@ const percentageOfTheWorldArrowFunction = population => {
 }
 */
 
-
 /*
 const populationPercentageRussia = percentageOfTheWorldFunctionDeclaration("140");
 console.log(populationPercentageRussia + "%");
@@ -499,7 +498,6 @@ console.log(populationPercentageUnitedStates + "%");
 const populationPercentageLithuania = percentageOfTheWorldArrowFunction("3");
 console.log(populationPercentageLithuania + "%");
 */
-
 
 ///////////// Part 2, Coding Challenge 1 ////////////////
 
@@ -759,12 +757,6 @@ console.log(tipsAndBills);
 // athletes.calcBmi(athletes.john);
 // compareBMI(athletes.mark, athletes.john);
 
-
-
-
-
-
-
 /* const listOfNeighbors = [
     ['Canada', 'Mexico'],
     ['Spain'],
@@ -776,7 +768,6 @@ for (let i = 0; i < listOfNeighbors.length; i++) {
         console.log(`Neighbor: ${listOfNeighbors[i][n]}`);
     }
 } */
-
 
 /*
 const populations = [140, 340, 50, 3];
@@ -865,30 +856,31 @@ const netBills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
     return Number(tip);
 } */
 
-const calculateTip = netBill => netBill >=50 && netBill <=300 ? netBill*0.15 : netBill*0.2;
+const calculateTip = (netBill) =>
+  netBill >= 50 && netBill <= 300 ? netBill * 0.15 : netBill * 0.2;
 
 // console.log(calculateTip(60));
 // console.log(calculateTip(400));
 
 const calculateTipsAndTotalBills = function (netBills) {
-    const totalTips = [];
-    const totalBills = [];
-    let tip;
-    let totalBill;
-    let calculation = {};
-    for (let i = 0; i < netBills.length; i++) {
-        tip = calculateTip(netBills[i]);
-        totalTips.push(tip);
-        totalBill = netBills[i] + tip;
-        totalBills.push(totalBill);
-    }
-    // return [
-    //     totalTips,
-    //     totalBills
-    // ]
-    calculation.totalTips = totalTips;
-    calculation.totalBills = totalBills;
-    return calculation;
+  const totalTips = [];
+  const totalBills = [];
+  let tip;
+  let totalBill;
+  let calculation = {};
+  for (let i = 0; i < netBills.length; i++) {
+    tip = calculateTip(netBills[i]);
+    totalTips.push(tip);
+    totalBill = netBills[i] + tip;
+    totalBills.push(totalBill);
+  }
+  // return [
+  //     totalTips,
+  //     totalBills
+  // ]
+  calculation.totalTips = totalTips;
+  calculation.totalBills = totalBills;
+  return calculation;
 };
 // inside a loop, if you need a variable, you can use const, as with each iteration a new variable is created.
 
@@ -896,14 +888,14 @@ const tipsAndBills = calculateTipsAndTotalBills(netBills);
 console.log(tipsAndBills);
 
 const calculateAverage = function (amounts) {
-    let sum = 0;
-    let average;
-    for (let i = 0; i < amounts.length; i++) {
-        sum += amounts[i];
-        // do not forget that instead of sum = sum + amount, you can use sum += amount.
-    }
-    average = sum / amounts.length;
-    return average;
+  let sum = 0;
+  let average;
+  for (let i = 0; i < amounts.length; i++) {
+    sum += amounts[i];
+    // do not forget that instead of sum = sum + amount, you can use sum += amount.
+  }
+  average = sum / amounts.length;
+  return average;
 };
 
 console.log(calculateAverage(tipsAndBills.totalBills));

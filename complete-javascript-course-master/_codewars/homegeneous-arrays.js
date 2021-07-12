@@ -1,23 +1,23 @@
-'use strict';
+"use strict";
 
 const inputArray = [
-	[123, 234, 432],
-	[],
-	['', 'abc'],
-	[''],
-	['', 1],
-	['', '1'],
-	[],
+  [123, 234, 432],
+  [],
+  ["", "abc"],
+  [""],
+  ["", 1],
+  ["", "1"],
+  [],
 ];
 
 //star solution
 
 function filterHomogenous(arr) {
-	return arr.filter(
-		(subArr) =>
-			subArr.length > 0 &&
-			subArr.every((val) => typeof val === typeof subArr[0])
-	);
+  return arr.filter(
+    (subArr) =>
+      subArr.length > 0 &&
+      subArr.every((val) => typeof val === typeof subArr[0])
+  );
 }
 
 // function filterEmptyArr(arrOfArrays) {
@@ -42,22 +42,22 @@ function filterHomogenous(arr) {
 
 // my back engineered star solution
 function returnHomogeneousArrs(arrOfArrays) {
-	return arrOfArrays.filter(
-		(arr) => arr.length > 0 && arr.every((el) => typeof arr[0] === typeof el)
-	);
+  return arrOfArrays.filter(
+    (arr) => arr.length > 0 && arr.every((el) => typeof arr[0] === typeof el)
+  );
 }
 
 const homo = returnHomogeneousArrs(inputArray);
 console.log(homo);
 
 function filterEmptyArr(arrOfArrays) {
-	let outputArray = arrOfArrays.filter((arr) => arr.length > 0);
-	return outputArray;
+  let outputArray = arrOfArrays.filter((arr) => arr.length > 0);
+  return outputArray;
 }
 
 function checkIfSameDataType(arr) {
-	let outputArray = arr.every((el) => typeof arr[0] === typeof el);
-	return outputArray;
+  let outputArray = arr.every((el) => typeof arr[0] === typeof el);
+  return outputArray;
 }
 
 const arrForCheck = [123, 234, 432];
@@ -114,55 +114,55 @@ console.log(refSol);
 
 // my refined solution
 const returnHomogeneousArrays = function (arrOfArrays) {
-	let output = [];
-	function checkIfHomogeneous(arr) {
-		const allStrings = arr.every((el) => {
-			return typeof el === 'string';
-		});
-		const allNumbers = arr.every((el) => {
-			return typeof el === 'number';
-		});
-		if ((allStrings && !allNumbers) || (allNumbers && !allStrings)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	for (let m = 0; m < arrOfArrays.length; m++) {
-		if (arrOfArrays[m].length === 1) {
-			output.push(arrOfArrays[m]);
-			continue;
-		}
-		if (arrOfArrays[m].length === 0) {
-			continue;
-		}
-		if (checkIfHomogeneous(arrOfArrays[m])) {
-			output.push(arrOfArrays[m]);
-		} else {
-			continue;
-		}
-	}
-	return output;
+  let output = [];
+  function checkIfHomogeneous(arr) {
+    const allStrings = arr.every((el) => {
+      return typeof el === "string";
+    });
+    const allNumbers = arr.every((el) => {
+      return typeof el === "number";
+    });
+    if ((allStrings && !allNumbers) || (allNumbers && !allStrings)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  for (let m = 0; m < arrOfArrays.length; m++) {
+    if (arrOfArrays[m].length === 1) {
+      output.push(arrOfArrays[m]);
+      continue;
+    }
+    if (arrOfArrays[m].length === 0) {
+      continue;
+    }
+    if (checkIfHomogeneous(arrOfArrays[m])) {
+      output.push(arrOfArrays[m]);
+    } else {
+      continue;
+    }
+  }
+  return output;
 };
 
 const outputArray = returnHomogeneousArrays(inputArray);
 console.log(outputArray);
 
 function checkTypeOf(arr) {
-	let allStrings = arr.every((el) => {
-		return typeof el === 'string';
-	});
-	let allNumbers = arr.every((el) => {
-		return typeof el === 'number';
-	});
-	if ((allStrings && !allNumbers) || (allNumbers && !allStrings)) {
-		return true;
-	} else {
-		return false;
-	}
+  let allStrings = arr.every((el) => {
+    return typeof el === "string";
+  });
+  let allNumbers = arr.every((el) => {
+    return typeof el === "number";
+  });
+  if ((allStrings && !allNumbers) || (allNumbers && !allStrings)) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-const tArr = ['2', '1'];
+const tArr = ["2", "1"];
 
 const testCheck = checkTypeOf(tArr);
 console.log(testCheck);

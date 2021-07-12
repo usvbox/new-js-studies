@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54101e55-44f1-44e5-b02e-9ddda9ad0e0d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/complete-javascript-course-master/_codewars/duplicate-encoder.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/complete-javascript-course-master/_codewars/test-sandbox/sum.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/complete-javascript-course-master/_codewars/test-sandbox/sum.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/complete-javascript-course-master/_codewars/dogs-study.js" beforeDir="false" afterPath="$PROJECT_DIR$/complete-javascript-course-master/_codewars/dogs-study.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/complete-javascript-course-master/_codewars/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/complete-javascript-course-master/_codewars/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +44,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/complete-javascript-course-master/_codewars/test-sandbox" />
       <recent name="$PROJECT_DIR$/complete-javascript-course-master/11-Arrays-Bankist" />
     </key>
   </component>
@@ -89,7 +89,7 @@
       <workItem from="1625926369549" duration="7524000" />
       <workItem from="1625946632040" duration="880000" />
       <workItem from="1625947517881" duration="415000" />
-      <workItem from="1625947948888" duration="30446000" />
+      <workItem from="1625947948888" duration="31993000" />
     </task>
     <servers />
   </component>

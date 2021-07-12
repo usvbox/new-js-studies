@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const inputStrand = 'ATTGC';
+const inputStrand = "ATTGC";
 
 // function DNAStrand(strand) {
 // 	const DNAMap = new Map([
@@ -17,13 +17,13 @@ const inputStrand = 'ATTGC';
 // }
 
 function DNAStrand(strand) {
-	const DNAMap = {
-		A: 'T',
-		T: 'A',
-		C: 'G',
-		G: 'C',
-	};
-	return [...strand].map((el) => DNAMap[el]).join('');
+  const DNAMap = {
+    A: "T",
+    T: "A",
+    C: "G",
+    G: "C",
+  };
+  return [...strand].map((el) => DNAMap[el]).join("");
 }
 
 const outputStrand = DNAStrand(inputStrand);

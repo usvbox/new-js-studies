@@ -1,21 +1,21 @@
-'use strict';
+"use strict";
 
 const persistence = function (num) {
-	let number = num;
-	let counter = 0;
-	function multiplyPersistently(n) {
-		if (n.toString().length === 1) {
-			return counter;
-		}
-		const digits = n.toString().split('');
-		number = digits.map(Number).reduce((product, digit) => {
-			return product * digit;
-		}, 1);
-		counter++;
-		multiplyPersistently(number);
-	}
-	multiplyPersistently(number);
-	return counter;
+  let number = num;
+  let counter = 0;
+  function multiplyPersistently(n) {
+    if (n.toString().length === 1) {
+      return counter;
+    }
+    const digits = n.toString().split("");
+    number = digits.map(Number).reduce((product, digit) => {
+      return product * digit;
+    }, 1);
+    counter++;
+    multiplyPersistently(number);
+  }
+  multiplyPersistently(number);
+  return counter;
 };
 
 /* const persistence = function (num) {
@@ -46,4 +46,4 @@ console.log(output);
 // }, 1);
 // console.log(number);
 
-console.log(['3', '4'].map(Number));
+console.log(["3", "4"].map(Number));

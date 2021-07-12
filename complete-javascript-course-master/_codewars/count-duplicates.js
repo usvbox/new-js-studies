@@ -1,23 +1,23 @@
-'use strict';
+"use strict";
 
 const inputStrings = new Map([
-	['a', 0],
-	['1', 0],
-	['abcde', 0],
-	['aabbcde', 2],
-	['aabBcde', 2],
-	['indivisibility', 1],
-	['Indivisibilities', 2],
-	['aA11', 2],
-	['ABBA', 2],
+  ["a", 0],
+  ["1", 0],
+  ["abcde", 0],
+  ["aabbcde", 2],
+  ["aabBcde", 2],
+  ["indivisibility", 1],
+  ["Indivisibilities", 2],
+  ["aA11", 2],
+  ["ABBA", 2],
 ]);
 
 function testDuplicates(arrOfStr) {
-	let count = [];
-	arrOfStr.forEach((string) => count.push(returnDuplicateCount(string)));
-	count.forEach((el, index) =>
-		console.log([...inputStrings.values()][index] === el, count[index])
-	);
+  let count = [];
+  arrOfStr.forEach((string) => count.push(returnDuplicateCount(string)));
+  count.forEach((el, index) =>
+    console.log([...inputStrings.values()][index] === el, count[index])
+  );
 }
 
 // Option 1 - use Array.Filter() method to get duplicated values (here we just get information about which values are duplicated but not all duplicated values as they are in the input array) and a Set to get and count the number of duplicate occurrences
@@ -46,13 +46,13 @@ function testDuplicates(arrOfStr) {
 // };
 
 const returnDuplicateCount = function (str) {
-	return str
-		.toLowerCase()
-		.split('')
-		.filter(
-			(el, index, arr) =>
-				arr.indexOf(el) !== index && arr.lastIndexOf(el) === index
-		).length;
+  return str
+    .toLowerCase()
+    .split("")
+    .filter(
+      (el, index, arr) =>
+        arr.indexOf(el) !== index && arr.lastIndexOf(el) === index
+    ).length;
 };
 
 // returnDuplicateCount('aabebcdee');

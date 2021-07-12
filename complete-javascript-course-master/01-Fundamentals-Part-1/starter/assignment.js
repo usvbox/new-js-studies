@@ -434,60 +434,8 @@ console.log(`The bill is ${bill}, the tip is ${tipAndTotalBill[0]}, and the tota
 */
 
 const describeCountry = function (country, population, capitalCity) {
-    return `${country} has ${population} million people, and its capital city is ${capitalCity}.`;
-}
+  return `${country} has ${population} million people, and its capital city is ${capitalCity}.`;
+};
 
 const descriptionRussia = describeCountry("Russia", 140, "Moscow");
 console.log(descriptionRussia);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const inputArray = [19, 5, 42, 2, 77];
 
@@ -14,9 +14,9 @@ const inputArray = [19, 5, 42, 2, 77];
 // };
 
 const sumTwoSmallestIntegers = function (numbers) {
-	const [a, b] = numbers.sort((a, b) => a - b);
-	console.log(numbers);
-	return a + b;
+  const [a, b] = numbers.sort((a, b) => a - b);
+  console.log(numbers);
+  return a + b;
 };
 
 const outputSum = sumTwoSmallestIntegers(inputArray);

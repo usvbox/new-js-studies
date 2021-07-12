@@ -1,30 +1,30 @@
-'use strict';
+"use strict";
 
-const inputString = 'RqaEzty';
+const inputString = "RqaEzty";
 
 const mumbleString = function (str) {
-	const strToArray = str.split('');
-	let blockArray = [];
+  const strToArray = str.split("");
+  let blockArray = [];
 
-	function createBlock(char, number) {
-		let block = '';
-		for (let i = 1; i <= number; i++) {
-			block += char;
-		}
-		return capitalizeString(block);
-	}
+  function createBlock(char, number) {
+    let block = "";
+    for (let i = 1; i <= number; i++) {
+      block += char;
+    }
+    return capitalizeString(block);
+  }
 
-	function capitalizeString(str) {
-		const lowerCasedStr = str.toLowerCase();
-		return str[0].toUpperCase() + lowerCasedStr.slice(1);
-	}
+  function capitalizeString(str) {
+    const lowerCasedStr = str.toLowerCase();
+    return str[0].toUpperCase() + lowerCasedStr.slice(1);
+  }
 
-	strToArray.forEach((el, index) => {
-		const charInBlock = index + 1;
-		blockArray.push(createBlock(el, charInBlock));
-	});
+  strToArray.forEach((el, index) => {
+    const charInBlock = index + 1;
+    blockArray.push(createBlock(el, charInBlock));
+  });
 
-	return blockArray.join('-');
+  return blockArray.join("-");
 };
 
 const mumbled = mumbleString(inputString);

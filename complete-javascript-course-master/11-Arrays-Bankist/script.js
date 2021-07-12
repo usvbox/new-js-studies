@@ -71,7 +71,7 @@ const displayMovements = function (movements) {
       i + 1
     } ${type}</div>
         <div class="movements__date">3 days ago</div>
-        <div class="movements__value">${movement}</div>
+        <div class="movements__value">${Math.abs(movement)}€</div>
       </div>`;
     containerMovements.insertAdjacentHTML('afterbegin', movementHtml);
   });
@@ -84,6 +84,29 @@ const calculateDisplayBalance = function (movs) {
 };
 
 calculateDisplayBalance(account1.movements);
+
+const calculateDisplaySummary = function (account) {
+  labelSumIn.textContent = `${account.movements
+    .filter(mov => mov > 0)
+    .reduce((total, mov) => total + mov, 0)}€`;
+
+  labelSumOut.textContent = `${Math.abs(
+    account.movements
+      .filter(mov => mov < 0)
+      .reduce((total, mov) => total + mov, 0)
+  )}€`;
+
+  labelSumInterest.textContent = `${account.movements
+    .filter(mov => mov > 0)
+    .map(mov => mov * (account.interestRate / 100))
+    .filter((interest, i, arr) => {
+      console.log(arr);
+      return interest >= 1;
+    })
+    .reduce((total, interest) => total + interest, 0)}€`;
+};
+
+calculateDisplaySummary(account1);
 
 const user = 'Steven Thomas Williams';
 
@@ -238,7 +261,7 @@ console.log(movementDescriptions);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const deposits = movements.filter(mov => mov > 0);
+/*const deposits = movements.filter(mov => mov > 0);
 console.log(deposits);
 
 const withdrawals = movements.filter(mov => mov < 0);
@@ -252,4 +275,13 @@ const maxMovement = movements.reduce(
   movements[0]
 );
 
-console.log(maxMovement);
+console.log(maxMovement);*/
+const usdToEur = 0.9;
+
+const totalInEur = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * usdToEur)
+  .reduce((total, mov) => total + mov, 0);
+console.log(totalInEur);
+
+//https://intellij-support.jetbrains.com/hc/en-us/community/posts/360009567459-Webstorm-2020-2-1-Remote-Debugging-do-not-work

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /*
 let hasDriversLicense =false;
@@ -59,7 +59,6 @@ const calcAge2 = function (birthYear) {
 const age2 = calcAge2(1992);
 console.log(age1, age2);
 */
-
 
 /// Arrow function
 
@@ -395,7 +394,6 @@ const exercises = ['Lifting weights', 'Push-ups', 'Sit-ups'];
     console.log(`Lifting weights repetition ${rep}`);
 } */
 
-
 /* let rep = 1;
 while (rep <= 10) {
     console.log(`Lifting weights repetition ${rep}`);
@@ -416,9 +414,9 @@ let dice = Math.trunc(Math.random() * 6) + 1;
 if (dice === 6) console.log(`You got a 6 on your first try!`);
 
 while (dice !== 6) {
-    console.log (`You rolled  a ${dice}.`);
-    dice = Math.trunc(Math.random() * 6) + 1;
-    if (dice === 6) console.log(`You rolled a 6, and loop is about to end...`);
+  console.log(`You rolled  a ${dice}.`);
+  dice = Math.trunc(Math.random() * 6) + 1;
+  if (dice === 6) console.log(`You rolled a 6, and loop is about to end...`);
 }
 
 //After each roll we need to update the dice value, otherwise the we'll be stuck in the loop forever if the first roll doesn't result in 6.

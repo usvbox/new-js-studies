@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const inputIntegers1 = [2, 1, 2, 1, -1];
 
@@ -57,9 +57,9 @@ const inputIntegers = [20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5];
 // console.log(findIntegerRepeatingOddNumberOfTimes(inputIntegers));
 
 function findOdd(arr) {
-	console.log(
-		arr.find((item, index) => arr.filter((el) => el == item).length % 2)
-	);
+  console.log(
+    arr.find((item, index) => arr.filter((el) => el == item).length % 2)
+  );
 }
 
 findOdd(inputIntegers);

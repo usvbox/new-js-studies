@@ -1,68 +1,68 @@
-'use strict';
+"use strict";
 
 const game = {
-	team1: 'Bayern Munich',
-	team2: 'Borrussia Dortmund',
-	players: [
-		[
-			'Neuer',
-			'Pavard',
-			'Martinez',
-			'Alaba',
-			'Davies',
-			'Kimmich',
-			'Goretzka',
-			'Coman',
-			'Muller',
-			'Gnarby',
-			'Lewandowski',
-		],
-		[
-			'Burki',
-			'Schulz',
-			'Hummels',
-			'Akanji',
-			'Hakimi',
-			'Weigl',
-			'Witsel',
-			'Hazard',
-			'Brandt',
-			'Sancho',
-			'Gotze',
-		],
-	],
-	score: '4:0',
-	scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-	date: 'Nov 9th, 2037',
-	odds: {
-		team1: 1.33,
-		x: 3.25,
-		team2: 6.5,
-	},
+  team1: "Bayern Munich",
+  team2: "Borrussia Dortmund",
+  players: [
+    [
+      "Neuer",
+      "Pavard",
+      "Martinez",
+      "Alaba",
+      "Davies",
+      "Kimmich",
+      "Goretzka",
+      "Coman",
+      "Muller",
+      "Gnarby",
+      "Lewandowski",
+    ],
+    [
+      "Burki",
+      "Schulz",
+      "Hummels",
+      "Akanji",
+      "Hakimi",
+      "Weigl",
+      "Witsel",
+      "Hazard",
+      "Brandt",
+      "Sancho",
+      "Gotze",
+    ],
+  ],
+  score: "4:0",
+  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+  date: "Nov 9th, 2037",
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
 };
 
 const gameEvents = new Map([
-	[17, '⚽️ GOAL'],
-	[36, '🔁 Substitution'],
-	[47, '⚽️ GOAL'],
-	[61, '🔁 Substitution'],
-	[64, '🔶 Yellow card'],
-	[69, '🔴 Red card'],
-	[70, '🔁 Substitution'],
-	[72, '🔁 Substitution'],
-	[76, '⚽️ GOAL'],
-	[80, '⚽️ GOAL'],
-	[92, '🔶 Yellow card'],
+  [17, "⚽️ GOAL"],
+  [36, "🔁 Substitution"],
+  [47, "⚽️ GOAL"],
+  [61, "🔁 Substitution"],
+  [64, "🔶 Yellow card"],
+  [69, "🔴 Red card"],
+  [70, "🔁 Substitution"],
+  [72, "🔁 Substitution"],
+  [76, "⚽️ GOAL"],
+  [80, "⚽️ GOAL"],
+  [92, "🔶 Yellow card"],
 ]);
 
 // 1
 const getUniqueEvents = function (game) {
-	const eventsArr = [];
-	for (const [key, value] of game) {
-		eventsArr.push(value);
-	}
-	const events = [...new Set(eventsArr)];
-	console.log(events);
+  const eventsArr = [];
+  for (const [key, value] of game) {
+    eventsArr.push(value);
+  }
+  const events = [...new Set(eventsArr)];
+  console.log(events);
 };
 getUniqueEvents(gameEvents);
 
@@ -78,20 +78,20 @@ console.log(gameEvents);
 
 const averageOccurence = 90 / gameEvents.size;
 console.log(
-	`An event happened, on average, every ${averageOccurence} minutes.`
+  `An event happened, on average, every ${averageOccurence} minutes.`
 );
 
 // 4
 
 for (const [key, value] of gameEvents) {
-	key <= 45
-		? console.log(`[FIRST HALF] ${key}: ${value}`)
-		: console.log(`[SECOND HALF] ${key}: ${value}`);
+  key <= 45
+    ? console.log(`[FIRST HALF] ${key}: ${value}`)
+    : console.log(`[SECOND HALF] ${key}: ${value}`);
 }
 
 for (const [key, value] of gameEvents) {
-	const half = key <= 45 ? 'FIRST' : 'SECOND';
-	console.log(`[${half} HALF] ${key}: ${value}`);
+  const half = key <= 45 ? "FIRST" : "SECOND";
+  console.log(`[${half} HALF] ${key}: ${value}`);
 }
 
 /* //1
