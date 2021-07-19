@@ -7,8 +7,8 @@
 // Data
 const account1 = {
   owner: 'Jonas Schmedtmann',
-  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
-  interestRate: 1.2, // %
+  movements: [200, 450, -400, 3000, -650, -130, 70, 1300, 2000],
+  interestRate: 1.2, //
   pin: 1111,
 };
 
@@ -77,13 +77,14 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account1.movements);
+//displayMovements(account1.movements);
 
-const calculateDisplayBalance = function (movs) {
-  labelBalance.textContent = `${movs.reduce((bal, mov) => bal + mov, 0)}€`;
+const calculateDisplayBalance = function (account) {
+  account['balance'] = account.movements.reduce((bal, mov) => bal + mov, 0);
+  labelBalance.textContent = `${account.balance}€`;
 };
 
-calculateDisplayBalance(account1.movements);
+//calculateDisplayBalance(account1.movements);
 
 const calculateDisplaySummary = function (account) {
   labelSumIn.textContent = `${account.movements
@@ -98,7 +99,7 @@ const calculateDisplaySummary = function (account) {
 
   labelSumInterest.textContent = `${account.movements
     .filter(mov => mov > 0)
-    .map(mov => mov * (account.interestRate / 100))
+    .map(mov => Number((mov * (account.interestRate / 100)).toFixed(2)))
     .filter((interest, i, arr) => {
       console.log(arr);
       return interest >= 1;
@@ -106,9 +107,13 @@ const calculateDisplaySummary = function (account) {
     .reduce((total, interest) => total + interest, 0)}€`;
 };
 
-calculateDisplaySummary(account1);
+const updateAccountInfoUi = function (account) {
+  displayMovements(account.movements);
+  calculateDisplayBalance(account);
+  calculateDisplaySummary(account);
+};
 
-const user = 'Steven Thomas Williams';
+//calculateDisplaySummary(account1);
 
 /*const createUserNames = function (fullName) {
   return fullName
@@ -130,6 +135,44 @@ const createUserNames = function (accs) {
 
 createUserNames(accounts);
 console.log(accounts);
+
+let currentAccount;
+
+btnLogin.addEventListener('click', event => {
+  event.preventDefault();
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    updateAccountInfoUi(currentAccount);
+    inputLoginPin.value = inputLoginUsername.value = '';
+    inputLoginPin.blur();
+    containerApp.style.setProperty('opacity', '1');
+  }
+});
+
+btnTransfer.addEventListener('click', event => {
+  event.preventDefault();
+  const depositedAccount = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  const amountToTransfer = Number(inputTransferAmount.value);
+  if (
+    depositedAccount &&
+    amountToTransfer > 0 &&
+    currentAccount.balance >= amountToTransfer &&
+    depositedAccount.username !== currentAccount.username
+  ) {
+    currentAccount.movements.push(amountToTransfer * -1);
+    depositedAccount.movements.push(amountToTransfer);
+    updateAccountInfoUi(currentAccount);
+  }
+  inputTransferTo.value = inputTransferAmount.value = '';
+  inputTransferAmount.blur();
+});
 
 /*const addUserName = function (accounts) {
   accounts.forEach(account => {
@@ -259,7 +302,7 @@ const movementDescriptions = movements.map(
 console.log(movementDescriptions);
 */
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+//const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /*const deposits = movements.filter(mov => mov > 0);
 console.log(deposits);
@@ -276,12 +319,34 @@ const maxMovement = movements.reduce(
 );
 
 console.log(maxMovement);*/
-const usdToEur = 0.9;
+/*const usdToEur = 0.9;
 
 const totalInEur = movements
   .filter(mov => mov > 0)
   .map(mov => mov * usdToEur)
   .reduce((total, mov) => total + mov, 0);
-console.log(totalInEur);
+console.log(totalInEur);*/
 
 //https://intellij-support.jetbrains.com/hc/en-us/community/posts/360009567459-Webstorm-2020-2-1-Remote-Debugging-do-not-work
+
+/*const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(firstWithdrawal);
+
+console.log(accounts);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+
+let foundAccount;
+
+for (const account of accounts) {
+  if (account.owner === 'Jessica Davis') {
+    foundAccount = account;
+  }
+}
+
+console.log(foundAccount);*/
+
+console.log((500 * (1.232 / 100)).toFixed(2));

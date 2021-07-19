@@ -56,12 +56,11 @@ const dogAges = [
   );
 };*/
 
-const calcAverageHumanAge = function (agesOfDogs) {
-  return agesOfDogs
+const calcAverageHumanAge = (agesOfDogs) =>
+  agesOfDogs
     .map((age) => (age <= 2 ? age * 2 : 16 + age * 4))
     .filter((age) => age >= 18)
     .reduce((totalAge, age, i, arr) => totalAge + age / arr.length, 0);
-};
 
 console.log(calcAverageHumanAge(dogAges[0]));
 console.log(calcAverageHumanAge(dogAges[1]));
