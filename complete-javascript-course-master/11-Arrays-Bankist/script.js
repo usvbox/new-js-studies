@@ -99,9 +99,8 @@ const calculateDisplaySummary = function (account) {
 
   labelSumInterest.textContent = `${account.movements
     .filter(mov => mov > 0)
-    .map(mov => Number((mov * (account.interestRate / 100)).toFixed(2)))
+    .map(mov => Number((mov * (account.interestRate / 100)).toFixed(0)))
     .filter((interest, i, arr) => {
-      console.log(arr);
       return interest >= 1;
     })
     .reduce((total, interest) => total + interest, 0)}€`;
@@ -134,7 +133,6 @@ const createUserNames = function (accs) {
 };
 
 createUserNames(accounts);
-console.log(accounts);
 
 let currentAccount;
 
@@ -148,10 +146,10 @@ btnLogin.addEventListener('click', event => {
       currentAccount.owner.split(' ')[0]
     }`;
     updateAccountInfoUi(currentAccount);
-    inputLoginPin.value = inputLoginUsername.value = '';
-    inputLoginPin.blur();
     containerApp.style.setProperty('opacity', '1');
   }
+  inputLoginPin.value = inputLoginUsername.value = '';
+  inputLoginPin.blur();
 });
 
 btnTransfer.addEventListener('click', event => {
@@ -172,6 +170,37 @@ btnTransfer.addEventListener('click', event => {
   }
   inputTransferTo.value = inputTransferAmount.value = '';
   inputTransferAmount.blur();
+});
+
+btnLoan.addEventListener('click', event => {
+  event.preventDefault();
+  const loanAmount = Number(inputLoanAmount.value);
+  if (
+    loanAmount > 0 &&
+    currentAccount.movements.some(mov => mov >= loanAmount * 0.1)
+  ) {
+    currentAccount.movements.push(loanAmount);
+    updateAccountInfoUi(currentAccount);
+  }
+  inputLoanAmount.value = '';
+  inputTransferAmount.blur();
+});
+
+btnClose.addEventListener('click', event => {
+  event.preventDefault();
+  if (
+    currentAccount.username === inputCloseUsername.value &&
+    currentAccount.pin === Number(inputClosePin.value)
+  ) {
+    const accountToDelete = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    accounts.splice(accountToDelete, 1);
+    containerApp.style.setProperty('opacity', '0');
+    labelWelcome.textContent = 'Log in to get started';
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
+  inputClosePin.blur();
 });
 
 /*const addUserName = function (accounts) {
@@ -302,7 +331,7 @@ const movementDescriptions = movements.map(
 console.log(movementDescriptions);
 */
 
-//const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /*const deposits = movements.filter(mov => mov > 0);
 console.log(deposits);
@@ -349,4 +378,8 @@ for (const account of accounts) {
 
 console.log(foundAccount);*/
 
-console.log((500 * (1.232 / 100)).toFixed(2));
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
+
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
