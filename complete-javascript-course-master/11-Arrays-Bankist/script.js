@@ -61,17 +61,28 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = 'noSorting') {
   containerMovements.innerHTML = '';
-  movements.forEach(function (movement, i) {
-    const type = movement > 0 ? 'deposit' : 'withdrawal';
+  let movs;
+  if (sort === 'noSorting') {
+    movs = movements;
+  }
+  if (sort === 'ascending') {
+    movs = movements.slice().sort((a, b) => b - a);
+  }
+  if (sort === 'descending') {
+    movs = movements.slice().sort((a, b) => a - b);
+  }
+  //const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  movs.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
     const movementHtml = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
         <div class="movements__date">3 days ago</div>
-        <div class="movements__value">${Math.abs(movement)}€</div>
+        <div class="movements__value">${Math.abs(mov)}€</div>
       </div>`;
     containerMovements.insertAdjacentHTML('afterbegin', movementHtml);
   });
@@ -184,6 +195,24 @@ btnLoan.addEventListener('click', event => {
   }
   inputLoanAmount.value = '';
   inputTransferAmount.blur();
+});
+
+//let sorted = false;
+
+btnSort.addEventListener('click', event => {
+  event.preventDefault();
+  //displayMovements(currentAccount.movements, !sorted);
+  //sorted = !sorted;
+  if (btnSort.textContent === 'SORT') {
+    displayMovements(currentAccount.movements, 'ascending');
+    btnSort.textContent = '↑ SORT';
+  } else if (btnSort.textContent === '↑ SORT') {
+    displayMovements(currentAccount.movements, 'descending');
+    btnSort.textContent = '↓ SORT';
+  } else {
+    displayMovements(currentAccount.movements, 'noSorting');
+    btnSort.textContent = 'SORT';
+  }
 });
 
 btnClose.addEventListener('click', event => {
@@ -378,8 +407,45 @@ for (const account of accounts) {
 
 console.log(foundAccount);*/
 
-console.log(movements.every(mov => mov > 0));
+/*console.log(movements.every(mov => mov > 0));
 console.log(account4.movements.every(mov => mov > 0));
 
 const deposit = mov => mov > 0;
 console.log(movements.some(deposit));
+
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+const arrDeep = [[[1, 2], 3], [[4, 5], 6], 7, 8];
+console.log(arrDeep.flat(2));
+
+const allMovements = accounts
+  .map(account => account.movements)
+  .flat()
+  .reduce((total, mov) => total + mov, 0);
+console.log(allMovements);
+
+const allMovements2 = accounts
+  .flatMap(account => account.movements)
+  .reduce((total, mov) => total + mov, 0);
+console.log(allMovements2);*/
+
+// const allDeposits = allMovements
+//   .filter(mov => mov > 0)
+//   .reduce((total, mov) => total + mov, 0);
+//
+// console.log(allDeposits);
+//
+// const allWithdrawals = allMovements
+//   .filter(mov => mov < 0)
+//   .reduce((total, mov) => total + mov, 0);
+//
+// console.log(allWithdrawals);
+
+const owners = accounts.map(acc => acc.owner);
+console.log(owners.sort());
+
+console.log(movements);
+console.log(movements.sort((a, b) => b - a));
+
+console.log(btnSort.textContent);
