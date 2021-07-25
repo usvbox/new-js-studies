@@ -82,7 +82,7 @@ const displayMovements = function (movements, sort = 'noSorting') {
       i + 1
     } ${type}</div>
         <div class="movements__date">3 days ago</div>
-        <div class="movements__value">${Math.abs(mov)}€</div>
+        <div class="movements__value">${mov}€</div>
       </div>`;
     containerMovements.insertAdjacentHTML('afterbegin', movementHtml);
   });
@@ -442,10 +442,51 @@ console.log(allMovements2);*/
 //
 // console.log(allWithdrawals);
 
-const owners = accounts.map(acc => acc.owner);
-console.log(owners.sort());
+// const owners = accounts.map(acc => acc.owner);
+// console.log(owners.sort());
+//
+// console.log(movements);
+// console.log(movements.sort((a, b) => b - a));
+//
+// console.log(btnSort.textContent);
 
-console.log(movements);
-console.log(movements.sort((a, b) => b - a));
+const x = new Array(7);
+console.log(x);
 
-console.log(btnSort.textContent);
+x.fill(1, 3, 5);
+console.log(x);
+
+const arr = [1, 2, 3, 4, 5];
+arr.fill(23, 1, 3);
+console.log(arr);
+
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (el, i) => i + 1);
+console.log(z);
+
+const randomDiceRolls = Array.from(
+  { length: 100 },
+  () => Math.floor(Math.random() * 6) + 1
+);
+console.log(randomDiceRolls);
+
+const balanceLabel = document.querySelector('.balance__value');
+let movementsValuesFromUI;
+
+balanceLabel.addEventListener('click', event => {
+  event.preventDefault();
+  movementsValuesFromUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace(/€/g, ''))
+  );
+  console.log(movementsValuesFromUI);
+  // console.log(
+  //   movementsValuesFromUI
+  //     .map(el => Number(el.textContent.replace(/€/g, '')))
+  //     .reduce((total, el) => total + el, 0)
+  // );
+
+  const movementsUI = [...document.querySelectorAll('.movements__value')];
+});
