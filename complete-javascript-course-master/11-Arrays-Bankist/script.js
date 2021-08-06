@@ -450,7 +450,7 @@ console.log(allMovements2);*/
 //
 // console.log(btnSort.textContent);
 
-const x = new Array(7);
+/*const x = new Array(7);
 console.log(x);
 
 x.fill(1, 3, 5);
@@ -489,4 +489,64 @@ balanceLabel.addEventListener('click', event => {
   // );
 
   const movementsUI = [...document.querySelectorAll('.movements__value')];
-});
+});*/
+
+//Calculate how much has been accumulated in deposits in the bank
+
+const allDeposits = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((total, mov) => total + mov, 0);
+console.log(allDeposits);
+
+//Count how many deposits there have been with at least 1,000 dollars
+
+// const depositsOverOneKUSD = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000).length;
+// console.log(depositsOverOneKUSD);
+
+const depositsOverOneKUSD = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, mov) => (mov >= 1000 ? ++count : count), 0);
+
+console.log(depositsOverOneKUSD);
+
+function increaseByOne(x) {
+  return ++x;
+}
+
+console.log(increaseByOne(10));
+
+// Use Array.Reduce() to create a new object (it can be an array as well as any other object)
+// Create an object that contains the sum of all deposits and withdrawals
+
+// create an array containing deposits and withdrawals as subarrays
+
+const { deposits, withdrawals } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, mov) => {
+      //mov > 0 ? (sums.deposits += mov) : (sums.withdrawals += mov);
+      sums[mov > 0 ? 'deposits' : 'withdrawals'] += mov;
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+
+console.log(deposits, withdrawals);
+
+//Convert a string to a title case: this is a nice title -> This Is a Nice Title
+
+// const convertToTitleCase = function (title) {
+//   return title
+//     .toLowerCase()
+//     .trim()
+//     .split(' ')
+//     .map(word => {
+//       return word.length > 3
+//         ? word.replace(word[0], word[0].toUpperCase())
+//         : word;
+//     })
+//     .join(' ');
+// };
