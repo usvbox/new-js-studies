@@ -60,6 +60,7 @@ const labelSumIn = document.querySelector('.summary__value--in');
 const labelSumOut = document.querySelector('.summary__value--out');
 const labelSumInterest = document.querySelector('.summary__value--interest');
 const labelTimer = document.querySelector('.timer');
+const labelTime = document.querySelector('.time');
 
 const containerApp = document.querySelector('.app');
 const containerMovements = document.querySelector('.movements');
@@ -97,6 +98,7 @@ const sortMovements = function (movements, sort) {
 const options = {
   hour: 'numeric',
   minute: 'numeric',
+  //second: 'numeric',
   day: 'numeric',
   month: 'numeric',
   year: 'numeric',
@@ -208,12 +210,69 @@ createUserNames(accounts);
 
 //console.log(createDate(new Date(Date.now())));
 
-let currentAccount;
+let currentAccount, timer, timeTillLogOut, displayTime;
 
 //Fake Login
 // currentAccount = account1;
 // updateAccountInfoUi(currentAccount);
 // containerApp.style.setProperty('opacity', '1');
+
+const startLogoutTimer = function () {
+  const tick = () => {
+    const min = String(Math.floor(timeTillLogOut / 60)).padStart(2, '0');
+    //const sec = String(Math.floor(timeTillLogOut % 60)).padStart(2, '0');
+    const sec = String(timeTillLogOut % 60).padStart(2, '0');
+    labelTimer.textContent = `${min}:${sec}`;
+    if (timeTillLogOut === 0) {
+      clearInterval(timer);
+      logOut();
+    }
+    timeTillLogOut--;
+  };
+  timeTillLogOut = 180;
+  tick();
+  timer = setInterval(tick, 1000);
+  return timer;
+};
+
+const resetTimer = () => {
+  clearInterval(timer);
+  startLogoutTimer();
+};
+
+const resetTime = () => {
+  clearInterval(displayTime);
+  showCurrentTime();
+};
+
+const showCurrentTime = () => {
+  const time = () => {
+    const current = new Date();
+    const hour = String(current.getHours()).padStart(2, '0');
+    const min = String(current.getMinutes()).padStart(2, '0');
+    const sec = String(current.getSeconds()).padStart(2, '0');
+    labelTime.textContent = `${hour}:${min}:${sec}`;
+    if (timeTillLogOut === 0) {
+      clearInterval(displayTime);
+    }
+  };
+  time();
+  displayTime = setInterval(time, 1000);
+  return displayTime;
+};
+
+const logOut = function () {
+  containerApp.style.setProperty('opacity', '0');
+  labelWelcome.textContent = 'Log in to get started';
+};
+
+const updateBalanceDate = function () {
+  const balanceDate = new Intl.DateTimeFormat(
+    currentAccount.locale,
+    options
+  ).format(new Date());
+  labelDate.textContent = `${balanceDate}`;
+};
 
 // Event Listeners
 
@@ -229,10 +288,19 @@ btnLogin.addEventListener('click', event => {
     updateAccountInfoUi(currentAccount);
     containerApp.style.setProperty('opacity', '1');
     //labelDate.textContent = createDate(new Date());
-    labelDate.textContent = new Intl.DateTimeFormat(
-      currentAccount.locale,
-      options
-    ).format(new Date());
+
+    if (timer) {
+      resetTimer();
+    } else {
+      startLogoutTimer();
+    }
+
+    if (displayTime) {
+      resetTime();
+    } else {
+      showCurrentTime();
+    }
+    updateBalanceDate();
   }
   inputLoginPin.value = inputLoginUsername.value = '';
   inputLoginPin.blur();
@@ -258,6 +326,8 @@ btnTransfer.addEventListener('click', event => {
   }
   inputTransferTo.value = inputTransferAmount.value = '';
   inputTransferAmount.blur();
+  resetTimer();
+  updateBalanceDate();
 });
 
 btnLoan.addEventListener('click', event => {
@@ -268,12 +338,16 @@ btnLoan.addEventListener('click', event => {
     loanAmount > 0 &&
     currentAccount.movements.some(mov => mov >= loanAmount * 0.1)
   ) {
-    currentAccount.movements.push(loanAmount);
-    currentAccount.movementsDates.push(new Date().toISOString());
-    updateAccountInfoUi(currentAccount);
+    setTimeout(() => {
+      currentAccount.movements.push(loanAmount);
+      currentAccount.movementsDates.push(new Date().toISOString());
+      updateAccountInfoUi(currentAccount);
+    }, 5000);
   }
   inputLoanAmount.value = '';
   inputTransferAmount.blur();
+  resetTimer();
+  updateBalanceDate();
 });
 
 //let sorted = false;
@@ -463,3 +537,9 @@ btnClose.addEventListener('click', event => {
 //   navigator.language,
 //   new Intl.NumberFormat(navigator.language, options_num).format(num)
 // );
+
+//setTimeout(() => console.log('Heres your pizza!'), 3000);
+
+console.log(Math.floor(1.1));
+console.log(Math.floor(0.9));
+console.log(235 % 60);
