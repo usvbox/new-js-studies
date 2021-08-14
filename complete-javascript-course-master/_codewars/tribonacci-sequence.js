@@ -1,17 +1,17 @@
 "use strict";
 
 //Option 1
-// const tribonacci = function (signature, n) {
-//   const tribonacciSequence = signature.slice(0, n);
-//   while (tribonacciSequence.length < n) {
-//     // tribonacciSequence.push(
-//     //   tribonacciSequence.slice(-3).reduce((total, num) => total + num, 0));
-//     tribonacciSequence[tribonacciSequence.length] = tribonacciSequence
-//       .slice(-3)
-//       .reduce((total, num) => total + num, 0);
-//   }
-//   return tribonacciSequence;
-// };
+const tribonacci = function (signature, n) {
+  const tribonacciSequence = signature.slice(0, n);
+  while (tribonacciSequence.length < n) {
+    // tribonacciSequence.push(
+    //   tribonacciSequence.slice(-3).reduce((total, num) => total + num, 0));
+    tribonacciSequence[tribonacciSequence.length] = tribonacciSequence
+      .slice(-3)
+      .reduce((total, num) => total + num, 0);
+  }
+  return tribonacciSequence;
+};
 
 // const tribonacci = function (signature, n) {
 //   if (n < signature.length) return signature.slice(0, n);
