@@ -17,6 +17,70 @@ const calculate = function (num1, op, num2) {
   }
 };
 
+function calculationForNum(n) {
+  //console.log(n);
+  return function (operation) {
+    //console.trace("operation: ", operation, "n: ", n);
+    return operation ? operation(n) : n;
+  };
+}
+
+function times(m) {
+  return function (n) {
+    return calculate(n, "*", m);
+  };
+}
+
+//
+// const digits = {
+//   five: 5,
+//   seven: 7
+// }
+
+const five = calculationForNum(5);
+const seven = calculationForNum(7);
+
+console.log(seven(times(five())));
+
+// // console.dir(five);
+// // console.dir(seven);
+// const step1 = five();
+// // console.log(step1);
+// const step2 = times(step1);
+// // console.log("seven: ", seven);
+// // console.dir(seven);
+// // console.log(step2);
+// // console.dir(step2);
+// const step3 = seven(step2);
+// console.log(step3);
+// console.dir(step3);
+
+// const x = 7;
+// const func = function (l) {
+//   const y = calculate(l, "*", 5);
+//   console.log(y);
+// };
+// func(x);
+
+// console.log(calculate(5, "*", 7));
+//
+// console.log(five());
+// console.log(seven);
+// console.log(times(five()));
+// console.dir(times(five()));
+// console.log(seven(times(five())));
+
+// console.log(five);
+// console.log(seven);
+// console.log(five());
+// console.log(seven());
+// console.dir(seven);
+//
+// console.log(times(five()));
+// console.dir(times(five()));
+//
+// console.log(seven(times(five())));
+
 // function zero(arg) {
 //   return arg ? calculate(...[0, ...arg]) : 0;
 // }
@@ -90,51 +154,45 @@ const calculate = function (num1, op, num2) {
 2) The output of times() is the input to seven()
 */
 
-const n = function (digit) {
-  return function (op) {
-    return op ? op(digit) : digit;
-  };
-};
-const zero = n(0);
-const one = n(1);
-const two = n(2);
-const three = n(3);
-const four = n(4);
-const five = n(5);
-const six = n(6);
-const seven = n(7);
-const eight = n(8);
-const nine = n(9);
+// const n = function (digit) {
+//   return function (op) {
+//     return op ? op(digit) : digit;
+//   };
+// };
+// const zero = n(0);
+// const one = n(1);
+// const two = n(2);
+// const three = n(3);
+// const four = n(4);
+// const five = n(5);
+// const six = n(6);
+// const seven = n(7);
+// const eight = n(8);
+// const nine = n(9);
+//
+// console.dir(five);
+//
+// function plus(r) {
+//   return function (l) {
+//     return l + r;
+//   };
+// }
+// function minus(r) {
+//   return function (l) {
+//     return l - r;
+//   };
+// }
+// function times(r) {
+//   return function (l) {
+//     return l * r;
+//   };
+// }
+// function dividedBy(r) {
+//   return function (l) {
+//     return l / r;
+//   };
+// }
 
-function plus(r) {
-  return function (l) {
-    return l + r;
-  };
-}
-function minus(r) {
-  return function (l) {
-    return l - r;
-  };
-}
-function times(r) {
-  return function (l) {
-    return l * r;
-  };
-}
-function dividedBy(r) {
-  return function (l) {
-    return l / r;
-  };
-}
-
-console.log(five);
-console.log(seven);
-console.log(five());
-console.log(seven());
-
-console.log(times(five()));
-
-console.log(seven(times(five())));
 // console.log(seven(minus(five())));
 // console.log(seven(plus(five())));
 // console.log(seven(dividedBy(five())));
@@ -142,7 +200,7 @@ console.log(seven(times(five())));
 // console.log(eight(minus(three())));
 // console.log(six(dividedBy(two())));
 
-module.exports = returnArrayDiff;
+module.exports = { calculate };
 
 // const result = returnArrayDiff(inputA, inputB);
 // console.log(result);

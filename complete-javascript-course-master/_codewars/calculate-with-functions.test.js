@@ -47,7 +47,7 @@ describe("arrayDiff tests", () => {
   testCases(
     "difference between arrays in input $inputA and in input $inputB is $expectedResult",
     ({ inputA, inputB, expectedResult }) => {
-      expect(returnArrayDiff(inputA, inputB)).toStrictEqual(expectedResult);
+      expect(calculate(inputA, inputB)).toStrictEqual(expectedResult);
     }
   );
 });
