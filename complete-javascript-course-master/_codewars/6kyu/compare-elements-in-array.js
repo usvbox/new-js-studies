@@ -1,5 +1,3 @@
-"use strict";
-
 const inputArray = [4, 3, 4, 3, 3, 5, 3];
 
 const testAr = [...new Set(inputArray)];

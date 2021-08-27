@@ -1,4 +1,18 @@
-const calculate = require("./calculate-with-functions.js");
+const selectCalculationForNum = require("./calculate-with-functions.js");
+const times = require("./calculate-with-functions.js");
+const divideBy = require("./calculate-with-functions.js");
+const plus = require("./calculate-with-functions.js");
+const minus = require("./calculate-with-functions.js");
+const zero = selectCalculationForNum;
+const one = selectCalculationForNum;
+const two = selectCalculationForNum;
+const three = selectCalculationForNum;
+const four = selectCalculationForNum;
+const five = selectCalculationForNum;
+const six = selectCalculationForNum;
+const seven = selectCalculationForNum;
+const eight = selectCalculationForNum;
+const nine = selectCalculationForNum;
 
 // test.each([
 //   [[1, 2], [1, 2], []],
@@ -38,16 +52,11 @@ const calculate = require("./calculate-with-functions.js");
 //   );
 // });
 
-const testCases = test.each([
-  { inputA: [1, 2], inputB: [1, 2], expectedResult: [] },
-  { inputA: [1, 2, 2, 2, 3], inputB: [2], expectedResult: [1, 3] },
-]);
+const testCases = test.each([{ expectedResult: 35 }, { expectedResult: 3 }]);
 
-describe("arrayDiff tests", () => {
-  testCases(
-    "difference between arrays in input $inputA and in input $inputB is $expectedResult",
-    ({ inputA, inputB, expectedResult }) => {
-      expect(calculate(inputA, inputB)).toStrictEqual(expectedResult);
-    }
-  );
+describe("calculation tests", () => {
+  test("7 * 5", () => {
+    const five = selectCalculationForNum(5);
+    expect(seven(times(five()))).toStrictEqual(35);
+  });
 });

@@ -17,13 +17,30 @@ const calculate = function (num1, op, num2) {
   }
 };
 
-function calculationForNum(n) {
-  //console.log(n);
+function selectCalculationForNum(n) {
   return function (operation) {
-    //console.trace("operation: ", operation, "n: ", n);
     return operation ? operation(n) : n;
   };
 }
+
+// const zero = selectCalculationForNum(0);
+// const one = selectCalculationForNum(1);
+// const two = selectCalculationForNum(2);
+// const three = selectCalculationForNum(3);
+// const four = selectCalculationForNum(4);
+// const five = selectCalculationForNum(5);
+// const six = selectCalculationForNum(6);
+// const seven = selectCalculationForNum(7);
+// const eight = selectCalculationForNum(8);
+// const nine = selectCalculationForNum(9);
+
+const five = function (operation) {
+  return operation ? operation(5) : 5;
+};
+
+const seven = function (operation) {
+  return operation ? operation(7) : 7;
+};
 
 function times(m) {
   return function (n) {
@@ -31,14 +48,23 @@ function times(m) {
   };
 }
 
-//
-// const digits = {
-//   five: 5,
-//   seven: 7
-// }
+function divideBy(m) {
+  return function (n) {
+    return calculate(n, "/", m);
+  };
+}
 
-const five = calculationForNum(5);
-const seven = calculationForNum(7);
+function plus(m) {
+  return function (n) {
+    return calculate(n, "+", m);
+  };
+}
+
+function minus(m) {
+  return function (n) {
+    return calculate(n, "-", m);
+  };
+}
 
 console.log(seven(times(five())));
 
@@ -82,36 +108,36 @@ console.log(seven(times(five())));
 // console.log(seven(times(five())));
 
 // function zero(arg) {
-//   return arg ? calculate(...[0, ...arg]) : 0;
+//   return arg ? calculate(0, ...arg) : 0;
 // }
 // function one(arg) {
-//   return arg ? calculate(...[1, ...arg]) : 1;
+//   return arg ? calculate(1, ...arg) : 1;
 // }
 // function two(arg) {
-//   return arg ? calculate(...[2, ...arg]) : 2;
+//   return arg ? calculate(2, ...arg) : 2;
 // }
 // function three(arg) {
-//   return arg ? calculate(...[3, ...arg]) : 3;
+//   return arg ? calculate(3, ...arg) : 3;
 // }
 // function four(arg) {
-//   return arg ? calculate(...[4, ...arg]) : 4;
+//   return arg ? calculate(4, ...arg) : 4;
 // }
 // function five(arg) {
-//   return arg ? calculate(...[5, ...arg]) : 5;
+//   return arg ? calculate(5, ...arg) : 5;
 // }
 // function six(arg) {
-//   return arg ? calculate(...[6, ...arg]) : 6;
+//   return arg ? calculate(6, ...arg) : 6;
 // }
 // function seven(arg) {
-//   return arg ? calculate(...[7, ...arg]) : 7;
+//   return arg ? calculate(7, ...arg) : 7;
 // }
 // function eight(arg) {
-//   return arg ? calculate(...[8, ...arg]) : 8;
+//   return arg ? calculate(8, ...arg) : 8;
 // }
 // function nine(arg) {
-//   return arg ? calculate(...[9, ...arg]) : 9;
+//   return arg ? calculate(9, ...arg) : 9;
 // }
-//
+
 // function times(num) {
 //   return ["*", num];
 // }
@@ -132,14 +158,19 @@ console.log(seven(times(five())));
 //     return "0";
 //   }
 // }
-
+//
+// const test1 = "*9";
+// const string1 = 2 + test1;
+// console.log(string1);
+// console.log(eval(2 + test1));
+//
 // console.log(seven(times(five())));
 // console.log(seven(minus(five())));
 // console.log(seven(plus(five())));
-// console.log(seven(dividedBy(five())));
+// console.log(seven(divideBy(five())));
 // console.log(four(plus(nine())));
 // console.log(eight(minus(three())));
-// console.log(six(dividedBy(two())));
+// console.log(six(divideBy(two())));
 // seven(minus(five()));
 // seven(plus(five()));
 // seven(dividedBy(five()));
@@ -200,7 +231,23 @@ console.log(seven(times(five())));
 // console.log(eight(minus(three())));
 // console.log(six(dividedBy(two())));
 
-module.exports = { calculate };
+module.exports = {
+  zero: zero,
+  one: one,
+  two: two,
+  three: three,
+  four: four,
+  five: five,
+  six: six,
+  seven: seven,
+  eight: eight,
+  nine: nine,
+  times: times,
+  divideBy: divideBy,
+  plus: plus,
+  minus: minus,
+  selectCalculationForNum: selectCalculationForNum,
+};
 
 // const result = returnArrayDiff(inputA, inputB);
 // console.log(result);

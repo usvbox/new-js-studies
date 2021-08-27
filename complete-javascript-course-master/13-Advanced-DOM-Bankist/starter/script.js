@@ -225,7 +225,7 @@ const lazyImages = document.querySelectorAll('.lazy-img');
 
 const loadImage = function (entries, observer) {
   entries.forEach(entry => {
-    console.log(entry);
+    // console.log(entry);
     if (!entry.isIntersecting) return;
     entry.target.src = entry.target.dataset.src;
     entry.target.addEventListener('load', function (e) {
@@ -243,8 +243,118 @@ const lazyImageObserver = new IntersectionObserver(loadImage, {
 
 lazyImages.forEach(image => lazyImageObserver.observe(image));
 
+//// Slider Component
+
+// Slider Functions
+
+const slider = function () {
+  const createDots = function () {
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.classList.add('dots__dot');
+      dot.setAttribute('data-slide', `${i}`);
+      dotContainer.append(dot);
+    });
+  };
+
+  const goToSlide = function (curSlide) {
+    slides.forEach((slide, i) => {
+      slide.style.transform = `translateX(${(i - curSlide) * 100}%)`;
+    });
+    document.querySelectorAll('.dots__dot').forEach(dot => {
+      dot.classList.remove('dots__dot--active');
+    });
+    document
+      .querySelector(`.dots__dot[data-slide="${curSlide}"]`)
+      .classList.add('dots__dot--active');
+  };
+
+  const nextSlide = function () {
+    if (currentSlide < slideNumber - 1) currentSlide++;
+    else currentSlide = 0;
+    goToSlide(currentSlide);
+  };
+
+  const previousSlide = function () {
+    if (currentSlide === 0) currentSlide = slideNumber - 1;
+    else currentSlide--;
+    goToSlide(currentSlide);
+  };
+
+  const slidesWithKeys = function (e) {
+    e.preventDefault();
+    e.key === 'ArrowRight' && nextSlide();
+    e.key === 'ArrowLeft' && previousSlide();
+  };
+
+  const sliderInit = function () {
+    slideNumber = slides.length;
+    currentSlide = 0;
+    createDots();
+    goToSlide(currentSlide);
+  };
+
+  // Slider Elements
+
+  const slider = document.querySelector('.slider');
+  const slides = document.querySelectorAll('.slide');
+  const slideRightBtn = document.querySelector('.slider__btn--right');
+  const slideLeftBtn = document.querySelector('.slider__btn--left');
+  const dotContainer = document.querySelector('.dots');
+
+  // Slider Globals and Init
+
+  let slideNumber, currentSlide;
+
+  sliderInit();
+
+  // Slider Event Listeners and Observers
+
+  slideRightBtn.addEventListener('click', nextSlide);
+  slideLeftBtn.addEventListener('click', previousSlide);
+
+  const allowSlidesWithKeyboard = function (entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting)
+        document.addEventListener('keydown', slidesWithKeys);
+      else document.removeEventListener('keydown', slidesWithKeys);
+    });
+  };
+
+  const sliderObserver = new IntersectionObserver(allowSlidesWithKeyboard, {
+    root: null,
+    threshold: 0.7,
+  });
+
+  sliderObserver.observe(slider);
+
+  dotContainer.addEventListener('click', function (e) {
+    if (!e.target.matches('.dots__dot')) return;
+    const { slide } = e.target.dataset;
+    goToSlide(slide);
+  });
+};
+
+slider();
+
 /////////////////////////
 // Lectures
+
+////// Special Events in a Web Page Lifecycle
+
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log(e);
+});
+
+window.addEventListener('load', function (e) {
+  console.log(e);
+});
+
+// window.addEventListener('beforeunload', function (e) {
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = '';
+// });
 
 ////// Intersection Observer API
 
