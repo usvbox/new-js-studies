@@ -202,7 +202,7 @@ Person.hey = function () {
 
 ////// Object.create
 
-const PersonProto = {
+/*const PersonProto = {
   calcAge() {
     console.log(2037 - this.birthYear);
   },
@@ -222,11 +222,11 @@ console.log(steven.__proto__ === PersonProto);
 
 const sarah = Object.create(PersonProto);
 sarah.init('Sarah', 1992);
-console.log(sarah);
+console.log(sarah);*/
 
 ////// OOP Challenge # 2
 
-class Car {
+/*class Car {
   constructor(make, speed) {
     this.make = make;
     this.speed = speed;
@@ -259,7 +259,7 @@ ford.brake();
 ford.brake();
 console.log(ford.speedUS);
 ford.speedUS = 120;
-console.log(ford.speed);
+console.log(ford.speed);*/
 
 /*const Car = function (make, speed) {
   this.make = make;
@@ -278,3 +278,30 @@ Car.prototype.brake = function () {
 
 const car1 = new Car('BMW', 120);
 const car2 = new Car('Mercedes', 95); */
+
+////// Class Inheritance
+
+//// Inheritance Between Constructor Functions
+
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+  this.course = course;
+};
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student('Mike', 2003, 'Computing');
+console.log(mike);
+
+mike.introduce();
